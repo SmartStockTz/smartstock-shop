@@ -119,6 +119,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "mamagenge"
+    }
+  },
+  "defaultProject": "mamagenge",
+  "cli": {
+    "analytics": "57d6c7c9-d0d7-4248-acce-19783ed562d7"
+  }
 }
