@@ -1,4 +1,5 @@
 export interface ProductModel {
-  name?: string;
+  product?: string;
   image?: string;
+  retailPrice?: number;
 }
