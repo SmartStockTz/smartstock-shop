@@ -7,6 +7,7 @@ import {FooterComponent} from './components/footer.component';
 import {ProductCardComponent} from './components/product-card.component';
 import {ProductsListComponent} from './components/products-list.component';
 import {CommonModule} from '@angular/common';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 
 const routes: Route[] = [
@@ -23,10 +24,11 @@ const routes: Route[] = [
     ProductCardComponent,
     ProductsListComponent
   ],
-    imports: [
-        RouterModule.forChild(routes),
-        CommonModule
-    ]
+  imports: [
+    RouterModule.forChild(routes),
+    CommonModule,
+    MatProgressSpinnerModule
+  ]
 })
 
 export class WebModule {

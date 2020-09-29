@@ -1,6 +1,5 @@
 import {Component, Input} from '@angular/core';
 import {ProductModel} from '../models/product.model';
-import {MatDialog} from '@angular/material/dialog';
 
 @Component({
   selector: 'app-product-card',
@@ -10,9 +9,9 @@ import {MatDialog} from '@angular/material/dialog';
         <img src="{{product.image}}" alt="">
       </figure>
       <div class="product-name">
-        <h5><a href="#" title="">{{product.product}}</a></h5>
-        <h5><a href="#" title="">{{product.retailPrice | currency: 'TZS '}}</a></h5>
-        <button (click)="addToCart()" class="">
+        <h4><a href="#" title="">{{product.product}}</a></h4>
+        <h2><a href="#" title="">{{product.retailPrice | currency: 'TZS '}}</a></h2>
+        <button (click)="addToCart()" class="btn btn-outline-primary">
           Add To Cart
         </button>
       </div>
