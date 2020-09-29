@@ -7,11 +7,11 @@
       </i>
     </div>
     <div class="social-links float-right">
-      <a href="#" class="twitter"><i class="icofont-twitter"></i></a>
-      <a href="#" class="facebook"><i class="icofont-facebook"></i></a>
-      <a href="#" class="instagram"><i class="icofont-instagram"></i></a>
-      <a href="#" class="skype"><i class="icofont-skype"></i></a>
-      <a href="#" class="linkedin"><i class="icofont-linkedin"></i></a>
+      <a class="twitter"><i class="icofont-twitter"></i></a>
+      <a class="facebook"><i class="icofont-facebook"></i></a>
+      <a class="instagram"><i class="icofont-instagram"></i></a>
+      <a class="skype"><i class="icofont-skype"></i></a>
+      <a class="linkedin"><i class="icofont-linkedin"></i></a>
     </div>
   </div>
 </section>
@@ -21,21 +21,30 @@
   <div class="container">
 
     <div class="logo float-left">
-      <h1 class="text-light"><a href="index.html"><span>MamaGenge</span></a></h1>
+      <h1 class="text-light"><a routerLink="/"><span>MamaGenge</span></a></h1>
       <!-- Uncomment below if you prefer to use an image logo -->
-      <!-- <a href="index.html"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
+      <!-- <a ><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
     </div>
 
     <nav class="nav-menu float-right d-none d-lg-block">
       <ul>
-        <li class="active"><a href="index.html">Home</a></li>
-        <li><a href="#about">About Us</a></li>
-        <li><a href="#location">Location</a></li>
-        <li><a href="#services">Services</a></li>
-        <li><a href="#portfolio">Portfolio</a></li>
-        <li><a href="#team">Team</a></li>
+        <li><a routerLink="/">Home</a></li>
+        <li><a href="/products">Shopping</a></li>
+        <!--        <li><a href="#location">Location</a></li>-->
+        <!--        <li><a href="#services">Services</a></li>-->
+        <!--        <li><a href="#portfolio">Portfolio</a></li>-->
+        <!--        <li><a href="#team">Team</a></li>-->
 
-        <li><a href="#contact">Contact Us</a></li>
+        <li *ngIf="username" style="padding: 8px">
+          <button style="padding: 8px; display: flex; justify-content: center; align-items: center"
+                  [matMenuTriggerFor]="menu" class="btn btn-outline-primary">
+            <mat-icon>person</mat-icon>
+            <span>{{username}}</span>
+          </button>
+          <mat-menu #menu>
+            <button (click)="logOut()" mat-button>Logout</button>
+          </mat-menu>
+        </li>
       </ul>
     </nav><!-- .nav-menu -->
 

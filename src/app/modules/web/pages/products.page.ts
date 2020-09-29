@@ -51,8 +51,9 @@ import {MatSnackBar} from '@angular/material/snack-bar';
           </div>
         </div>
       </div>
+      <app-cart-preview></app-cart-preview>
     </section>
-    <a class="shopping-cart" href="#" title=""><i class="fa fa-shopping-bag"></i><span>02</span></a>
+    <a class="shopping-cart"  title=""><i class="fa fa-shopping-bag"></i><span>02</span></a>
     <app-footer></app-footer>
   `
 })

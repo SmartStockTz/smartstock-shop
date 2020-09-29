@@ -504,7 +504,7 @@ import {ProductService} from '../services/product.service';
       </section><!-- End Contact Us Section -->
 
     </main><!-- End #main -->
-
+    <app-cart-preview></app-cart-preview>
     <app-footer></app-footer>
   `
 })
