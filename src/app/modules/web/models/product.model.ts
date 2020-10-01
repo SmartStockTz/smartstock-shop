@@ -3,4 +3,5 @@ export interface ProductModel {
   image?: string;
   retailPrice?: number;
   id?: string;
+  unit?: string
 }

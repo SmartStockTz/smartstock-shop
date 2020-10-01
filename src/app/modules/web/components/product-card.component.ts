@@ -11,7 +11,7 @@ import {CartState} from '../states/cart.state';
       </figure>
       <div class="product-name">
         <h4><a title="">{{product.product}}</a></h4>
-        <h2><a  title="">{{product.retailPrice | currency: 'TZS '}}</a></h2>
+        <h2><a  title="">{{product.retailPrice | currency: 'TZS '}} / {{product.unit}}</a></h2>
         <button (click)="addToCart()" class="btn btn-outline-primary">
           Add To Cart
         </button>

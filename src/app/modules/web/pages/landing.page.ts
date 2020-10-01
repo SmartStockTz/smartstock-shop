@@ -21,9 +21,11 @@ import {ProductService} from '../services/product.service';
               <div class="carousel-container" style="height: 60vh">
                 <div class="carousel-content container">
                   <h2 class="animate__animated animate__fadeInDown">Welcome to <span>MamaGenge</span></h2>
-                  <p class="animate__animated animate__fadeInUp">We are here to support you on making purchases of best
-                    quality of agricultural products.Marketting agricultural products has never been this easier.</p>
-                  <a href="#about" class="btn-get-started animate__animated animate__fadeInUp scrollto">Read More</a>
+                  <p class="animate__animated animate__fadeInUp"> <h2>About Us</h2>
+                  <p>We are a young growing company ready to feed the riches of Tanzania to the whole world. We buy
+                    agricultural products from our local farmers and meet the demand of our royal customers. We sell high
+                    quality agricultural products with the most affordable pric. easy to use, access, reliable with quick
+                    response to its customers.</p>
                 </div>
               </div>
             </div>
@@ -68,42 +70,7 @@ import {ProductService} from '../services/product.service';
           </button>
         </div>
       </div>
-
-      <!-- ======= About Us Section ======= -->
-      <section id="about" class="about">
-        <div class="container">
-
-          <div class="row no-gutters">
-            <div class="col-lg-6 video-box">
-              <img src="assets/img/about.jpg" class="img-fluid" alt="">
-              <a href="https://www.youtube.com/watch?v=K6TJetHdDAw" class="venobox play-btn mb-4" data-vbtype="video"
-                 data-autoplay="true"></a>
-            </div>
-
-            <div class="col-lg-6 d-flex flex-column justify-content-center about-content">
-
-              <div class="section-title">
-                <h2>About Us</h2>
-                <p>We are a young growing company ready to feed the riches of Tanzania to the whole world. We buy
-                  agricultural products from our local farmers and meet the demand of our royal customers. We sell high
-                  quality agricultural products with the most affordable pric. easy to use, access, reliable with quick
-                  response to its customers.
-
-                </p>
-              </div>
-
-              <div class="icon-box" data-aos="fade-up" data-aos-delay="100">
-                <div class="icon"><i class="bx bx-gift"></i></div>
-                <h4 class="title"><a href="">BONUS</a></h4>
-                <p class="description"> Buy one get one for free First month membership </p>
-              </div>
-
-            </div>
-          </div>
-
-        </div>
-      </section><!-- End About Us Section -->
-
+      
       <!-- ======= Counts Section ======= -->
 
 
@@ -124,7 +91,7 @@ import {ProductService} from '../services/product.service';
             <div class="col-lg-4 col-md-6 icon-box" data-aos="fade-up" data-aos-delay="100">
               <div class="icon"><i class="icofont-chart-bar-graph"></i></div>
               <h4 class="title"><a href="">Analysis</a></h4>
-              <p class="description">We make an analysis on the flactuation of prices and update on prices</p>
+              <p class="description">We make an analysis on the flactuation of prices and update prices regulary</p>
             </div>
             <div class="col-lg-4 col-md-6 icon-box" data-aos="fade-up" data-aos-delay="200">
               <div class="icon"><i class="icofont-earth"></i></div>
@@ -132,6 +99,16 @@ import {ProductService} from '../services/product.service';
               <p class="description">We sell anywhere and everywhere aroud the world</p>
             </div>
 
+            <div class="col-lg-4 col-md-6 icon-box" data-aos="fade-up" data-aos-delay="300">
+            <div class="icon"><i class="icofont-truck"></i></div>
+            <h4 class="title"><a href="">Delivery</a></h4>
+            <p class="description">Delivery at an affordable price</p>
+          </div>
+          <div class="col-lg-4 col-md-6 icon-box" data-aos="fade-up" data-aos-delay="400">
+          <div class="icon"><i class="icofont-ship"></i></div>
+          <h4 class="title"><a href="">Shipping</a></h4>
+          <p class="description">Shipping anywhere oversees. Order and wait for your goodies</p>
+        </div>
           </div>
 
         </div>
@@ -301,7 +278,7 @@ import {ProductService} from '../services/product.service';
       <!--      </section>&lt;!&ndash; End Our Portfolio Section &ndash;&gt;-->
 
       <!-- ======= Our Team Section ======= -->
-      <section id="team" class="team">
+   <!--  <section id="team" class="team">
         <div class="container">
 
           <div class="section-title">
@@ -383,8 +360,9 @@ import {ProductService} from '../services/product.service';
             </div>
           </div>
 
-        </div>
-      </section><!-- End Our Team Section -->
+        </div> 
+      </section> -->
+      <!-- End Our Team Section -->
 
       <!-- ======= Frequently Asked Questions Section ======= -->
       <section id="faq" class="faq section-bg">
@@ -397,9 +375,9 @@ import {ProductService} from '../services/product.service';
           <div class="row  d-flex align-items-stretch">
 
             <div class="col-lg-6 faq-item" data-aos="fade-up">
-              <h4>Do we export?</h4>
+              <h4>How long does exportation take?</h4>
               <p>
-                Yes we provide our services East Africa and beyond. World wide, Anywhere and everywhere.
+             We provide our services East Africa and beyond. World wide, Anywhere and everywhere.
               </p>
             </div>
 
@@ -420,10 +398,21 @@ import {ProductService} from '../services/product.service';
             <div class="col-lg-6 faq-item" data-aos="fade-up" data-aos-delay="300">
               <h4>How long does it take to recieve an order?</h4>
               <p>
-                It takes a minimum of six working days for oversee countries, and take less than two working days for East
-                African countries.
+                It takes one day to recieve an order anywhere around Dar es salaam. A minimum of Two days for those who reside outside of Dar es salaam region.
               </p>
             </div>
+            <div class="col-lg-6 faq-item" data-aos="fade-up" data-aos-delay="400">
+            <h4>Do we work throughout the week?</h4>
+            <p>
+              Yes indeed we do. We work everyday throughout the week, from Monday to Monday.
+            </p>
+          </div>
+          <div class="col-lg-6 faq-item" data-aos="fade-up" data-aos-delay="500">
+          <h4>Do we do business beyond Tanzania?</h4>
+          <p>
+          We warmly encourage anyone from and outside Tanzania to contact us in demand of our services.
+          </p>
+        </div>
           </div>
         </div>
 
