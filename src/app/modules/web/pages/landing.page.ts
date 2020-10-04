@@ -109,6 +109,11 @@ import {ProductService} from '../services/product.service';
           <h4 class="title"><a href="">Shipping</a></h4>
           <p class="description">Shipping anywhere oversees. Order and wait for your goodies</p>
         </div>
+        <div class="col-lg-4 col-md-6 icon-box" data-aos="fade-up" data-aos-delay="400">
+          <div class="icon"><i class="icofont-leaf"></i></div>
+          <h4 class="title"><a href="">Naturality</a></h4>
+          <p class="description">Fresh from mother earth. We care about your health</p>
+        </div>
           </div>
 
         </div>
