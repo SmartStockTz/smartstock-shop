@@ -1,0 +1,12 @@
+table {
+  width: 100%;
+  text-align: center;
+}
+
+/*mat-progress-bar {*/
+/*  margin-top: 50px;*/
+/*}*/
+
+th {
+  text-align: center !important;
+}

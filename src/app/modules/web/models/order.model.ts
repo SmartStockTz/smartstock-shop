@@ -1,6 +1,7 @@
 import {ProductModel} from './product.model';
 
 export interface OrderModel {
+  displayName?: any;
   id?: string;
   userId?: string;
   carts?: {
@@ -11,5 +12,5 @@ export interface OrderModel {
   mobile?: string;
   status?: string;
   total?: number;
-  user: object;
+  user: any;
 }

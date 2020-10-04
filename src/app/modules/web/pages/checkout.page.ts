@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-checkout-page',
@@ -9,6 +9,15 @@ import {Component} from '@angular/core';
   `
 })
 
-export class CheckoutPage {
+export class CheckoutPage implements OnInit {
+  constructor() {
+    window.scrollTo({
+      top: 0
+    });
+  }
+
+  ngOnInit(): void {
+
+  }
 
 }

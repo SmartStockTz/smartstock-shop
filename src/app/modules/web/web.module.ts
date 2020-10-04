@@ -21,10 +21,22 @@ import {MatMenuModule} from '@angular/material/menu';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatInputModule} from '@angular/material/input';
+import {OrdersPage} from './pages/orders.page';
+import {MyOrdersComponent} from './components/my-orders.component';
+import {AuthenticationGuard} from './guards/authentication.guard';
+import {MatPaginatorModule} from '@angular/material/paginator';
+import {CdkTableModule} from '@angular/cdk/table';
+import {MAT_BOTTOM_SHEET_DATA, MatBottomSheetModule, MatBottomSheetRef} from '@angular/material/bottom-sheet';
+import {OrdersTableOptionsComponent} from './components/orders-table-options.component';
+import {OrdersTableShowItemsComponent} from './components/orders-table-show-items.component';
+import {MatListModule} from '@angular/material/list';
+import {MatCardModule} from '@angular/material/card';
+import {MatProgressBarModule} from '@angular/material/progress-bar';
 
 
 const routes: Route[] = [
   {path: '', component: LandingPageComponent},
+  {path: 'orders', canActivate: [AuthenticationGuard], component: OrdersPage},
   {path: 'products', component: ProductsPageComponent},
   {path: 'checkout', component: CheckoutPage},
 ];
@@ -40,9 +52,14 @@ const routes: Route[] = [
     CartPreviewComponent,
     CheckoutComponent,
     CheckoutPage,
-    LoginDialogComponent
+    LoginDialogComponent,
+    OrdersPage,
+    MyOrdersComponent,
+    OrdersTableOptionsComponent,
+    OrdersTableShowItemsComponent
   ],
   imports: [
+    MatIconModule,
     RouterModule.forChild(routes),
     CommonModule,
     MatProgressSpinnerModule,
@@ -55,7 +72,18 @@ const routes: Route[] = [
     MatFormFieldModule,
     ReactiveFormsModule,
     MatInputModule,
-    FormsModule
+    FormsModule,
+    MatPaginatorModule,
+    CdkTableModule,
+    MatBottomSheetModule,
+    MatListModule,
+    MatCardModule,
+    MatProgressBarModule,
+    MatPaginatorModule
+  ],
+  providers: [
+    {provide: MatBottomSheetRef, useValue: {}},
+    {provide: MAT_BOTTOM_SHEET_DATA, useValue: {}}
   ]
 })
 

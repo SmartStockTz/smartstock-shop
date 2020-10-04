@@ -86,7 +86,7 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
         <form [formGroup]="mobileFormGroup" (ngSubmit)="mobile()">
           <mat-form-field appearance="outline" style="width: 300px">
             <mat-label>Mobile Number</mat-label>
-            <input placeholder="+255XXXXXXXXX" matInput formControlName="mobile">
+            <input type="number" placeholder="+255XXXXXXXXX" matInput formControlName="mobile">
             <mat-error>Field required</mat-error>
           </mat-form-field>
         </form>
@@ -166,18 +166,19 @@ export class CheckoutComponent implements OnInit {
         this.cartState.checkOut(value, this.mobileFormGroup.value.mobile).then(_ => {
           this.snack.open('Your order is submitted', 'Ok', {
             duration: 2000
+          }).afterDismissed().subscribe(__ => {
+            this.router.navigateByUrl('/orders').catch();
           });
-          this.router.navigateByUrl('/').catch();
         });
       } else {
         this.dialog.open(LoginDialogComponent, {})
-          .afterClosed().subscribe(value1 => {
-          if (value1) {
-            this.cartState.checkOut(value, this.mobileFormGroup.value.mobile).then(_ => {
+          .afterClosed().subscribe(loggedUser => {
+          if (loggedUser) {
+            this.cartState.checkOut(loggedUser, this.mobileFormGroup.value.mobile).then(_ => {
               this.snack.open('Your order is submitted', 'Ok', {
                 duration: 2000
               });
-              this.router.navigateByUrl('/').catch();
+              this.router.navigateByUrl('/orders').catch();
             });
           } else {
             this.snack.open('Login to continue with checkout', 'Ok', {

@@ -42,7 +42,9 @@ export class FirebaseAuthService implements AuthAdapter {
     delete userF.multiFactor;
     delete userF.apiKey;
     delete userF.lastLoginAt;
+    delete userF.token;
     userF.id = userF.uid;
+    return userF;
   }
 
   async logOut(options?: any): Promise<boolean> {
@@ -56,26 +58,10 @@ export class FirebaseAuthService implements AuthAdapter {
   }
 
   async signUp<T extends UserModel>(username: string, password: string, attrs: any, appName: string, options?: any): Promise<T> {
-    // delete attrs.username;
-    // delete attrs.password;
-    // const auth = await firebase.auth().createUserWithEmailAndPassword(username, password);
-    // if (auth.user.emailVerified === false) {
-    //   this.requestEmailVerification(auth.user.email, appName, options).catch();
-    // }
-    // attrs._id = auth.user.uid;
-    // attrs.email = auth.user.email;
-    // attrs.username = auth.user.email;
-    // return BFast.database().collection(BFast.utils.USER_DOMAIN_NAME).save(attrs, {useMasterKey: true});
     return this.logIn(null, null, appName, options);
   }
 
   async updateUser<T extends UserModel>(id: string, attrs: object, options?: any): Promise<any> {
-    // return BFast.database().collection(BFast.utils.USER_DOMAIN_NAME)
-    //   .query()
-    //   .byId(id)
-    //   .updateBuilder()
-    //   .doc(attrs)
-    //   .update({useMasterKey: true});
   }
 
 }

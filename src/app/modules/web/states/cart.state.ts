@@ -45,7 +45,7 @@ export class CartState {
     }
   }
 
-  async checkOut(user: object, mobile: string): Promise<any> {
+  async checkOut(user: any, mobile: string): Promise<any> {
     this.isCheckout.next(true);
     const response = await this.orderService.saveOrder({
       paid: false,
@@ -54,8 +54,7 @@ export class CartState {
       carts: this.carts.value,
       mobile,
       status: 'PROCESSED',
-      // @ts-ignore
-      userId: user.id
+      userId: user.id ? user.id : user.uid
     });
     this.carts.next([]);
     this.isCheckout.next(false);

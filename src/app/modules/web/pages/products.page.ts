@@ -53,7 +53,7 @@ import {MatSnackBar} from '@angular/material/snack-bar';
       </div>
       <app-cart-preview></app-cart-preview>
     </section>
-    <a class="shopping-cart"  title=""><i class="fa fa-shopping-bag"></i><span>02</span></a>
+    <a class="shopping-cart" title=""><i class="fa fa-shopping-bag"></i><span>02</span></a>
     <app-footer></app-footer>
   `
 })
@@ -70,6 +70,9 @@ export class ProductsPageComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
+    window.scrollTo({
+      top: 0
+    });
     this.productService.getTotalAvailableProducts().then(value => {
       if (value) {
         this.totalProducts = value;

@@ -8,6 +8,7 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {environment} from '../environments/environment';
 import * as firebase from 'firebase';
 import {FirebaseAuthService} from './modules/web/services/firebase-auth.service';
+import {MatBottomSheetModule} from '@angular/material/bottom-sheet';
 
 
 const routes: Routes = [
@@ -23,7 +24,8 @@ const routes: Routes = [
     BrowserModule,
     RouterModule.forRoot(routes),
     BrowserAnimationsModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatBottomSheetModule
   ],
   providers: [],
   bootstrap: [AppComponent]
