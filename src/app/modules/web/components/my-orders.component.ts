@@ -5,6 +5,7 @@ import {OrderModel} from '../models/order.model';
 import {MatBottomSheet} from '@angular/material/bottom-sheet';
 import {OrderState} from '../states/orders.state';
 import {OrdersTableOptionsComponent} from './orders-table-options.component';
+import {UserService} from '../services/user.service';
 
 @Component({
   selector: 'app-my-orders',
@@ -72,6 +73,7 @@ export class MyOrdersComponent implements OnInit {
   ordersColumns = ['date', 'amount', 'paid', 'status', 'action'];
 
   constructor(public readonly orderState: OrderState,
+              private readonly userService: UserService,
               private readonly bottomSheet: MatBottomSheet) {
     this.ordersDataTable.paginator = this.paginator;
   }
@@ -84,9 +86,9 @@ export class MyOrdersComponent implements OnInit {
         this.ordersDataTable.paginator = this.paginator;
       }
     });
-    // if (this.ordersDataTable.data.length === 0) {
-    this.orderState.getOrder();
-    // }
+    this.userService.isLoggedIn().then(value => {
+      this.orderState.getOrder(value);
+    });
     this.handleTableFilter();
     window.scrollTo({
       top: 0

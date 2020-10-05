@@ -17,9 +17,9 @@ export class OrderState {
               private readonly snackBar: MatSnackBar) {
   }
 
-  getOrder(size = 20, skip = 0): void {
+  getOrder(user: any): void {
     this.getOrderFlag.next(true);
-    this.orderService.getOrders(size, skip).then(value => {
+    this.orderService.getOrders(user).then(value => {
       this.orders.next(value);
     }).catch(_ => {
       console.log(_);
