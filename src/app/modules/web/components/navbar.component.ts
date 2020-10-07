@@ -10,14 +10,14 @@ import {MatDialog} from '@angular/material/dialog';
     <section id="topbar" class="d-none d-lg-block">
       <div class="container clearfix">
         <div class="contact-info float-left">
-          <i class="icofont-envelope"></i><a href="mailto:contact@example.com">mamagenge98@gmail.com</a>
-          <i class="icofont-phone">+255737102447
+          <i class="icofont-envelope"></i><a href="mailto:contact@example.com">icaretechnologiestz@gmail.com</a>
+          <i class="icofont-phone">+255764161868
           </i>
         </div>
         <div class="social-links float-right">
-          <a class="twitter"><i class="icofont-twitter"></i></a>
-          <a class="facebook"><i class="icofont-facebook"></i></a>
-          <a class="instagram" href="https://www.instagram.com/mamagenge_"><i class="icofont-instagram"></i></a>
+          <!-- <a class="twitter"><i class="icofont-twitter"></i></a>
+          <a class="facebook"><i class="icofont-facebook"></i></a> -->
+          <a class="instagram" href="https://www.instagram.com/icaretechnologytz/"><i class="icofont-instagram"></i></a>
         </div>
 
       </div>
@@ -28,7 +28,7 @@ import {MatDialog} from '@angular/material/dialog';
       <div class="container">
 
         <div class="logo float-left">
-          <h1 class="text-light"><a routerLink="/"><span>MamaGenge</span></a></h1>
+          <h1 class="text-light"><a routerLink="/"><span>ICare Technologies</span></a></h1>
           <!-- Uncomment below if you prefer to use an image logo -->
           <!-- <a ><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
         </div>

@@ -12,26 +12,60 @@
 // Define the palettes for your theme using the Material Design palettes available in palette.scss
 // (imported above). For each palette, you can optionally specify a default, lighter, and darker
 // hue. Available color palettes: https://material.io/design/color/
-$mamagenge-primary: mat-palette($mat-indigo);
-$mamagenge-accent: mat-palette($mat-pink, A200, A100, A400);
+
+$icare: (
+    50 : #f9e0e0,
+    100 : #f0b3b3,
+    200 : #e68080,
+    300 : #db4d4d,
+    400 : #d42626,
+    500 : #cc0000,
+    600 : #c70000,
+    700 : #c00000,
+    800 : #b90000,
+    900 : #ad0000,
+    A100 : #ffd7d7,
+    A200 : #ffa4a4,
+    A400 : #ff7171,
+    A700 : #ff5858,
+    contrast: (
+        50 : #000000,
+        100 : #000000,
+        200 : #000000,
+        300 : #ffffff,
+        400 : #ffffff,
+        500 : #ffffff,
+        600 : #ffffff,
+        700 : #ffffff,
+        800 : #ffffff,
+        900 : #ffffff,
+        A100 : #000000,
+        A200 : #000000,
+        A400 : #000000,
+        A700 : #000000,
+    )
+);
+
+$icare-primary: mat-palette($icare);
+$icare-accent: mat-palette($icare, A200, A100, A400);
 
 // The warn palette is optional (defaults to red).
-$mamagenge-warn: mat-palette($mat-red);
+$icare-warn: mat-palette($mat-red);
 
 // Create the theme object. A theme consists of configurations for individual
 // theming systems such as "color" or "typography".
-$mamagenge-theme: mat-light-theme((
+$icare-theme: mat-light-theme((
   color: (
-    primary: $mamagenge-primary,
-    accent: $mamagenge-accent,
-    warn: $mamagenge-warn,
+    primary: $icare-primary,
+    accent: $icare-accent,
+    warn: $icare-warn,
   )
 ));
 
 // Include theme styles for core and each component used in your app.
 // Alternatively, you can import and @include the theme mixins for each component
 // that you are using.
-@include angular-material-theme($mamagenge-theme);
+@include angular-material-theme($icare-theme);
 
 
 //// Custom Theming for Angular Material

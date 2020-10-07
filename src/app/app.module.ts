@@ -34,8 +34,8 @@ export class AppModule {
   constructor() {
     firebase.initializeApp(environment.firebase);
     BFast.init({
-      applicationId: 'a1c5aa64-e7f2-4c9d-ac3b-c610bf01d652',
-      projectId: '54de08e1-ed20-4c8f-9b48-c5cbb373a1a8',
+      applicationId: 'yY9q5hy4xsbn',
+      projectId: 'TfxGpMw6B4ku',
       adapters: {
         auth: () => new FirebaseAuthService()
       }

@@ -1,13 +1,13 @@
 export const environment = {
   production: true,
-  firebase: {
-    apiKey: 'AIzaSyCdW_KoFAVrkHLpkIOyjHpHkLk65Lww3-c',
-    authDomain: 'mama-genge.firebaseapp.com',
-    databaseURL: 'https://mama-genge.firebaseio.com',
-    projectId: 'mama-genge',
-    storageBucket: 'mama-genge.appspot.com',
-    messagingSenderId: '589583481053',
-    appId: '1:589583481053:web:7fd81a88c1a14f4694c334',
-    measurementId: 'G-SQD1W1SQG8'
+  firebase:  {
+    apiKey: "AIzaSyCv6jbbPvicQKf--XpXhP1YjR1FrKdFrLI",
+    authDomain: "icaretechnologiestz.firebaseapp.com",
+    databaseURL: "https://icaretechnologiestz.firebaseio.com",
+    projectId: "icaretechnologiestz",
+    storageBucket: "icaretechnologiestz.appspot.com",
+    messagingSenderId: "718503236449",
+    appId: "1:718503236449:web:f1aa7fb064b547c1676b20",
+    measurementId: "G-TXRQFCJBM5"
   }
 };

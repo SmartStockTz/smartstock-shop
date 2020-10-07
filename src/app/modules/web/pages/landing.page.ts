@@ -17,21 +17,17 @@ import {ProductService} from '../services/product.service';
           <div class="carousel-inner" role="listbox">
 
             <!-- Slide 1 -->
-            <div class="carousel-item active" style="background-image: url('assets/img/slide/slide-1.jpg');">
+            <div class="carousel-item active" style="background-image: url('assets/img/bg_icare.jpeg');">
               <div class="carousel-container" style="height: 60vh">
                 <div class="carousel-content container">
-                  <h2 class="animate__animated animate__fadeInDown">Welcome to <span>MamaGenge</span></h2>
+                  <h2 class="animate__animated animate__fadeInDown">Welcome to <span>ICare Technologies</span></h2>
                   <p class="animate__animated animate__fadeInUp"> <h2>About Us</h2>
-                  <p>We are a young growing company ready to feed the riches of Tanzania to the whole world. We buy
-                    agricultural products from our local farmers and meet the demand of our royal customers. We sell high
-                    quality agricultural products with the most affordable pric. easy to use, access, reliable with quick
-                    response to its customers.</p>
+                  <p>We fulfill all your needs for electronic gadgets and all kinds of electronic products you need and use for your everyday life and work.</p>
                 </div>
               </div>
             </div>
 
           </div>
-
           <!--          <a class="carousel-control-prev" href="#heroCarousel" role="button" data-slide="prev">-->
           <!--            <span class="carousel-control-prev-icon icofont-rounded-left" aria-hidden="true"></span>-->
           <!--            <span class="sr-only">Previous</span>-->
@@ -50,7 +46,7 @@ import {ProductService} from '../services/product.service';
       <!-- ======= Show Products ======= -->
 
       <div class="container">
-        <h1 style="margin-top: 24px">Our Product</h1>
+        <h1 style="margin-top: 24px">Our Products</h1>
         <div *ngIf="!products || products.length === 0">
           <div class="row">
             <div *ngFor="let i of [1,2,3,4,5,6,7,8]"
@@ -75,7 +71,7 @@ import {ProductService} from '../services/product.service';
 
 
       <!-- ======= Services Section ======= -->
-      <section id="services" class="services">
+      <!-- <section id="services" class="services">
         <div class="container">
 
           <div class="section-title">
@@ -117,7 +113,8 @@ import {ProductService} from '../services/product.service';
           </div>
 
         </div>
-      </section><!-- End Services Section -->
+      </section> -->
+      <!-- End Services Section -->
 
       <!--      &lt;!&ndash; ======= Our Portfolio Section ======= &ndash;&gt;-->
       <!--      <section id="portfolio" class="portfolio section-bg">-->
@@ -433,19 +430,19 @@ import {ProductService} from '../services/product.service';
 
           <div class="row">
 
-            <div class="col-lg-6 d-flex align-items-stretch" data-aos="fade-up">
+            <div class="col-lg-3 d-flex align-items-stretch" data-aos="fade-up">
               <div class="info-box">
                 <i class="bx bx-map"></i>
                 <h3>Our Address</h3>
-                <p>kijitonyama,Dar es salaam.Tz</p>
+                <p>Mbeya, Tanzania</p>
               </div>
             </div>
 
-            <div class="col-lg-3 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="100">
+            <div class="col-lg-6 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="100">
               <div class="info-box">
                 <i class="bx bx-envelope"></i>
                 <h3>Email Us</h3>
-                <p>info@mamagenge98.com<br>mamagenge98@gmail.com</p>
+                <p>icaretechnologymbeyatz@gmail.com<br></p>
               </div>
             </div>
 
@@ -453,7 +450,7 @@ import {ProductService} from '../services/product.service';
               <div class="info-box ">
                 <i class="bx bx-phone-call"></i>
                 <h3>Call Us</h3>
-                <p>+255737102447<br>+255676390012</p>
+                <p>+255764161868</p>
               </div>
             </div>
 
