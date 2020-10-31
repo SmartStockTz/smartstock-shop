@@ -21,4 +21,20 @@ export class ProductService {
   async getTotalAvailableProducts(): Promise<number> {
     return BFast.database().table('stocks').query().count(true).find();
   }
+
+  async getcategories() {
+    return BFast.database()
+      .collection('stocks')
+      .query()
+      .aggregate(
+        [
+          {
+            $group: {
+              _id: '$category',
+            },
+          },
+        ],
+        { useMasterKey: true }
+      );
+  }
 }
