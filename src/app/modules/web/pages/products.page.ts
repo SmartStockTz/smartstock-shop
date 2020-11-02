@@ -94,24 +94,27 @@ export class ProductsPageComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
-    // window.scrollTo({
-    //   top: 0
-    // });
-    // this.productService.getTotalAvailableProducts().then(value => {
-    //   if (value) {
-    //     this.totalProducts = value;
-    //   }
-    // });
-    // this.productService.getProducts().then(value => {
-    //   this.products = value;
-    // }).catch(reason => {
-    //   console.log(reason);
-    // });
-    // this.changes.addListener(response => {
-    //   if (response.body.change && response.body.change.name === 'create') {
-    //     this.products.push(response.body.change.snapshot);
-    //   }
-    // });
+    window.scrollTo({
+      top: 0,
+    });
+    this.productService.getTotalAvailableProducts().then((value) => {
+      if (value) {
+        this.totalProducts = value;
+      }
+    });
+    this.productService
+      .getProducts()
+      .then((value) => {
+        this.products = value;
+      })
+      .catch((reason) => {
+        console.log(reason);
+      });
+    this.changes.addListener((response) => {
+      if (response.body.change && response.body.change.name === 'create') {
+        this.products.push(response.body.change.snapshot);
+      }
+    });
 
     this.productService.getcategories().then(console.log);
   }
