@@ -23,18 +23,6 @@ export class ProductService {
   }
 
   async getcategories() {
-    return BFast.database()
-      .collection('stocks')
-      .query()
-      .aggregate(
-        [
-          {
-            $group: {
-              _id: '$category',
-            },
-          },
-        ],
-        { useMasterKey: true }
-      );
+    return BFast.database().collection('categories').getAll();
   }
 }
