@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ProductService } from '../services/product.service';
 import { ProductModel } from '../models/product.model';
+import { CategoryModel } from '../models/product.model';
 import { BFast } from 'bfastjs';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
@@ -87,6 +88,7 @@ export class ProductsPageComponent implements OnInit, OnDestroy {
   changes = BFast.database().table('stocks').query().changes();
   totalProducts = 0;
   isLoadMore = false;
+  categories = [];
 
   constructor(
     private readonly productService: ProductService,
@@ -117,7 +119,9 @@ export class ProductsPageComponent implements OnInit, OnDestroy {
     // });
 
     this.productService.getcategories().then((val) => {
-      console.log(val);
+      val.forEach((value: CategoryModel) => {
+        this.categories.push(value.name);
+      });
     });
   }
 
