@@ -20,7 +20,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
                     {{ totalProducts }} results</span
                   >
 
-                  <mat-accordion>
+                  <!-- <mat-accordion>
                     <mat-expansion-panel>
                       <mat-expansion-panel-header>
                         <mat-panel-title> Self aware panel </mat-panel-title>
@@ -28,7 +28,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
                       <p>I'm visible because I am open</p>
                       <p>I'm visible because I am open</p>
                     </mat-expansion-panel>
-                  </mat-accordion>
+                  </mat-accordion> -->
 
                   <div class="shop-filter">
                     <select>

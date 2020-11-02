@@ -32,7 +32,6 @@ import { CartState } from '../states/cart.state';
   `,
 })
 export class ProductCardComponent {
-  number = 'no image';
   constructor(private readonly cartState: CartState) {}
 
   @Input() product: ProductModel = {};
