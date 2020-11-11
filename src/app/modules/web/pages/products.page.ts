@@ -11,7 +11,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
     <app-navibar></app-navibar>
     <section>
       <div class="gap100">
-        <div class="container">
+        <div class="container-fluid">
           <div class="row">
             <div class="col-lg-12">
               <div class="shop-page">
@@ -20,28 +20,16 @@ import { MatSnackBar } from '@angular/material/snack-bar';
                     >Showing {{ products.length }} of
                     {{ totalProducts }} results</span
                   >
-
-                  <!-- <mat-accordion>
-                    <mat-expansion-panel>
-                      <mat-expansion-panel-header>
-                        <mat-panel-title> Self aware panel </mat-panel-title>
-                      </mat-expansion-panel-header>
-                      <p>I'm visible because I am open</p>
-                      <p>I'm visible because I am open</p>
-                    </mat-expansion-panel>
-                  </mat-accordion> -->
-
-                  <!-- <div class="shop-filter">
-                    <select>
-                      <option>sort by</option>
-                      <option>newest</option>
-                      <option>price low to high</option>
-                      <option>price high to low</option>
-                      <option>sort by average rating</option>
-                    </select>
-                  </div> -->
                 </div>
-                <div *ngIf="!products || products.length === 0">
+                <div class="row" style="padding-top: 3em">
+                  <div class="col-lg-3 col-md-3">
+                    <ssm-category-list></ssm-category-list>
+                  </div>
+                  <div class="col-lg-9 col-md-9">
+                    <ssm-products-by-category></ssm-products-by-category>
+                  </div>
+                </div>
+                <!-- <div *ngIf="!products || products.length === 0">
                   <div class="row">
                     <div
                       *ngFor="let i of [1, 2, 3, 4, 5, 6, 7, 8]"
@@ -53,7 +41,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
                     </div>
                   </div>
                 </div>
-                <app-products-list [products]="products"></app-products-list>
+                <app-products-list [products]="products"></app-products-list> -->
                 <div
                   style="padding: 24px; display: flex; justify-content: center; align-items: center"
                 >
