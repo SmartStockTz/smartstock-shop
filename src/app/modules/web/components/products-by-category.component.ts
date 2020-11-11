@@ -3,16 +3,18 @@ import { BehaviorSubject } from 'rxjs';
 import { ProductModel } from '../models/product.model';
 import { ProductService } from '../services/product.service';
 import { CategoryState } from '../states/category.state';
+import { SearchState } from '../states/search.state';
 
 @Component({
     template: `
         <div class="container">
-            <div class="row">
+            <div class="row" style="display: flex;">
                 <div class="col-lg-3 col-md-3">
                     <h1>{{categoryTitle}}</h1>
                 </div>
-                <div class="col-lg-9 col-md-9">
-                    
+                <div class="col-lg-9 col-md-9" style="display: flex; justify-content: end;">
+                    <span style="flex: 3"></span>
+                    <ssm-search style="flex: 1"></ssm-search>
                 </div>
             </div>
         
@@ -45,10 +47,12 @@ import { CategoryState } from '../states/category.state';
 })
 export class ProductsCategoryComponent implements OnInit {
     categoryTitle: string
+    searchItem: string
     products: ProductModel[] = [];
 
     constructor(private readonly productService: ProductService,
-        private readonly categoryState: CategoryState) {
+        private readonly categoryState: CategoryState,
+        private readonly searchState: SearchState) {
 
     }
 
@@ -67,6 +71,18 @@ export class ProductsCategoryComponent implements OnInit {
                     .catch((reason) => {
                         console.log(reason);
                     });
+            } else if(category == "Search"){
+                this.productService
+                .getProducts({
+                    skip: 0,
+                    size: 8,
+                })
+                .then((value) => {
+                    this.products = value.filter((product)=> product.product.includes(this.searchItem));
+                })
+                .catch((reason) => {
+                    console.log(reason);
+                });
             } else {
                 this.productService.getProductsByCategory(category, {
                     skip: 0,
@@ -80,6 +96,10 @@ export class ProductsCategoryComponent implements OnInit {
             }
         })
 
+        this.searchState.searchItem.subscribe((searchItem) => {
+            this.searchItem = searchItem
+            // this.products = this.products.filter((product)=> product.product.includes(searchItem))
+        })
 
     }
 

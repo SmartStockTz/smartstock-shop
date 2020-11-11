@@ -30,6 +30,28 @@ export class ProductService {
         returnFields: []});
   }
 
+  async searchProducts(searchItem: string, page: { size: number; skip: number } = { skip: 0, size: 20 }): Promise<ProductModel[]> {
+    return BFast.database().collection('stocks').query().aggregate([
+        {
+          "$match": {
+            "product"	:	searchItem
+          }
+        },
+        {
+          "$sort": {
+            "id": 1
+          }
+        },
+        {
+          "$skip": page.skip
+        },
+        {
+          "$limit": page.size
+        }
+    ], { useMasterKey: true,
+      returnFields: []});
+}
+
   async getProducts(
     page: { size: number; skip: number } = { skip: 0, size: 20 }
   ): Promise<ProductModel[]> {
@@ -42,7 +64,12 @@ export class ProductService {
       .find();
   }
 
+  async getAllProducts(){
+    return BFast.database().collection('stocks').getAll();
+  }
+
   async getTotalAvailableProducts(): Promise<number> {
+   
     return BFast.database().table('stocks').query().count(true).find();
   }
 

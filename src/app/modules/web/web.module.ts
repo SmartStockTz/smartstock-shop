@@ -40,6 +40,8 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { ProductsCategoryComponent } from 'src/app/modules/web/components/products-by-category.component';
 import { CategoryListComponent } from '../web/components/category-list.component';
 import { MatSelectModule } from '@angular/material/select';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { SearchComponent } from './components/search.component';
 
 const routes: Route[] = [
   { path: '', component: LandingPageComponent },
@@ -50,6 +52,7 @@ const routes: Route[] = [
 
 @NgModule({
   declarations: [
+    SearchComponent,
     CategoryListComponent,
     ProductsCategoryComponent,
     LandingPageComponent,
@@ -91,6 +94,7 @@ const routes: Route[] = [
     MatProgressBarModule,
     MatPaginatorModule,
     MatExpansionModule,
+    MatAutocompleteModule
   ],
   providers: [
     { provide: MatBottomSheetRef, useValue: {} },
