@@ -41,6 +41,7 @@ export class AppModule {
     BFast.init({
       applicationId: 'yY9q5hy4xsbn',
       projectId: 'TfxGpMw6B4ku',
+      appPassword: "eJrhALQqIv9UqjNqxrTYJDpp8EZYPOjGXk0RPUHT",
       adapters: {
         auth: () => new FirebaseAuthService(),
       },

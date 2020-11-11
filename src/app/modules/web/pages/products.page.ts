@@ -31,7 +31,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
                     </mat-expansion-panel>
                   </mat-accordion> -->
 
-                  <div class="shop-filter">
+                  <!-- <div class="shop-filter">
                     <select>
                       <option>sort by</option>
                       <option>newest</option>
@@ -39,7 +39,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
                       <option>price high to low</option>
                       <option>sort by average rating</option>
                     </select>
-                  </div>
+                  </div> -->
                 </div>
                 <div *ngIf="!products || products.length === 0">
                   <div class="row">
@@ -96,27 +96,27 @@ export class ProductsPageComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
-    // window.scrollTo({
-    //   top: 0,
-    // });
-    // this.productService.getTotalAvailableProducts().then((value) => {
-    //   if (value) {
-    //     this.totalProducts = value;
-    //   }
-    // });
-    // this.productService
-    //   .getProducts()
-    //   .then((value) => {
-    //     this.products = value;
-    //   })
-    //   .catch((reason) => {
-    //     console.log(reason);
-    //   });
-    // this.changes.addListener((response) => {
-    //   if (response.body.change && response.body.change.name === 'create') {
-    //     this.products.push(response.body.change.snapshot);
-    //   }
-    // });
+    window.scrollTo({
+      top: 0,
+    });
+    this.productService.getTotalAvailableProducts().then((value) => {
+      if (value) {
+        this.totalProducts = value;
+      }
+    });
+    this.productService
+      .getProducts()
+      .then((value) => {
+        this.products = value;
+      })
+      .catch((reason) => {
+        console.log(reason);
+      });
+    this.changes.addListener((response) => {
+      if (response.body.change && response.body.change.name === 'create') {
+        this.products.push(response.body.change.snapshot);
+      }
+    });
 
     this.productService.getcategories().then((val) => {
       val.forEach((value: CategoryModel) => {

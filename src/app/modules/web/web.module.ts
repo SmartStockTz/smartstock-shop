@@ -37,6 +37,9 @@ import { MatListModule } from '@angular/material/list';
 import { MatCardModule } from '@angular/material/card';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatExpansionModule } from '@angular/material/expansion';
+import { ProductsCategoryComponent } from 'src/app/modules/web/components/products-by-category.component';
+import { CategoryListComponent } from '../web/components/category-list.component';
+import { MatSelectModule } from '@angular/material/select';
 
 const routes: Route[] = [
   { path: '', component: LandingPageComponent },
@@ -47,6 +50,8 @@ const routes: Route[] = [
 
 @NgModule({
   declarations: [
+    CategoryListComponent,
+    ProductsCategoryComponent,
     LandingPageComponent,
     ProductsPageComponent,
     NavbarComponent,
@@ -63,6 +68,7 @@ const routes: Route[] = [
     OrdersTableShowItemsComponent,
   ],
   imports: [
+    MatSelectModule,
     MatIconModule,
     RouterModule.forChild(routes),
     CommonModule,

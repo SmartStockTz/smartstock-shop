@@ -7,7 +7,7 @@ import {MatDialog} from '@angular/material/dialog';
   selector: 'app-navibar',
   template: `
     <!-- ======= Top Bar ======= -->
-    <section id="topbar" class="d-none d-lg-block">
+    <section id="topbar" class="">
       <div class="container clearfix">
         <div class="contact-info float-left">
           <i class="icofont-envelope"></i><a href="mailto:contact@example.com">icaretechnologiestz@gmail.com</a>
