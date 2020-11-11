@@ -15,7 +15,10 @@ import { MatSnackBar } from '@angular/material/snack-bar';
           <div class="row">
             <div class="col-lg-12">
               <div class="shop-page">
-                <div class="shop-filter-sec">
+                <div
+                  class="shop-filter-sec"
+                  style="margin-left: 5em; font-weight: 600;"
+                >
                   <span
                     >Showing {{ products.length }} of
                     {{ totalProducts }} results</span
@@ -42,7 +45,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
                   </div>
                 </div>
                 <app-products-list [products]="products"></app-products-list> -->
-                <div
+                <!-- <div
                   style="padding: 24px; display: flex; justify-content: center; align-items: center"
                 >
                   <button
@@ -52,12 +55,8 @@ import { MatSnackBar } from '@angular/material/snack-bar';
                   >
                     Load More Products
                     <div *ngIf="isLoadMore" class="spinner-border"></div>
-                    <!--                    <mat-progress-spinner *ngIf="isLoadMore"-->
-                    <!--                                          -->
-                    <!--                                          mode="indeterminate"-->
-                    <!--                                          diameter="30" color="primary"></mat-progress-spinner>-->
                   </button>
-                </div>
+                </div> -->
               </div>
             </div>
           </div>
