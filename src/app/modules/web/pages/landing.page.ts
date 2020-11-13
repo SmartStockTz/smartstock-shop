@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { BFast } from 'bfastjs';
 import { ProductModel } from '../models/product.model';
 import { ProductService } from '../services/product.service';
 
@@ -6,9 +7,9 @@ import { ProductService } from '../services/product.service';
   selector: 'app-landing',
   template: `
     <app-navibar></app-navibar>
-<!-- 
+    <!-- 
     <div class="sm-carasoul" style=" background-image: url('assets/img/landing.jpg'); "> -->
-      
+
     <!-- </div> -->
     <!-- ======= Hero Section ======= -->
     <section id="hero" style="height: 60vh">
@@ -16,14 +17,16 @@ import { ProductService } from '../services/product.service';
         <div
           id="heroCarousel"
           class="carousel slide carousel-fade"
-          data-ride="carousel">
+          data-ride="carousel"
+        >
           <ol class="carousel-indicators" id="hero-carousel-indicators"></ol>
 
           <div class="carousel-inner" role="listbox">
             <!-- Slide 1 -->
-           <div
+            <div
               class="carousel-item active"
-              style="background-image: url('assets/img/bg_icare.jpeg');">
+              style="background-image: url('assets/img/bg_icare.jpeg');"
+            >
               <div class="carousel-container" style="height: 60vh">
                 <div class="carousel-content container">
                   <h2 class="animate__animated animate__fadeInDown">
@@ -39,7 +42,7 @@ import { ProductService } from '../services/product.service';
                 </div>
               </div>
             </div>
-          </div> 
+          </div>
           <!--          <a class="carousel-control-prev" href="#heroCarousel" role="button" data-slide="prev">-->
           <!--            <span class="carousel-control-prev-icon icofont-rounded-left" aria-hidden="true"></span>-->
           <!--            <span class="sr-only">Previous</span>-->
@@ -48,23 +51,22 @@ import { ProductService } from '../services/product.service';
           <!--            <span class="carousel-control-next-icon icofont-rounded-right" aria-hidden="true"></span>-->
           <!--            <span class="sr-only">Next</span>-->
           <!--          </a>-->
-         </div>
+        </div>
       </div>
-    </section> 
+    </section>
     <!-- End Hero -->
 
     <main id="main" style="padding-top: 2%">
       <!-- ======= Show Products ======= -->
 
       <div class="row" style="padding-top: 3em">
-          <div class="col-lg-3 col-md-3">
-            <ssm-category-list ></ssm-category-list>
-          </div>
-          <div class="col-lg-9 col-md-9">
-            <ssm-products-by-category></ssm-products-by-category>
-          </div>
+        <div class="col-lg-3 col-md-3">
+          <ssm-category-list></ssm-category-list>
+        </div>
+        <div class="col-lg-9 col-md-9">
+          <ssm-products-by-category></ssm-products-by-category>
+        </div>
       </div>
-      
 
       <!-- ======= Frequently Asked Questions Section ======= -->
       <section id="faq" class="faq section-bg">
@@ -262,11 +264,7 @@ import { ProductService } from '../services/product.service';
   styleUrls: ['../styles/landingpage.css'],
 })
 export class LandingPageComponent implements OnInit {
-  
-
   constructor() {}
 
-  ngOnInit(): void {
-   
-  }
+  ngOnInit(): void {}
 }
