@@ -27,7 +27,7 @@ const routes: Routes = [
   declarations: [AppComponent],
   imports: [
     BrowserModule,
-    RouterModule.forRoot(routes),
+    RouterModule.forRoot(routes, { relativeLinkResolution: 'legacy' }),
     BrowserAnimationsModule,
     MatSnackBarModule,
     MatBottomSheetModule,
