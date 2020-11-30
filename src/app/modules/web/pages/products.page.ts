@@ -1,14 +1,14 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { ProductService } from '../services/product.service';
-import { ProductModel } from '../models/product.model';
-import { CategoryModel } from '../models/product.model';
-import { BFast } from 'bfastjs';
-import { MatSnackBar } from '@angular/material/snack-bar';
+import {Component, OnDestroy, OnInit} from '@angular/core';
+import {ProductService} from '../services/product.service';
+import {CategoryModel, ProductModel} from '../models/product.model';
+import {BFast} from 'bfastjs';
+import {MatSnackBar} from '@angular/material/snack-bar';
+import {UserService} from '../services/user.service';
 
 @Component({
   selector: 'app-products',
   template: `
-    <app-navibar></app-navibar>
+    <app-navibar [user]="user"></app-navibar>
     <section>
       <div class="gap100">
         <div class="container-fluid">
@@ -20,7 +20,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
                   style="margin-left: 5em; font-weight: 600;"
                 >
                   <span
-                    >Showing {{ products.length }} of
+                  >Showing {{ products.length }} of
                     {{ totalProducts }} results</span
                   >
                 </div>
@@ -64,10 +64,8 @@ import { MatSnackBar } from '@angular/material/snack-bar';
       </div>
       <app-cart-preview></app-cart-preview>
     </section>
-    <a class="shopping-cart" title=""
-      ><i class="fa fa-shopping-bag"></i><span>02</span></a
-    >
-    <app-footer></app-footer>
+    <a class="shopping-cart" title=""><i class="fa fa-shopping-bag"></i><span>02</span></a>
+    <app-footer [user]="user"></app-footer>
   `,
 })
 export class ProductsPageComponent implements OnInit, OnDestroy {
@@ -77,12 +75,21 @@ export class ProductsPageComponent implements OnInit, OnDestroy {
   isLoadMore = false;
   categories = [];
 
+  user: { [key: string]: any } = {ecommerce: {social: {}, logo: '', cover: ''}, businessName: '', email: ''};
+
   constructor(
     private readonly productService: ProductService,
-    private readonly snack: MatSnackBar
-  ) {}
+    private readonly snack: MatSnackBar,
+    private readonly userService: UserService
+  ) {
+  }
 
   ngOnInit(): void {
+    this.userService.profile().then(user => {
+      this.user = user;
+    }).catch(reason => {
+      console.log(reason);
+    });
     window.scrollTo({
       top: 0,
     });

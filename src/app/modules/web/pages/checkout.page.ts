@@ -1,23 +1,30 @@
 import {Component, OnInit} from '@angular/core';
+import {UserService} from '../services/user.service';
 
 @Component({
   selector: 'app-checkout-page',
   template: `
-    <app-navibar></app-navibar>
+    <app-navibar [user]="user"></app-navibar>
     <app-checkout></app-checkout>
-    <app-footer></app-footer>
+    <app-footer [user]="user"></app-footer>
   `
 })
 
 export class CheckoutPage implements OnInit {
-  constructor() {
+  user: { [key: string]: any } = {ecommerce: {social: {}, logo: '', cover: ''}, businessName: '', email: ''};
+
+  constructor(private readonly userService: UserService) {
     window.scrollTo({
       top: 0
     });
   }
 
   ngOnInit(): void {
-
+    this.userService.profile().then(user => {
+      this.user = user;
+    }).catch(reason => {
+      console.log(reason);
+    });
   }
 
 }

@@ -1,14 +1,14 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
-import { AppComponent } from './app.component';
-import { RouterModule, Routes } from '@angular/router';
-import { BFast } from 'bfastjs';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatSnackBarModule } from '@angular/material/snack-bar';
-import { environment } from '../environments/environment';
+import {BrowserModule} from '@angular/platform-browser';
+import {NgModule} from '@angular/core';
+import {AppComponent} from './app.component';
+import {RouterModule, Routes} from '@angular/router';
+import {BFast} from 'bfastjs';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
+import {environment} from '../environments/environment';
 import * as firebase from 'firebase';
-import { FirebaseAuthService } from './modules/web/services/firebase-auth.service';
-import { MatBottomSheetModule } from '@angular/material/bottom-sheet';
+import {FirebaseAuthService} from './modules/web/services/firebase-auth.service';
+import {MatBottomSheetModule} from '@angular/material/bottom-sheet';
 
 const routes: Routes = [
   {
@@ -39,13 +39,18 @@ export class AppModule {
   constructor() {
     firebase.initializeApp(environment.firebase);
     BFast.init({
-      applicationId: 'yY9q5hy4xsbn',
-      projectId: 'TfxGpMw6B4ku',
-      appPassword: 'eJrhALQqIv9UqjNqxrTYJDpp8EZYPOjGXk0RPUHT',
+      applicationId: 'a54749f4-b3f1-43eb-aedf-6efef90685dd',
+      projectId: environment.projectId,
+      appPassword: '4c6585c3-06f0-4890-b50b-e20e7f8212ec',
       adapters: {
         auth: () => new FirebaseAuthService(),
       },
     });
+
+    BFast.init({
+      applicationId: 'smartstock_lb',
+      projectId: 'smartstock',
+    }, 'smartstock');
 
     firebase.auth().onAuthStateChanged((a) => {
       if (!a) {

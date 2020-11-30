@@ -1,13 +1,11 @@
-import { Component, OnInit } from '@angular/core';
-import { BFast } from 'bfastjs';
-import { ProductModel } from '../models/product.model';
-import { ProductService } from '../services/product.service';
+import {Component, OnInit} from '@angular/core';
+import {UserService} from '../services/user.service';
 
 @Component({
   selector: 'app-landing',
   template: `
-    <app-navibar></app-navibar>
-    <!-- 
+    <app-navibar [user]="user"></app-navibar>
+    <!--
     <div class="sm-carasoul" style=" background-image: url('assets/img/landing.jpg'); "> -->
 
     <!-- </div> -->
@@ -17,46 +15,34 @@ import { ProductService } from '../services/product.service';
         <div
           id="heroCarousel"
           class="carousel slide carousel-fade"
-          data-ride="carousel"
-        >
+          data-ride="carousel">
           <ol class="carousel-indicators" id="hero-carousel-indicators"></ol>
 
           <div class="carousel-inner" role="listbox">
             <!-- Slide 1 -->
-            <div
-              class="carousel-item active"
-              style="background-image: url('assets/img/bg_icare.jpeg');"
-            >
+            <div *ngIf="user"
+                 class="carousel-item active"
+                 style="background-image: url({{user.ecommerce.cover}});">
               <div class="carousel-container" style="height: 60vh">
                 <div class="carousel-content container">
                   <h2 class="animate__animated animate__fadeInDown">
-                    Welcome to <span>ICare Technologies</span>
+                    Welcome to <span>{{user.businessName}}</span>
                   </h2>
                   <p class="animate__animated animate__fadeInUp"></p>
                   <h2>About Us</h2>
                   <p>
-                    We fulfill all your needs for electronic gadgets and all
-                    kinds of electronic products you need and use for your
-                    everyday life and work.
+                    {{user.ecommerce.about}}
                   </p>
                 </div>
               </div>
             </div>
           </div>
-          <!--          <a class="carousel-control-prev" href="#heroCarousel" role="button" data-slide="prev">-->
-          <!--            <span class="carousel-control-prev-icon icofont-rounded-left" aria-hidden="true"></span>-->
-          <!--            <span class="sr-only">Previous</span>-->
-          <!--          </a>-->
-          <!--          <a class="carousel-control-next" href="#heroCarousel" role="button" data-slide="next">-->
-          <!--            <span class="carousel-control-next-icon icofont-rounded-right" aria-hidden="true"></span>-->
-          <!--            <span class="sr-only">Next</span>-->
-          <!--          </a>-->
         </div>
       </div>
     </section>
     <!-- End Hero -->
 
-    <main id="main" style="padding-top: 2%">
+    <main>
       <!-- ======= Show Products ======= -->
 
       <div class="row" style="padding-top: 3em">
@@ -163,24 +149,22 @@ import { ProductService } from '../services/product.service';
             <div
               class="col-lg-6 d-flex align-items-stretch"
               data-aos="fade-up"
-              data-aos-delay="100"
-            >
+              data-aos-delay="100">
               <div class="info-box">
                 <i class="bx bx-envelope"></i>
                 <h3>Email Us</h3>
-                <p>icaretechnologymbeyatz@gmail.com<br /></p>
+                <p>{{user.email}}<br/></p>
               </div>
             </div>
 
             <div
               class="col-lg-3 d-flex align-items-stretch"
               data-aos="fade-up"
-              data-aos-delay="200"
-            >
+              data-aos-delay="200">
               <div class="info-box ">
                 <i class="bx bx-phone-call"></i>
                 <h3>Call Us</h3>
-                <p>+255764161868</p>
+                <p>+{{user.mobile}}</p>
               </div>
             </div>
 
@@ -189,8 +173,7 @@ import { ProductService } from '../services/product.service';
                 action="forms/contact.php"
                 method="post"
                 role="form"
-                class="php-email-form"
-              >
+                class="php-email-form">
                 <div class="form-row">
                   <div class="col-lg-6 form-group">
                     <input
@@ -200,8 +183,7 @@ import { ProductService } from '../services/product.service';
                       id="name"
                       placeholder="Your Name"
                       data-rule="minlen:4"
-                      data-msg="Please enter at least 4 chars"
-                    />
+                      data-msg="Please enter at least 4 chars"/>
                     <div class="validate"></div>
                   </div>
                   <div class="col-lg-6 form-group">
@@ -255,16 +237,25 @@ import { ProductService } from '../services/product.service';
           </div>
         </div>
       </section>
-      <!-- End Contact Us Section -->
     </main>
-    <!-- End #main -->
     <app-cart-preview></app-cart-preview>
-    <app-footer></app-footer>
+    <app-footer [user]="user"></app-footer>
   `,
   styleUrls: ['../styles/landingpage.css'],
 })
 export class LandingPageComponent implements OnInit {
-  constructor() {}
+  user: { [key: string]: any } = {ecommerce: {social: {}, logo: '', cover: ''}, businessName: '', email: ''};
+  isLoading = true;
 
-  ngOnInit(): void {}
+  constructor(private readonly userService: UserService) {
+  }
+
+  ngOnInit(): void {
+    this.userService.profile().then(user => {
+      this.user = user;
+      this.isLoading = false;
+    }).catch(reason => {
+      console.log(reason);
+    });
+  }
 }

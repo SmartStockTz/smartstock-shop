@@ -5,15 +5,16 @@
 export const environment = {
   production: false,
   firebase: {
-    apiKey: "AIzaSyCv6jbbPvicQKf--XpXhP1YjR1FrKdFrLI",
-    authDomain: "icaretechnologiestz.firebaseapp.com",
-    databaseURL: "https://icaretechnologiestz.firebaseio.com",
-    projectId: "icaretechnologiestz",
-    storageBucket: "icaretechnologiestz.appspot.com",
-    messagingSenderId: "718503236449",
-    appId: "1:718503236449:web:f1aa7fb064b547c1676b20",
-    measurementId: "G-TXRQFCJBM5"
-  }
+    apiKey: 'AIzaSyAlcMxXCZ25jAVWQ5RY98AUsdK5-UP_iew',
+    authDomain: 'smart-stock-manager.firebaseapp.com',
+    databaseURL: 'https://smart-stock-manager.firebaseio.com',
+    projectId: 'smart-stock-manager',
+    storageBucket: 'smart-stock-manager.appspot.com',
+    messagingSenderId: '23694341104',
+    appId: '1:23694341104:web:8c9168b68b1541aa',
+    measurementId: 'G-HKL6BCV1TL'
+  },
+  projectId: '5c4d7907-f113-4401-93b1-5ecaa4143867'
 };
 
 /*
