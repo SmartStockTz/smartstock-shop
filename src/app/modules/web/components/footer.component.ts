@@ -3,8 +3,8 @@ import {Component, Input} from '@angular/core';
 @Component({
   selector: 'app-footer',
   template: `
-    <footer id="footer">
-      <div class="footer-top">
+    <footer id="footer" class="primary-bg-color">
+      <div class="footer-top primary-bg-litter-color">
         <div class="container">
           <div class="row">
 
@@ -19,9 +19,12 @@ import {Component, Input} from '@angular/core';
                 <strong>Email:</strong>{{user.email}}<br>
               </p>
               <div class="social-links mt-3">
-                <a class="twitter" target="_blank" href="{{user.ecommerce.social.twitter}}"><i class="bx bxl-twitter"></i></a>
-                <a class="facebook" target="_blank" href="{{user.ecommerce.social.facebook}}"><i class="bx bxl-facebook"></i></a>
-                <a class="instagram" target="_blank" href="{{user.ecommerce.social.instagram}}"><i class="bx bxl-instagram"></i></a>
+                <a class="twitter primary-bg-color" target="_blank" href="{{user.ecommerce.social.twitter}}"><i class="icofont-twitter"></i></a>
+                <a class="facebook primary-bg-color" target="_blank" href="{{user.ecommerce.social.facebook}}"><i
+                  class="icofont-facebook"></i></a>
+                <a class="instagram primary-bg-color" target="_blank" href="{{user.ecommerce.social.instagram}}"><i
+                  class="icofont-instagram"></i></a>
+                <a class="instagram primary-bg-color" target="_blank" href="https://wa.me/{{user.mobile}}"><i class="icofont-whatsapp"></i></a>
               </div>
             </div>
 
@@ -36,11 +39,11 @@ import {Component, Input} from '@angular/core';
 
             <div class="col-lg-4 col-md-6 footer-newsletter">
               <h4>Our Newsletter</h4>
-              <p>Stay tuned for new updates on bonuses and best offers weekly</p>
-              <form action="" method="post">
-                <input type="email" name="email"><input type="submit" value="Subscribe">
+              <p style="color: white">Stay tuned for new updates on bonuses and best offers weekly</p>
+              <form>
+                <input type="email" name="email">
+                <input class="primary-bg-color" type="submit" value="Subscribe">
               </form>
-
             </div>
 
           </div>

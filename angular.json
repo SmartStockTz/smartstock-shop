@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "mamagenge": {
+    "smartstock-shop-core": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/mamagenge",
+            "outputPath": "dist/smartstock-shop-core",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -25,7 +25,9 @@
             ],
             "styles": [
               "src/custom-theme.scss",
-              "src/styles.css"
+              "src/styles.scss",
+              "src/assets/vendor/bootstrap/css/bootstrap.min.css",
+              "src/assets/vendor/icofont/icofont.min.css"
             ],
             "scripts": []
           },
@@ -62,18 +64,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "mamagenge:build"
+            "browserTarget": "smartstock-shop-core:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "mamagenge:build:production"
+              "browserTarget": "smartstock-shop-core:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "mamagenge:build"
+            "browserTarget": "smartstock-shop-core:build"
           }
         },
         "test": {
@@ -88,7 +90,10 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css"
+              "src/custom-theme.scss",
+              "src/styles.scss",
+              "src/assets/vendor/bootstrap/css/bootstrap.min.css",
+              "src/assets/vendor/icofont/icofont.min.css"
             ],
             "scripts": []
           }
@@ -110,18 +115,18 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "mamagenge:serve"
+            "devServerTarget": "smartstock-shop-core:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "mamagenge:serve:production"
+              "devServerTarget": "smartstock-shop-core:serve:production"
             }
           }
         }
       }
     }
   },
-  "defaultProject": "mamagenge",
+  "defaultProject": "smartstock-shop-core",
   "cli": {
     "analytics": "57d6c7c9-d0d7-4248-acce-19783ed562d7"
   }

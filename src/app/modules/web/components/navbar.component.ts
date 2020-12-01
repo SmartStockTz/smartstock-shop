@@ -10,14 +10,19 @@ import {MatDialog} from '@angular/material/dialog';
     <section id="topbar" class="">
       <div class="container clearfix d-flex flex-row">
         <div class="social-links">
-          <a class="twitter" href="{{user.ecommerce.social.twitter}}"><i class="icofont-twitter"></i></a>
-          <a class="facebook" href="{{user.ecommerce.social.facebook}}"><i class="icofont-facebook"></i></a>
-          <a class="instagram" target="_blank" href="{{user.ecommerce.social.instagram}}"><i class="icofont-instagram"></i></a>
+          <a class="primary-color" href="{{user.ecommerce.social.twitter}}"><i class="icofont-twitter"></i></a>
+          <a class="primary-color" href="{{user.ecommerce.social.facebook}}"><i class="icofont-facebook"></i></a>
+          <a class="primary-color" target="_blank" href="{{user.ecommerce.social.instagram}}"><i
+            class="icofont-instagram"></i></a>
+          <a class="primary-color" target="_blank" [href]="'https://wa.me/'+user.mobile"><i class="icofont-whatsapp"></i></a>
         </div>
         <span style="flex: 1 1 auto"></span>
         <div class="contact-info">
-          <i class="icofont-envelope"></i><a href="mailto:contact@example.com">{{user.email}}</a>
-          <i class="icofont-phone">{{user.mobile}}</i>
+          <i class="icofont-envelope primary-color"></i>
+          <a href="mailto:{{user.email}}">{{user.email}}</a>
+          <i class="icofont-phone primary-color">
+            {{user.mobile}}
+          </i>
         </div>
       </div>
     </section>
@@ -32,9 +37,9 @@ import {MatDialog} from '@angular/material/dialog';
           </div>
           <span style="flex: 1 1 auto"></span>
           <nav class="nav-menu d-none d-lg-block">
-            <ul>
-              <li><a routerLink="/">Home</a></li>
-              <li><a href="/products">Shopping</a></li>
+            <ul class="d-flex flex-row align-items-center">
+              <li><a routerLink="/"><span>Home</span></a></li>
+              <li><a href="/products"><span>Shopping</span></a></li>
               <!--        <li><a href="#location">Location</a></li>-->
               <!--        <li><a href="#services">Services</a></li>-->
               <!--        <li><a href="#portfolio">Portfolio</a></li>-->
@@ -42,9 +47,10 @@ import {MatDialog} from '@angular/material/dialog';
 
               <li *ngIf="username" style="padding: 8px">
                 <button style="padding: 8px; display: flex; justify-content: center; align-items: center"
-                        [matMenuTriggerFor]="menu" class="btn btn-outline-primary">
+                        [matMenuTriggerFor]="menu" mat-button color="primary">
                   <mat-icon>person</mat-icon>
                   <span>{{username}}</span>
+                  <mat-icon>arrow_drop_down</mat-icon>
                 </button>
                 <mat-menu #menu>
                   <button routerLink="/orders" mat-menu-item>My Orders</button>
@@ -54,7 +60,8 @@ import {MatDialog} from '@angular/material/dialog';
               </li>
               <li *ngIf="username===null" style="padding: 8px">
                 <button (click)="login()" style="padding: 8px; display: flex; justify-content: center; align-items: center"
-                        class="btn btn-outline-primary">
+                        color="primary"
+                        mat-button>
                   <span>LOGIN</span>
                 </button>
               </li>
@@ -82,6 +89,8 @@ export class NavbarComponent implements OnInit {
       } else {
         this.username = null;
       }
+    }).catch(_ => {
+      this.username = null;
     });
   }
 

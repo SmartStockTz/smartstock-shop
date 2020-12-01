@@ -6,9 +6,11 @@ import {BFast} from 'bfastjs';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {environment} from '../environments/environment';
-import * as firebase from 'firebase';
+import * as _firebase from 'firebase/app';
 import {FirebaseAuthService} from './modules/web/services/firebase-auth.service';
 import {MatBottomSheetModule} from '@angular/material/bottom-sheet';
+
+const firebase = _firebase.default;
 
 const routes: Routes = [
   {
@@ -27,7 +29,7 @@ const routes: Routes = [
   declarations: [AppComponent],
   imports: [
     BrowserModule,
-    RouterModule.forRoot(routes, { relativeLinkResolution: 'legacy' }),
+    RouterModule.forRoot(routes, {relativeLinkResolution: 'legacy'}),
     BrowserAnimationsModule,
     MatSnackBarModule,
     MatBottomSheetModule,
@@ -39,9 +41,9 @@ export class AppModule {
   constructor() {
     firebase.initializeApp(environment.firebase);
     BFast.init({
-      applicationId: 'a54749f4-b3f1-43eb-aedf-6efef90685dd',
+      applicationId: environment.applicationId,
       projectId: environment.projectId,
-      appPassword: '4c6585c3-06f0-4890-b50b-e20e7f8212ec',
+      appPassword: environment.masterKey,
       adapters: {
         auth: () => new FirebaseAuthService(),
       },

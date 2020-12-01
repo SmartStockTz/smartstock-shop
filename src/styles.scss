@@ -1,3 +1,18 @@
+/* You can add global styles to this file, and also import other style files */
+
+//@import url(custom-theme.scss);
+
+html, body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  color: #444;
+}
+
+
 /**
 * Template Name: Mamba - v2.4.0
 * Template URL: https://bootstrapmade.com/mamba-one-page-bootstrap-template-free/
@@ -8,10 +23,10 @@
 /*--------------------------------------------------------------
 # General
 --------------------------------------------------------------*/
-body {
-  font-family: "Open Sans", sans-serif;
-  color: #444;
-}
+/*body {*/
+/*  font-family: "Open Sans", sans-serif;*/
+/*  color: #444;*/
+/*}*/
 
 a {
   color: #428bca;
@@ -516,7 +531,7 @@ section {
 
 .section-title h2 {
   font-size: 32px;
-  font-weight: 600;
+  font-weight: 500;
   margin-bottom: 20px;
   padding-bottom: 0;
   color: #5c768d;
@@ -630,7 +645,7 @@ section {
 
 .about .icon-box .title {
   margin-left: 95px;
-  font-weight: 700;
+  font-weight: 400;
   margin-bottom: 10px;
   font-size: 18px;
   text-transform: uppercase;
@@ -818,7 +833,7 @@ section {
 .counts .count-box span {
   font-size: 42px;
   display: block;
-  font-weight: 700;
+  font-weight: 500;
   color: #1c5c93;
 }
 
@@ -865,7 +880,7 @@ section {
 }
 
 .services .title {
-  font-weight: 600;
+  font-weight: 500;
   margin-bottom: 15px;
   font-size: 18px;
   position: relative;
@@ -966,7 +981,7 @@ section {
 .portfolio .portfolio-wrap .portfolio-info h4 {
   font-size: 20px;
   color: #fff;
-  font-weight: 600;
+  font-weight: 500;
 }
 
 .portfolio .portfolio-wrap .portfolio-info p {
@@ -1048,13 +1063,13 @@ section {
   right: 0;
   bottom: -70px;
   background: #fff;
-  box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
   z-index: 2;
 }
 
 .portfolio-details .portfolio-info h3 {
   font-size: 22px;
-  font-weight: 700;
+  font-weight: 500;
   margin-bottom: 20px;
   padding-bottom: 20px;
   border-bottom: 1px solid #eee;
@@ -1077,7 +1092,7 @@ section {
 .portfolio-details .portfolio-description h2 {
   width: 50%;
   font-size: 26px;
-  font-weight: 700;
+  font-weight: 500;
   margin-bottom: 20px;
 }
 
@@ -1097,95 +1112,6 @@ section {
 }
 
 /*--------------------------------------------------------------
-# Our Team
---------------------------------------------------------------*/
-.team {
-  background: #fff;
-  padding: 60px 0 30px 0;
-}
-
-.team .member {
-  text-align: center;
-  margin-bottom: 80px;
-  position: relative;
-}
-
-.team .member .pic {
-  border-radius: 4px;
-  overflow: hidden;
-  /*height: 400px;*/
-}
-
-.team .member img {
-  transition: all ease-in-out 0.4s;
-}
-
-.team .member:hover img {
-  transform: scale(1.1);
-}
-
-.team .member .member-info {
-  position: absolute;
-  bottom: -48px;
-  left: 20px;
-  right: 20px;
-  background: linear-gradient(360deg, #5c768d 0%, rgba(92, 118, 141, 0.9) 35%, rgba(140, 167, 191, 0.8) 100%);
-  padding: 15px 0;
-  border-radius: 4px;
-}
-
-.team .member h4 {
-  font-weight: 700;
-  margin-bottom: 10px;
-  font-size: 16px;
-  color: #fff;
-  position: relative;
-  padding-bottom: 10px;
-}
-
-.team .member h4::after {
-  content: '';
-  position: absolute;
-  display: block;
-  width: 50px;
-  height: 1px;
-  background: #fff;
-  bottom: 0;
-  left: calc(50% - 25px);
-}
-
-.team .member span {
-  font-style: italic;
-  display: block;
-  font-size: 13px;
-  color: #fff;
-}
-
-.team .member .social {
-  margin-top: 15px;
-}
-
-.team .member .social a {
-  transition: color 0.3s;
-  color: #fff;
-}
-
-.team .member .social a:hover {
-  color: #9eccf4;
-}
-
-.team .member .social i {
-  font-size: 16px;
-  margin: 0 2px;
-}
-
-@media (max-width: 992px) {
-  .team .member {
-    margin-bottom: 100px;
-  }
-}
-
-/*--------------------------------------------------------------
 # Frequently Asked Questions
 --------------------------------------------------------------*/
 .faq {
@@ -1199,7 +1125,7 @@ section {
 .faq .faq-item h4 {
   font-size: 20px;
   line-height: 28px;
-  font-weight: 600;
+  font-weight: 500;
   margin-bottom: 15px;
   color: #1f3548;
 }
@@ -1227,7 +1153,7 @@ section {
 .contact .info-box h3 {
   font-size: 20px;
   color: #666;
-  font-weight: 700;
+  font-weight: 500;
   margin: 10px 0;
 }
 
@@ -1257,7 +1183,7 @@ section {
   background: #ed3c0d;
   text-align: left;
   padding: 15px;
-  font-weight: 600;
+  font-weight: 500;
 }
 
 .contact .php-email-form .error-message br + br {
@@ -1270,7 +1196,7 @@ section {
   background: #18d26e;
   text-align: center;
   padding: 15px;
-  font-weight: 600;
+  font-weight: 500;
 }
 
 .contact .php-email-form .loading {
@@ -1364,7 +1290,7 @@ section {
   margin: 0 0 20px 0;
   padding: 2px 0 2px 0;
   line-height: 1;
-  font-weight: 700;
+  font-weight: 500;
 }
 
 #footer .footer-top .footer-info p {
@@ -1398,7 +1324,7 @@ section {
 
 #footer .footer-top h4 {
   font-size: 16px;
-  font-weight: 600;
+  font-weight: 500;
   color: #fff;
   position: relative;
   padding-bottom: 12px;
@@ -1489,79 +1415,6 @@ section {
 
 #footer .credits a {
   color: #9eccf4;
-}
-
-
-/********************************************************/
-
-/*
-
-[Master Stylesheet]
-
-Project Name: king faith (HMTL Template)
-Version:    1.1
-Last change:  4/september/18
-
-====INDEX=====
-
-01- general styling
-02- sticky header
-03- login/landing page
-04- home page topbar
-05- timeline area
-06- messages dropdowns
-07- sidebar widgets
-08- post sharing area
-09- social icons
-10- comment area
-11- search area
-12- footer
-13- widgets
-14- side panel
-15- short profile widget
-16- svg button styling
-17- 404 error page
-18- contact page
-19- knowledge base page
-20- faq's page
-21- photos page
-22- favourit page
-23- edit basic info page
-24- notification page
-25- message page
-26- loadmore
-27- responsive header
-28- main menu
-39- blog pages
-40- blog detail
-
-*/
-
-
-/*=============== Fonts source Muli, Hobostd ===================*/
-
-@import url('https://fonts.googleapis.com/css?family=Muli:300,400,400i,500,700,800');
-@import url('https://fonts.googleapis.com/css?family=Satisfy');
-@font-face {
-  font-family: HoboStd;
-  src: url('../fonts/HoboStd.ttf'), url('../fonts/HoboStd.eot');
-}
-
-
-/*===============
-***General Styling
-===============*/
-html, body {
-  font-family: "Muli", "Segoe Ui";
-}
-
-body {
-  float: left;
-  width: 100%;
-  margin: 0;
-  padding: 0;
-  overflow-x: hidden;
-  color: #545454;
 }
 
 p {
@@ -1742,7 +1595,7 @@ section {
 }
 
 .pattern:before {
-  background: #088dcd url("../images/dot-pattern.png") repeat scroll 0 0;
+  background: #088dcd repeat scroll 0 0;
   opacity: 0.45;
 }
 
@@ -2523,7 +2376,7 @@ header.sticky {
 
 .mesg-meta > h6 {
   font-size: 13.5px;
-  font-weight: 600;
+  font-weight: 500;
   letter-spacing: 0.3px;
   margin-bottom: 0;
   text-transform: capitalize;
@@ -2746,7 +2599,7 @@ header.sticky {
   display: inline-block;
   width: 100%;
   font-size: 13px;
-  font-weight: 600;
+  font-weight: 500;
 }
 
 .activity-meta > h6 {
@@ -2844,7 +2697,7 @@ form button {
   border: medium none;
   color: #fff;
   font-size: 13px;
-  font-weight: 600;
+  font-weight: 500;
   padding: 3px 10px;
 }
 
@@ -2876,7 +2729,7 @@ form button {
 
 .friend-name > ins {
   float: left;
-  font-weight: 700;
+  font-weight: 500;
   width: 100%;
   font-size: 18px;
   text-decoration: none;
@@ -2914,14 +2767,14 @@ form button {
 .description > span {
   color: #2a2a2a;
   font-size: 18px;
-  font-weight: 600;
+  font-weight: 500;
   line-height: 28px;
   display: inline-block;
   margin-bottom: 5px;
 }
 
 .description > p a {
-  font-weight: 600;
+  font-weight: 500;
 }
 
 
@@ -2963,7 +2816,7 @@ form button {
 .we-video-info > ul li.upload-date {
   float: right;
   font-size: 12px;
-  font-weight: 600;
+  font-weight: 500;
   text-transform: uppercase;
 }
 
@@ -3355,7 +3208,7 @@ for some reason nth-child(1) is always busy and elements starting from 2 */
 
 .coment-head > h5 {
   font-size: 15px;
-  font-weight: 600;
+  font-weight: 500;
   padding-bottom: 5px;
   text-transform: capitalize;
   display: inline-block;
@@ -4005,7 +3858,7 @@ footer .logo {
 .panel-title {
   color: #303030;
   font-size: 16px;
-  font-weight: 600;
+  font-weight: 500;
   margin-bottom: 20px;
   text-transform: uppercase;
 }
@@ -4048,7 +3901,6 @@ footer .logo {
 }
 
 .theme-layout::before {
-  background: url(../images/dot-pattern.png);
   background-repeat: repeat;
   content: "";
   height: 100%;
@@ -4086,7 +3938,7 @@ footer .logo {
 
 .short-profile li span {
   display: inline-block;
-  font-weight: 700;
+  font-weight: 500;
   margin-bottom: 5px;
   text-transform: capitalize;
   width: 100%;
@@ -4919,7 +4771,7 @@ nav.breadcrumb {
 .pepl-info > h4 {
   display: inline-block;
   font-size: 16px;
-  font-weight: 600;
+  font-weight: 500;
   text-transform: capitalize;
 }
 
@@ -4984,7 +4836,7 @@ a.add-butn {
 .page-meta > a {
   display: inline-block;
   font-size: 16px;
-  font-weight: 600;
+  font-weight: 500;
   text-transform: capitalize;
   width: auto;
 }
@@ -5044,7 +4896,7 @@ a.add-butn {
 .page-likes .tab-content .tab-pane > span {
   font-size: 22px;
   font-style: normal;
-  font-weight: 600;
+  font-weight: 500;
   text-align: center;
   float: left;
   width: 100%;
@@ -5242,7 +5094,7 @@ a.add-butn.more-action {
 
 .f-title {
   font-size: 17.5px;
-  font-weight: 600;
+  font-weight: 500;
   text-transform: capitalize;
   color: #000;
   margin-bottom: 20px;
@@ -5884,7 +5736,7 @@ a.forgot-pwd {
 .page-infos > h5 {
   display: inline-block;
   font-size: 16px;
-  font-weight: 700;
+  font-weight: 500;
   width: 100%;
   margin-bottom: 0;
 }
@@ -5901,7 +5753,7 @@ a.dislike-btn {
   bottom: 0;
   color: #fff;
   font-size: 13px;
-  font-weight: 600;
+  font-weight: 500;
   letter-spacing: 0.6px;
   padding: 2px 10px;
   position: absolute;
@@ -6219,7 +6071,7 @@ canvas {
 .top-area > ul.main-menu > li a {
   color: #575b5f;
   font-size: 14px;
-  font-weight: 700;
+  font-weight: 500;
   text-transform: capitalize;
   letter-spacing: 0.3px;
 }
@@ -6541,7 +6393,7 @@ canvas {
   letter-spacing: 0.5px;
   cursor: pointer;
   width: 80%;
-  font-weight: 600;
+  font-weight: 500;
 }
 
 .inbox-navigation > ul > li {
@@ -6564,7 +6416,7 @@ canvas {
   color: #ffffff;
   float: right;
   font-size: 12px;
-  font-weight: 600;
+  font-weight: 500;
   height: 20px;
   text-align: center;
   width: 20px;
@@ -7151,7 +7003,7 @@ canvas {
 
 .post-title > h4 {
   font-size: 18px;
-  font-weight: 600;
+  font-weight: 500;
   line-height: 26px;
   text-transform: capitalize;
 }
@@ -8151,7 +8003,7 @@ a.reply {
 
 .open-position > h4 {
   font-size: 16px;
-  font-weight: 600;
+  font-weight: 500;
   line-height: 25px;
   text-transform: capitalize;
 }
@@ -8876,7 +8728,7 @@ ul.offcanvas-menu ul {
   color: #242424;
   display: inline-block;
   font-size: 25px;
-  font-weight: 700;
+  font-weight: 500;
   margin-bottom: 20px;
   margin-top: 25px;
   -webkit-transition: all 0.2s linear 0s;
@@ -8909,7 +8761,7 @@ a.main-btn {
   border-radius: 30px;
   color: #fff;
   font-size: 13px;
-  font-weight: 600;
+  font-weight: 500;
   padding: 10px 26px;
   display: inline-block;
 }
@@ -10243,7 +10095,7 @@ a.btn2:hover {
   color: #7b7d7f;
   display: inline-block;
   font-size: 13px;
-  font-weight: 600;
+  font-weight: 500;
   letter-spacing: 0.1px;
   padding: 9px 20px;
 }
@@ -11128,7 +10980,7 @@ a.addnewforum {
   color: #fff;
   display: inline-block;
   font-size: 14px;
-  font-weight: 600;
+  font-weight: 500;
   margin-bottom: 30px;
   padding: 10px 30px;
 }
@@ -11353,7 +11205,7 @@ aside.sidebar.full-style {
 .forum-open > h5 {
   display: inline-block;
   font-size: 18px;
-  font-weight: 600;
+  font-weight: 500;
   margin-bottom: 40px;
   width: 100%;
 }

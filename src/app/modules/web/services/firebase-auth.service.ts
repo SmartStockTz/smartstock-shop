@@ -2,7 +2,9 @@ import {Injectable} from '@angular/core';
 import {AuthAdapter} from 'bfastjs/dist/adapters/AuthAdapter';
 import {BFast} from 'bfastjs';
 import {UserModel} from 'bfastjs/dist/models/UserModel';
-import * as firebase from 'firebase';
+import * as _firebase from 'firebase';
+
+const firebase = _firebase.default;
 
 @Injectable({
   providedIn: 'root'
