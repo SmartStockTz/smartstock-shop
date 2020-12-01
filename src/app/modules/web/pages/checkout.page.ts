@@ -11,7 +11,7 @@ import {UserService} from '../services/user.service';
 })
 
 export class CheckoutPage implements OnInit {
-  user: { [key: string]: any } = {ecommerce: {social: {}, logo: '', cover: ''}, businessName: '', email: ''};
+  user: { [key: string]: any } = {ecommerce: {social: {}, logo: '', cover: null}, businessName: '', email: ''};
 
   constructor(private readonly userService: UserService) {
     window.scrollTo({

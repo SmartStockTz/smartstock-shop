@@ -10,50 +10,22 @@ import {UserService} from '../services/user.service';
 
     <!-- </div> -->
     <!-- ======= Hero Section ======= -->
-    <section id="hero" style="height: 60vh">
-      <div class="hero-container">
-        <div
-          id="heroCarousel"
-          class="carousel slide carousel-fade"
-          data-ride="carousel">
-          <ol class="carousel-indicators" id="hero-carousel-indicators"></ol>
-
-          <div class="carousel-inner" role="listbox">
-            <!-- Slide 1 -->
-            <div *ngIf="user"
-                 [ngClass]="user.ecommerce.cover?withImage:withoutImage"
-                 style="background-image: url({{user.ecommerce.cover}});">
-              <div class="carousel-container" style="height: 60vh">
-                <div class="carousel-content container">
-                  <h2 class="animate__animated animate__fadeInDown">
-                    Welcome to <span>{{user.businessName}}</span>
-                  </h2>
-                  <p class="animate__animated animate__fadeInUp"></p>
-                  <h2>About Us</h2>
-                  <p>
-                    {{user.ecommerce.about}}
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+    <ssm-header [user]="user"></ssm-header>
     <!-- End Hero -->
 
-    <main>
+    <section>
       <!-- ======= Show Products ======= -->
 
-      <div class="container-fluid">
-        <div class="row" style="padding-top: 3em">
-          <div class="col-lg-3 col-md-3">
-            <ssm-category-list></ssm-category-list>
-          </div>
-          <div class="col-lg-9 col-md-9">
-            <ssm-products-by-category></ssm-products-by-category>
-          </div>
-        </div>
+      <div style="padding-bottom: 76px">
+        <!--        <div class="row" style="padding-top: 3em">-->
+        <ssm-products-by-categories-list></ssm-products-by-categories-list>
+        <!--          <div class="col-lg-3 col-md-3">-->
+        <!--            <ssm-category-list></ssm-category-list>-->
+        <!--          </div>-->
+        <!--          <div class="col-lg-9 col-md-9">-->
+        <!--            <ssm-products-by-category></ssm-products-by-category>-->
+        <!--          </div>-->
+        <!--        </div>-->
       </div>
 
       <!-- ======= Frequently Asked Questions Section ======= -->
@@ -237,7 +209,7 @@ import {UserService} from '../services/user.service';
       <!--          </div>-->
       <!--        </div>-->
       <!--      </section>-->
-    </main>
+    </section>
     <app-cart-preview></app-cart-preview>
     <app-footer [user]="user"></app-footer>
   `,
@@ -246,8 +218,6 @@ import {UserService} from '../services/user.service';
 export class LandingPageComponent implements OnInit {
   user: { [key: string]: any } = {ecommerce: {social: {}, logo: '', cover: null}, businessName: '', email: ''};
   isLoading = true;
-  withImage = ['carousel-item', 'active'];
-  withoutImage = ['carousel-item', 'active', 'primary-bg-color'];
 
   constructor(private readonly userService: UserService) {
   }
@@ -256,8 +226,8 @@ export class LandingPageComponent implements OnInit {
     this.userService.profile().then(user => {
       this.user = user;
       this.isLoading = false;
-    }).catch(reason => {
-      console.log(reason);
+    }).catch(_ => {
+      console.log(_);
     });
   }
 }

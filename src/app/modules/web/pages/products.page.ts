@@ -9,54 +9,43 @@ import {UserService} from '../services/user.service';
   selector: 'app-products',
   template: `
     <app-navibar [user]="user"></app-navibar>
+    <ssm-header [user]="user"></ssm-header>
     <section>
       <div class="gap100">
-        <div class="container-fluid">
+        <div class="container">
           <div class="row">
-            <div class="col-lg-12">
-              <div class="shop-page">
-                <div
-                  class="shop-filter-sec"
-                  style="margin-left: 5em; font-weight: 600;"
-                >
-                  <span
-                  >Showing {{ products.length }} of
-                    {{ totalProducts }} results</span
-                  >
-                </div>
-                <div class="row" style="padding-top: 3em">
-                  <div class="col-lg-3 col-md-3">
-                    <ssm-category-list></ssm-category-list>
-                  </div>
-                  <div class="col-lg-9 col-md-9">
-                    <ssm-products-by-category></ssm-products-by-category>
-                  </div>
-                </div>
-                <!-- <div *ngIf="!products || products.length === 0">
-                  <div class="row">
-                    <div
-                      *ngFor="let i of [1, 2, 3, 4, 5, 6, 7, 8]"
-                      class="col-xl-3 col-lg-3 col-sm-12 col-md-4"
-                    >
-                      <div
-                        style="height: 200px; background: #f5f5f5; margin: 5px 0"
-                      ></div>
-                    </div>
+            <div class="shop-page">
+              <div class="shop-filter-sec" style="margin-left: 5em; font-weight: 600;">
+                <span>Showing {{ products.length }} of {{ totalProducts }} results </span>
+              </div>
+              <!--              <div class="row">-->
+              <!--                <div class="col-lg-3 col-md-3">-->
+              <!--                  <ssm-category-list></ssm-category-list>-->
+              <!--                </div>-->
+              <!--                <div class="col-lg-9 col-md-9">-->
+              <!--                  <ssm-products-by-category></ssm-products-by-category>-->
+              <!--                </div>-->
+              <!--              </div>-->
+
+              <div *ngIf="!products || products.length === 0">
+                <div class="row">
+                  <div
+                    *ngFor="let i of [1, 2, 3, 4, 5, 6, 7, 8]"
+                    class="col-xl-3 col-lg-3 col-sm-12 col-md-4">
+                    <div style="height: 200px; background: #f5f5f5; margin: 5px 0"></div>
                   </div>
                 </div>
-                <app-products-list [products]="products"></app-products-list> -->
-                <!-- <div
-                  style="padding: 24px; display: flex; justify-content: center; align-items: center"
-                >
-                  <button
-                    [disabled]="isLoadMore"
-                    (click)="loadMoreProducts()"
-                    class="btn btn-primary"
-                  >
-                    Load More Products
-                    <div *ngIf="isLoadMore" class="spinner-border"></div>
-                  </button>
-                </div> -->
+              </div>
+              <app-products-list [products]="products"></app-products-list>
+              <div style="padding: 24px; display: flex; justify-content: center; align-items: center">
+                <button
+                  [disabled]="isLoadMore"
+                  (click)="loadMoreProducts()"
+                  style="border-radius: 50px"
+                  mat-flat-button color="primary">
+                  Load More Products
+                  <div *ngIf="isLoadMore" class="spinner-border"></div>
+                </button>
               </div>
             </div>
           </div>

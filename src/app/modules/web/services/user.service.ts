@@ -25,7 +25,20 @@ export class UserService {
   }
 
   async profile(): Promise<any> {
-    return BFast.functions('smartstock').request('/ecommerce/' + environment.projectId).get();
+    try {
+      const user = await BFast.functions('smartstock').request('/ecommerce/' + environment.projectId).get<any>();
+      if (!user) {
+        return {ecommerce: {social: {}, logo: '', cover: null}, businessName: '', email: ''};
+      }
+      if (user.ecommerce) {
+        return user;
+      } else {
+        user.ecommerce = {social: {}, logo: '', cover: null};
+        return user;
+      }
+    } catch (e) {
+      return {ecommerce: {social: {}, logo: '', cover: null}, businessName: '', email: ''};
+    }
   }
 }
 
