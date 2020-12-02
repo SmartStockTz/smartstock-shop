@@ -22,7 +22,7 @@ export class ProductState {
               private readonly snack: MatSnackBar) {
   }
 
-  getProductsOrderByCategories(size = 8, skip = 0): void {
+  getProductsOrderByCategories(size = 20, skip = 0): void {
     this.isFetchProductsGroupedByCategory.next(true);
     this.productsService.orderProductsByCategory(size, skip).then(value => {
       this.productsOrderByCategories.next(value);
@@ -33,7 +33,7 @@ export class ProductState {
     });
   }
 
-  getProductsFilterByCategory(category: string = '', size = 8, skip = 0): void {
+  getProductsFilterByCategory(category: string = '', size = 20, skip = 0): void {
     this.isFetchProduct.next(true);
     this.productsService.getProductsByCategory(category, {skip, size}).then(value => {
       this.products.next(value);
@@ -44,7 +44,7 @@ export class ProductState {
     });
   }
 
-  loadMoreProductsWithCategoryFilter(category: string = '', size = 8, skip = 0): void {
+  loadMoreProductsWithCategoryFilter(category: string = '', size = 20, skip = 0): void {
     this.isFetchMoreProduct.next(true);
     this.productsService.getProductsByCategory(category, {skip, size}).then(value => {
       this.products.value.push(...value);

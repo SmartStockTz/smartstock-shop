@@ -60,7 +60,7 @@ export class ProductsCategoryComponent implements OnInit, OnDestroy {
     categoryState.selectedCategorySubject.pipe(
       takeUntil(this.destroy)
     ).subscribe(value => {
-      console.log(value);
+      // console.log(value);
       if (value === 'All Products') {
         value = null;
       }
