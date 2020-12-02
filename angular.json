@@ -3,31 +3,31 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "smartstock-shop-core": {
+    "shop-mock": {
       "projectType": "application",
       "schematics": {},
       "root": "",
-      "sourceRoot": "src",
+      "sourceRoot": "projects/shop-mock/src",
       "prefix": "app",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/smartstock-shop-core",
-            "index": "src/index.html",
-            "main": "src/main.ts",
-            "polyfills": "src/polyfills.ts",
+            "outputPath": "dist/shop-mock",
+            "index": "projects/shop-mock/src/index.html",
+            "main": "projects/shop-mock/src/main.ts",
+            "polyfills": "projects/shop-mock/src/polyfills.ts",
             "tsConfig": "tsconfig.app.json",
             "aot": true,
             "assets": [
-              "src/favicon.ico",
-              "src/assets"
+              "projects/shop-mock/src/favicon.ico",
+              "projects/shop-mock/src/assets"
             ],
             "styles": [
-              "src/custom-theme.scss",
-              "src/styles.scss",
-              "src/assets/vendor/bootstrap/css/bootstrap.min.css",
-              "src/assets/vendor/icofont/icofont.min.css"
+              "projects/shop-mock/src/custom-theme.scss",
+              "projects/shop-mock/src/styles.scss",
+              "projects/shop-mock/src/assets/vendor/bootstrap/css/bootstrap.min.css",
+              "projects/shop-mock/src/assets/vendor/icofont/icofont.min.css"
             ],
             "scripts": []
           },
@@ -35,8 +35,8 @@
             "production": {
               "fileReplacements": [
                 {
-                  "replace": "src/environments/environment.ts",
-                  "with": "src/environments/environment.prod.ts"
+                  "replace": "projects/shop-mock/src/environments/environment.ts",
+                  "with": "projects/shop-mock/src/environments/environment.prod.ts"
                 }
               ],
               "optimization": true,
@@ -64,36 +64,36 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "smartstock-shop-core:build"
+            "browserTarget": "shop-mock:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "smartstock-shop-core:build:production"
+              "browserTarget": "shop-mock:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "smartstock-shop-core:build"
+            "browserTarget": "shop-mock:build"
           }
         },
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "src/test.ts",
+            "main": "projects/shop-mock/src/test.ts",
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.spec.json",
             "karmaConfig": "karma.conf.js",
             "assets": [
-              "src/favicon.ico",
-              "src/assets"
+              "projects/shop-mock/src/favicon.ico",
+              "projects/shop-mock/src/assets"
             ],
             "styles": [
-              "src/custom-theme.scss",
-              "src/styles.scss",
-              "src/assets/vendor/bootstrap/css/bootstrap.min.css",
-              "src/assets/vendor/icofont/icofont.min.css"
+              "projects/shop-mock/src/custom-theme.scss",
+              "projects/shop-mock/src/styles.scss",
+              "projects/shop-mock/src/assets/vendor/bootstrap/css/bootstrap.min.css",
+              "projects/shop-mock/src/assets/vendor/icofont/icofont.min.css"
             ],
             "scripts": []
           }
@@ -104,7 +104,7 @@
             "tsConfig": [
               "tsconfig.app.json",
               "tsconfig.spec.json",
-              "e2e/tsconfig.json"
+              "projects/shop-mock/e2e/tsconfig.json"
             ],
             "exclude": [
               "**/node_modules/**"
@@ -114,19 +114,59 @@
         "e2e": {
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
-            "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "smartstock-shop-core:serve"
+            "protractorConfig": "projects/shop-mock/e2e/protractor.conf.js",
+            "devServerTarget": "shop-mock:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "smartstock-shop-core:serve:production"
+              "devServerTarget": "shop-mock:serve:production"
             }
+          }
+        }
+      }
+    },
+    "shop": {
+      "projectType": "library",
+      "root": "projects/shop",
+      "sourceRoot": "projects/shop/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "tsConfig": "projects/shop/tsconfig.lib.json",
+            "project": "projects/shop/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/shop/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/shop/src/test.ts",
+            "tsConfig": "projects/shop/tsconfig.spec.json",
+            "karmaConfig": "projects/shop/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/shop/tsconfig.lib.json",
+              "projects/shop/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
           }
         }
       }
     }
   },
-  "defaultProject": "smartstock-shop-core",
+  "defaultProject": "shop",
   "cli": {
     "analytics": "57d6c7c9-d0d7-4248-acce-19783ed562d7"
   }
