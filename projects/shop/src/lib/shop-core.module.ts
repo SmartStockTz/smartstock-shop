@@ -42,6 +42,7 @@ import {HeaderComponent} from './components/header.component';
 import {ProductsCategoryComponent} from './components/products-by-category.component';
 import {BFast} from 'bfastjs';
 import {ConfigService} from './services/config.service';
+import {FirebaseAuthService} from './services/firebase-auth.service';
 
 const routes: Route[] = [
   {path: '', component: LandingPageComponent},
@@ -111,12 +112,15 @@ const routes: Route[] = [
     {provide: MAT_BOTTOM_SHEET_DATA, useValue: {}},
   ],
 })
-export class WebModule {
+export class ShopCoreModule {
   constructor(private readonly config: ConfigService) {
     BFast.init({
       applicationId: config.shopDetails.value.applicationId,
       projectId: config.shopDetails.value.projectId,
       appPassword: config.shopDetails.value.masterKey,
+      adapters: {
+        auth: () => new FirebaseAuthService(),
+      },
     });
   }
 }

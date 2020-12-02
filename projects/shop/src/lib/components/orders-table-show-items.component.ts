@@ -2,6 +2,7 @@ import {Component, Inject, OnInit} from '@angular/core';
 import {MAT_BOTTOM_SHEET_DATA, MatBottomSheetRef} from '@angular/material/bottom-sheet';
 import {OrderModel} from '../models/order.model';
 
+// @dynamic
 @Component({
   selector: 'app-orders-show-items',
   template: `

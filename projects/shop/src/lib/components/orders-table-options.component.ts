@@ -3,16 +3,17 @@ import {MAT_BOTTOM_SHEET_DATA, MatBottomSheet, MatBottomSheetRef} from '@angular
 import {OrderModel} from '../models/order.model';
 import {OrdersTableShowItemsComponent} from './orders-table-show-items.component';
 
+// @dynamic
 @Component({
   selector: 'app-orders-table-options',
   template: `
     <div style="padding: 16px 0 24px 0;">
       <mat-nav-list>
-<!--        <mat-list-item (click)="markAsComplete()">-->
-<!--          <mat-icon matListIcon>done_all</mat-icon>-->
-<!--          <p matLine>Mark As Complete</p>-->
-<!--          <mat-card-subtitle matLine>Mark order as complete</mat-card-subtitle>-->
-<!--        </mat-list-item>-->
+        <!--        <mat-list-item (click)="markAsComplete()">-->
+        <!--          <mat-icon matListIcon>done_all</mat-icon>-->
+        <!--          <p matLine>Mark As Complete</p>-->
+        <!--          <mat-card-subtitle matLine>Mark order as complete</mat-card-subtitle>-->
+        <!--        </mat-list-item>-->
         <mat-list-item (click)="showItems()">
           <mat-icon matListIcon>receipt</mat-icon>
           <p matLine>Show Items</p>

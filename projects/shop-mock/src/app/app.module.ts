@@ -8,7 +8,7 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {environment} from '../environments/environment';
 import * as _firebase from 'firebase/app';
 import {MatBottomSheetModule} from '@angular/material/bottom-sheet';
-import {ConfigService, FirebaseAuthService} from '../../../shop/src/public-api';
+import {ConfigService} from '../../../shop/src/public-api';
 
 const firebase = _firebase.default;
 
@@ -16,12 +16,12 @@ const routes: Routes = [
   {
     path: '',
     loadChildren: () =>
-      import('../../../shop/src/public-api').then((value) => value.WebModule),
+      import('../../../shop/src/public-api').then((value) => value.ShopCoreModule),
   },
   {
     path: '**',
     loadChildren: () =>
-      import('../../../shop/src/public-api').then((value) => value.WebModule),
+      import('../../../shop/src/public-api').then((value) => value.ShopCoreModule),
   },
 ];
 
@@ -39,26 +39,24 @@ const routes: Routes = [
 })
 export class AppModule {
   constructor(private readonly config: ConfigService) {
-    // config.shopDetails.next({
-    //   masterKey: environment.masterKey,
-    //   projectId: environment.projectId,
-    //   applicationId: environment.applicationId
-    // });
+
+    // initialize firebase for auth to walk
     firebase.initializeApp(environment.firebase);
-    BFast.init({
-      applicationId: environment.applicationId,
+
+    // set active shop configurations
+    config.shopDetails.next({
+      masterKey: environment.masterKey,
       projectId: environment.projectId,
-      appPassword: environment.masterKey,
-      adapters: {
-        auth: () => new FirebaseAuthService(),
-      },
+      applicationId: environment.applicationId
     });
 
+    // initiate main smartstock project
     BFast.init({
       applicationId: 'smartstock_lb',
       projectId: 'smartstock',
     }, 'smartstock');
 
+    // listen for auth state changes and update local user
     firebase.auth().onAuthStateChanged((a) => {
       if (!a) {
         BFast.auth().setCurrentUser(null).catch();

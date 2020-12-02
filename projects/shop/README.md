@@ -1,24 +1,68 @@
-# Shop
+# SmartStock-Shop-Core
 
-This library was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.0.1.
+Lib for e-commerce smartstock.
 
-## Code scaffolding
+## Get Started
 
-Run `ng generate component component-name --project shop` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module --project shop`.
-> Note: Don't forget to add `--project shop` or else it will be added to the default project in your `angular.json` file. 
+This is angular library install to your angular application from npm github `npm --save @smartstocktz/shop-core`
 
-## Build
+## Use It
 
-Run `ng build shop` to build the project. The build artifacts will be stored in the `dist/` directory.
+In your application main module import `ShopCoreModule` like following example.
 
-## Publishing
+```typescript
+// ...
+import {BFast} from 'bfastjs';
+import {ConfigService} from '@smartstocktz/shop-core';
 
-After building your library with `ng build shop`, go to the dist folder `cd dist/shop` and run `npm publish`.
+const routes: Routes = [
+  {
+    path: '',
+    loadChildren: () =>
+      import('@smartstocktz/shop-core').then((value) => value.ShopCoreModule),
+  },
+  {
+    path: '**',
+    loadChildren: () =>
+      import('@smartstocktz/shop-core').then((value) => value.ShopCoreModule),
+  },
+];
 
-## Running unit tests
+@NgModule({
+  declarations: [AppComponent],
+  imports: [
+    //...
+  ],
+  providers: [],
+  bootstrap: [AppComponent],
+})
+export class AppModule {
+  constructor(private readonly config: ConfigService) {
 
-Run `ng test shop` to execute the unit tests via [Karma](https://karma-runner.github.io).
+    // initialize firebase for auth to walk
+    firebase.initializeApp(environment.firebase);
 
-## Further help
+    // set active shop configurations
+    config.shopDetails.next({
+      masterKey: environment.masterKey,
+      projectId: environment.projectId,
+      applicationId: environment.applicationId
+    });
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+    // other initialization
+
+    // listen for auth state changes and update local user
+    firebase.auth().onAuthStateChanged((a) => {
+      if (!a) {
+        BFast.auth().setCurrentUser(null).catch();
+      }
+    });
+  }
+}
+
+```
+
+# Note
+
+You can create a custom theme color to change color of application
+
