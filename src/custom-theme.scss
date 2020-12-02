@@ -34,9 +34,18 @@ $smartstock-shop-core: (
     A700 : #000000,
   )
 );
+$a: null;
+//@import url(https://filmpopcorn.us-east-1.linodeobjects.com/assets/j.scss);
+//@debug "divider offset: #{$a}";
+$b: null;
+@if ($a != null) {
+  $b: $a
+} @else {
+  $b: $mat-green
+}
 
-$smartstock-shop-core-primary: mat-palette($mat-green, 900);
-$smartstock-shop-core-accent: mat-palette($mat-green, A200, A100, A400);
+$smartstock-shop-core-primary: mat-palette($b, 900);
+$smartstock-shop-core-accent: mat-palette($b, A200, A100, A400);
 
 $smartstock-shop-core-warn: mat-palette($mat-red);
 

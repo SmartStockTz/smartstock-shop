@@ -92,13 +92,13 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
         </form>
       </div>
       <div class="d-flex" style="margin-top: 24px">
-        <button [disabled]="cartState.isCheckout | async" routerLink="/products" class="btn btn-outline-primary text-center"
+        <button [disabled]="cartState.isCheckout | async" routerLink="/products" mat-button color="primary"
                 style="flex-grow: 1; margin: 5px; font-size: 20px">
           CONTINUE SHOPPING
         </button>
         <button [disabled]="cartState.isCheckout | async" *ngIf="dataSource.data.length > 0" (click)="checkOut()"
                 style="flex-grow: 1; margin: 5px; font-size: 20px"
-                class="btn btn-primary text-center">
+                mat-raised-button color="primary">
           PROCEED TO CHECKOUT
           <div *ngIf="cartState.isCheckout | async" class="spinner-border"></div>
         </button>

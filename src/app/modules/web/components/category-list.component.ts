@@ -1,42 +1,40 @@
-import { Component, OnInit, Output } from "@angular/core";
-import { BehaviorSubject } from 'rxjs';
-import { ProductService } from '../services/product.service';
-import { CategoryState } from '../states/category.state';
+import {Component, OnInit} from '@angular/core';
+import {ProductService} from '../services/product.service';
+import {CategoryState} from '../states/category.state';
+import {MatSelectChange} from '@angular/material/select';
 
 @Component({
-    selector: 'ssm-category-list',
-    template: `
-    <mat-selection-list #categoryList [multiple]="false" style="padding: 3em">
-        <h2>Categories</h2>
-         <mat-list-option *ngFor="let category of categories" [value]="category" (click) = selectCategory(categoryList.selectedOptions.selected[0]?.value)>
-         {{category}}
-         <mat-divider></mat-divider>
-        </mat-list-option>
-        
-    </mat-selection-list>
-    `,
-    styleUrls: []
+  selector: 'ssm-category-list',
+  template: `
+    <mat-form-field appearance="outline">
+      <mat-label>Choose Category</mat-label>
+      <mat-select [multiple]="false" [value]="'All Product'" (selectionChange)="selectCategory($event)">
+        <mat-option *ngFor="let category of categories" [value]="category">
+          {{category}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  `,
+  styleUrls: []
 })
-export class CategoryListComponent implements OnInit{
-    categories = ["ALL"];
+export class CategoryListComponent implements OnInit {
+  categories = ['All Products'];
 
-    constructor(private readonly productService: ProductService,
-        private readonly categoryState: CategoryState){
+  constructor(private readonly productService: ProductService,
+              private readonly categoryState: CategoryState) {
 
-    }
+  }
 
-    selectCategory(selectedCategory){
-        this.categoryState.selectedCategorySubject.next(selectedCategory);
-    }
-    
-    ngOnInit(): void {
-        this.productService
-        .getcategories().then(
-            (value) => {
-                value.forEach(category => {
-                    this.categories.push(category["name"])
-                })
-            }
-        );
-    }
+  selectCategory(selectedCategory: MatSelectChange): void {
+    this.categoryState.selectedCategorySubject.next(selectedCategory.value);
+  }
+
+  ngOnInit(): void {
+    this.productService.getCategories().then((value) => {
+        value.forEach(category => {
+          this.categories.push(category.name);
+        });
+      }
+    );
+  }
 }

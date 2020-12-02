@@ -1,10 +1,9 @@
-import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import {Injectable} from '@angular/core';
+import {BehaviorSubject} from 'rxjs';
 
 @Injectable({
-    providedIn: 'root'
+  providedIn: 'root'
 })
-export class CategoryState{
-    selectedCategorySubject: BehaviorSubject<string> = new BehaviorSubject("ALL")
-
+export class CategoryState {
+  selectedCategorySubject: BehaviorSubject<string> = new BehaviorSubject('All Products');
 }

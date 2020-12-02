@@ -3,6 +3,7 @@ import {ProductByCategoryModel} from '../models/product-by-category.model';
 import {ProductState} from '../states/product.state';
 import {Subject} from 'rxjs';
 import {takeUntil} from 'rxjs/operators';
+import {CategoryState} from '../states/category.state';
 
 @Component({
   template: `
@@ -12,7 +13,7 @@ import {takeUntil} from 'rxjs/operators';
           <div class="d-flex flex-row">
             <h2>{{product.id}}</h2>
             <span style="flex: 1 1 auto"></span>
-            <button routerLink="/products" [queryParams]="{category: product.id}"
+            <button (click)="selectedCategory(product.id)" routerLink="/products" [queryParams]="{category: product.id}"
                     color="primary" style="border-radius: 30px"
                     mat-flat-button>View More
             </button>
@@ -39,7 +40,8 @@ export class ProductsByCategoriesListComponent implements OnInit, OnDestroy {
   products: ProductByCategoryModel[] = [];
   destroy: Subject<any> = new Subject<any>();
 
-  constructor(private readonly productsState: ProductState) {
+  constructor(private readonly productsState: ProductState,
+              private readonly categoryState: CategoryState) {
     productsState.productsOrderByCategories.pipe(
       takeUntil(this.destroy)
     ).subscribe(value => {
@@ -56,4 +58,7 @@ export class ProductsByCategoriesListComponent implements OnInit, OnDestroy {
   }
 
 
+  selectedCategory(id: string): void {
+    this.categoryState.selectedCategorySubject.next(id);
+  }
 }

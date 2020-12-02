@@ -7,34 +7,14 @@ import {ProductByCategoryModel} from '../models/product-by-category.model';
   providedIn: 'root',
 })
 export class ProductService {
-  async getProductsByCategory(
-    category: string,
-    page: { size: number; skip: number } = {skip: 0, size: 20}
-  ): Promise<ProductModel[]> {
+  async getProductsByCategory(category: string, page: { size: number; skip: number } = {skip: 0, size: 20}): Promise<ProductModel[]> {
     return BFast.database()
       .collection('stocks')
       .query()
-      .aggregate(
-        [
-          {
-            $match: {
-              category,
-            },
-          },
-          {
-            $sort: {
-              id: 1,
-            },
-          },
-          {
-            $skip: page.skip,
-          },
-          {
-            $limit: page.size,
-          },
-        ],
-        {useMasterKey: true, returnFields: []}
-      );
+      .size(page.size)
+      .skip(page.skip)
+      .searchByRegex('category', category)
+      .find();
   }
 
   async orderProductsByCategory(size = 8, skip = 0): Promise<ProductByCategoryModel[]> {
@@ -87,27 +67,10 @@ export class ProductService {
     return BFast.database()
       .collection('stocks')
       .query()
-      .aggregate(
-        [
-          {
-            $match: {
-              product: searchItem,
-            },
-          },
-          {
-            $sort: {
-              id: 1,
-            },
-          },
-          {
-            $skip: page.skip,
-          },
-          {
-            $limit: page.size,
-          },
-        ],
-        {useMasterKey: true, returnFields: []}
-      );
+      .searchByRegex('product', searchItem)
+      .skip(page.skip)
+      .size(page.size)
+      .find();
   }
 
   async getProducts(
@@ -122,15 +85,11 @@ export class ProductService {
       .find();
   }
 
-  async getAllProducts(): Promise<any[]> {
-    return BFast.database().collection('stocks').getAll();
-  }
-
   async getTotalAvailableProducts(): Promise<number> {
     return BFast.database().table('stocks').query().count(true).find();
   }
 
-  async getcategories(): Promise<any[]> {
+  async getCategories(): Promise<any[]> {
     return BFast.database().collection('categories').getAll();
   }
 }

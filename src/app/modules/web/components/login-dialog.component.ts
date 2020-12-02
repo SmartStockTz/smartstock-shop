@@ -11,13 +11,13 @@ import {MatSnackBar} from '@angular/material/snack-bar';
       <button [disabled]="isLogin"
               (click)="loginWithGoogle()"
               style="height: 40px; font-size: 20px"
-              class="btn btn-primary">
+              mat-flat-button color="primary">
         LOGIN WITH GOOGLE
       </button>
       <div style="margin: 10px"></div>
-<!--      <button mat-dialog-close mat-button style="height: 40px; font-size: 20px">-->
-<!--        CANCEL-->
-<!--      </button>-->
+      <!--      <button mat-dialog-close mat-button style="height: 40px; font-size: 20px">-->
+      <!--        CANCEL-->
+      <!--      </button>-->
     </div>
   `
 })
