@@ -4,8 +4,10 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve shop-mock",
+    "start:fg": "ng serve -c=fishgenge shop-mock",
     "build": "ng build",
     "build-prod": "ng build --prod",
+    "build:fg": "ng build -c=fishgenge --prod shop-mock",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"

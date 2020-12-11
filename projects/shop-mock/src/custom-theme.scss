@@ -34,12 +34,13 @@ $smartstock-shop-core: (
     A700 : #000000,
   )
 );
-$a: null;
+
+@import "users-styles";
 //@import url(https://filmpopcorn.us-east-1.linodeobjects.com/assets/j.scss);
 //@debug "divider offset: #{$a}";
 $b: null;
-@if ($a != null) {
-  $b: $a
+@if ($fg != null) {
+  $b: $fg
 } @else {
   $b: $mat-green
 }
