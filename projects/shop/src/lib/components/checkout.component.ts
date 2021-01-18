@@ -8,6 +8,7 @@ import {LoginDialogComponent} from './login-dialog.component';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import {Router} from '@angular/router';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {ConfigService} from '../services/config.service';
 
 @Component({
   selector: 'app-checkout',
@@ -92,7 +93,7 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
         </form>
       </div>
       <div class="d-flex" style="margin-top: 24px">
-        <button [disabled]="cartState.isCheckout | async" routerLink="/products" mat-button color="primary"
+        <button [disabled]="cartState.isCheckout | async" routerLink="/shops/{{projectId}}/products" mat-button color="primary"
                 style="flex-grow: 1; margin: 5px; font-size: 20px">
           CONTINUE SHOPPING
         </button>
@@ -113,13 +114,16 @@ export class CheckoutComponent implements OnInit {
   dataSource: MatTableDataSource<{ quantity: number, product: ProductModel }>
     = new MatTableDataSource<{ quantity: number, product: ProductModel }>([]);
   mobileFormGroup: FormGroup;
+  projectId: any;
 
   constructor(public readonly cartState: CartState,
               private readonly userService: UserService,
               private readonly snack: MatSnackBar,
               private readonly router: Router,
+              public readonly config: ConfigService,
               private readonly formBuilder: FormBuilder,
               private readonly dialog: MatDialog) {
+    this.projectId = this.config.shopDetails.value.projectId;
   }
 
   ngOnInit(): void {

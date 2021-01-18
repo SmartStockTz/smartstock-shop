@@ -43,16 +43,19 @@ import {ProductsCategoryComponent} from './components/products-by-category.compo
 import {BFast} from 'bfastjs';
 import {ConfigService} from './services/config.service';
 import {FirebaseAuthService} from './services/firebase-auth.service';
+import {ProductDetailPage} from './pages/product-detail.page';
 
 const routes: Route[] = [
   {path: '', component: LandingPageComponent},
   {path: 'orders', canActivate: [AuthenticationGuard], component: OrdersPage},
   {path: 'products', component: ProductsPageComponent},
+  {path: 'products/:id', component: ProductDetailPage},
   {path: 'checkout', component: CheckoutPage},
 ];
 
 @NgModule({
   declarations: [
+    ProductDetailPage,
     ProductsByCategoriesListComponent,
     SearchComponent,
     HeaderComponent,

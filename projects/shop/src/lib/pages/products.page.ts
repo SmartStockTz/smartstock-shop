@@ -7,7 +7,7 @@ import {ProductState} from '../states/product.state';
   selector: 'app-products',
   template: `
     <app-navibar [user]="user"></app-navibar>
-    <ssm-header [user]="user"></ssm-header>
+<!--    <ssm-header [user]="user"></ssm-header>-->
     <section>
       <div>
         <div class="container">

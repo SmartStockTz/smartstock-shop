@@ -38,12 +38,12 @@ $smartstock-shop-core: (
 @import "users-styles";
 //@import url(https://filmpopcorn.us-east-1.linodeobjects.com/assets/j.scss);
 //@debug "divider offset: #{$a}";
-$b: null;
-@if ($fg != null) {
-  $b: $fg
-} @else {
-  $b: $mat-green
-}
+//$b: null;
+//@if ($fg != null) {
+//  $b: $fg
+//} @else {
+  $b: $mat-green;
+//}
 
 $smartstock-shop-core-primary: mat-palette($b, 900);
 $smartstock-shop-core-accent: mat-palette($b, A200, A100, A400);

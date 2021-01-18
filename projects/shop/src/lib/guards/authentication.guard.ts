@@ -2,12 +2,14 @@ import {ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTre
 import {Observable} from 'rxjs';
 import {Injectable} from '@angular/core';
 import {BFast} from 'bfastjs';
+import {ConfigService} from '../services/config.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthenticationGuard implements CanActivate {
-  constructor(private readonly router: Router) {
+  constructor(private readonly router: Router,
+              private readonly config: ConfigService) {
   }
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot)
@@ -19,7 +21,7 @@ export class AuthenticationGuard implements CanActivate {
           resolve(true);
         } else {
           resolve(false);
-          this.router.navigateByUrl('/products').catch();
+          this.router.navigateByUrl(`/shops/${this.config.shopDetails.value.projectId}/products`).catch();
         }
       } catch (e) {
         resolve(false);

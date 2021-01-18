@@ -2,6 +2,7 @@ import {Component, Input, OnInit} from '@angular/core';
 import {UserService} from '../services/user.service';
 import {LoginDialogComponent} from './login-dialog.component';
 import {MatDialog} from '@angular/material/dialog';
+import {ConfigService} from '../services/config.service';
 
 @Component({
   selector: 'app-navibar',
@@ -34,13 +35,13 @@ import {MatDialog} from '@angular/material/dialog';
           <div class="d-flex flex-row" style="width: 100%;">
             <div class="d-flex flex-row align-items-center">
               <img style="width: 60px; margin: 2px 5px 2px 2px" src="{{user.ecommerce.logo}}" alt="">
-              <h2 style="margin-top: 8px; margin-bottom: 0"><a routerLink="/"><span>{{user.businessName}}</span></a></h2>
+              <h2 style="margin-top: 8px; margin-bottom: 0"><a routerLink="/shops/{{projectId}}"><span>{{user.businessName}}</span></a></h2>
             </div>
             <span style="flex: 1 1 auto"></span>
             <nav class="nav-menu d-none d-lg-block">
               <ul class="d-flex flex-row align-items-center">
-                <li><a routerLink="/"><span>Home</span></a></li>
-                <li><a href="/products"><span>Shopping</span></a></li>
+                <li><a routerLink="/shops/{{projectId}}"><span>Home</span></a></li>
+                <li><a routerLink="/shops/{{projectId}}/products"><span>Shopping</span></a></li>
                 <!--        <li><a href="#location">Location</a></li>-->
                 <!--        <li><a href="#services">Services</a></li>-->
                 <!--        <li><a href="#portfolio">Portfolio</a></li>-->
@@ -54,8 +55,8 @@ import {MatDialog} from '@angular/material/dialog';
                     <mat-icon>arrow_drop_down</mat-icon>
                   </button>
                   <mat-menu #menu>
-                    <button routerLink="/orders" mat-menu-item>My Orders</button>
-                    <button routerLink="/products" mat-menu-item>Shopping</button>
+                    <button routerLink="/shops/{{projectId}}/orders" mat-menu-item>My Orders</button>
+                    <button routerLink="/shops/{{projectId}}/products" mat-menu-item>Shopping</button>
                     <button mat-menu-item (click)="logOut()">Logout</button>
                   </mat-menu>
                 </li>
@@ -76,13 +77,16 @@ import {MatDialog} from '@angular/material/dialog';
 })
 export class NavbarComponent implements OnInit {
   constructor(private readonly userService: UserService,
+              private readonly config: ConfigService,
               private readonly dialog: MatDialog) {
+    this.projectId = this.config.shopDetails.value.projectId;
   }
 
 
   @Input() user: { [key: string]: any } = {businessName: ''};
 
   username = undefined;
+  projectId: any;
 
   ngOnInit(): void {
     this.userService.isLoggedIn().then(value => {

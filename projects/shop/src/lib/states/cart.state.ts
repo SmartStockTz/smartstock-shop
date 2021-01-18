@@ -2,12 +2,14 @@ import {Injectable} from '@angular/core';
 import {BehaviorSubject} from 'rxjs';
 import {ProductModel} from '../models/product.model';
 import {OrdersService} from '../services/orders.service';
+import {MatSnackBar} from '@angular/material/snack-bar';
 
 @Injectable({
   providedIn: 'any'
 })
 export class CartState {
-  constructor(private readonly orderService: OrdersService) {
+  constructor(private readonly orderService: OrdersService,
+              private readonly snack: MatSnackBar) {
   }
 
   isCheckout: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
@@ -23,6 +25,9 @@ export class CartState {
       this.carts.value.push(cart);
     }
     this.carts.next(this.carts.value);
+    this.snack.open('Product Added To Cart', 'Ok', {
+      duration: 2000
+    });
   }
 
   removeItemToCart(productId: string): void {

@@ -14,7 +14,7 @@ const firebase = _firebase.default;
 
 const routes: Routes = [
   {
-    path: '',
+    path: 'shops/:id',
     loadChildren: () =>
       import('../../../shop/src/public-api').then((value) => value.ShopCoreModule),
   },

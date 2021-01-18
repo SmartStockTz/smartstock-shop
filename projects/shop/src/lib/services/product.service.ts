@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {ProductModel} from '../models/product.model';
-import {BFast} from 'bfastjs';
+import {bfast, BFast} from 'bfastjs';
 import {ProductByCategoryModel} from '../models/product-by-category.model';
 
 @Injectable({
@@ -91,5 +91,9 @@ export class ProductService {
 
   async getCategories(): Promise<any[]> {
     return BFast.database().collection('categories').getAll();
+  }
+
+  async getProduct(id: string): Promise<ProductModel> {
+    return bfast.database().table('stocks').get(id);
   }
 }

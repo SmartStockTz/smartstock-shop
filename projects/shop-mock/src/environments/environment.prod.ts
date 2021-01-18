@@ -10,7 +10,7 @@ export const environment = {
     appId: '1:23694341104:web:8c9168b68b1541aa',
     measurementId: 'G-HKL6BCV1TL'
   },
-  projectId: 'TfxGpMw6B4ku',
-  applicationId: 'yY9q5hy4xsbn',
-  masterKey: 'eJrhALQqIv9UqjNqxrTYJDpp8EZYPOjGXk0RPUHT'
+  projectId: '0UTYLQKeifrk',
+  applicationId: 'YQDG4Qm3j9vW',
+  masterKey: 'quMSCKnh2RI7L5Mq6e3H1c1sObNERA8QibamgF9c'
 };

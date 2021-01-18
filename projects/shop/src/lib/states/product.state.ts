@@ -14,6 +14,7 @@ export class ProductState {
   totalProducts: BehaviorSubject<number> = new BehaviorSubject<number>(0);
   productsOrderByCategories: BehaviorSubject<ProductByCategoryModel[]> = new BehaviorSubject<ProductByCategoryModel[]>([]);
   products: BehaviorSubject<ProductModel[]> = new BehaviorSubject<ProductModel[]>([]);
+  selectedProduct: BehaviorSubject<ProductModel> = new BehaviorSubject<ProductModel>(null);
   isFetchProductsGroupedByCategory: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
   isFetchProduct: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
   isFetchMoreProduct: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
@@ -61,4 +62,8 @@ export class ProductState {
       this.totalProducts.next(value);
     });
   }
+
+  // getProduct(id: string): void {
+  //
+  // }
 }
