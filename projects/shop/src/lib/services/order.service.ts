@@ -26,13 +26,20 @@ export class OrderService {
   }
 
   async markOrderIsPaid(orderId: string): Promise<any> {
-    // console.log(orderId);
     return BFast.database().collection('orders')
       .query()
       .byId(orderId)
       .updateBuilder()
       .set('paid', true)
       .update();
+  }
+
+  async markOrderAsCancelled(order: OrderModel): Promise<any> {
+    return BFast.database().collection('orders')
+      .query()
+      .byId(order.id)
+      .updateBuilder()
+      .set('status', 'CANCELLED').update();
   }
 
   // async checkOrderIsPaid(order: string): Promise<any> {

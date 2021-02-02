@@ -43,8 +43,7 @@ import {UserService} from '../services/user.service';
               <div
                 class="col-lg-6 faq-item"
                 data-aos="fade-up"
-                data-aos-delay="100"
-              >
+                data-aos-delay="100">
                 <h4>Do we charge delivery cost?</h4>
                 <p>Yes we charge delivery fee but on very affordable cost.</p>
               </div>
