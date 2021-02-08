@@ -26,7 +26,7 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
     - run: npm install
-    - run: ng build --prod shop
+    - run: npx ng build --prod shop
     - run: npm publish
     - run: npm test
     env:
