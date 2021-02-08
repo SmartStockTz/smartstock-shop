@@ -1,9 +1,6 @@
 {
-  "name": "@smartstocktz/shop-core",
+  "name": "smartstocktz-shop-core",
   "version": "0.0.1",
-  "publishConfig": {
-    "registry": "https://npm.pkg.github.com/smartstocktz"
-  },
   "repository": {
     "url": "git://github.com/SmartStockTz/smartstock-shop-core.git"
   },
@@ -11,7 +8,7 @@
     "@angular/common": "^11.0.1",
     "@angular/core": "^11.0.1",
     "@angular/material": "^11.0.1",
-    "bfastjs": "^4.0.1",
+    "bfastjs": "^4.0.8",
     "firebase": "^8.1.1"
   },
   "dependencies": {
