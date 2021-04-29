@@ -37,6 +37,7 @@ export class ProductService {
                 image: '$image',
                 category: '$category',
                 catalog: '$catalog',
+                description: '$description',
                 downloads: '$downloads',
                 id: '$_id'
               }
