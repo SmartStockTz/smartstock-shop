@@ -14,8 +14,8 @@ export const environment = {
     appId: '1:23694341104:web:8c9168b68b1541aa',
     measurementId: 'G-HKL6BCV1TL'
   },
-  projectId: '0UTYLQKeifrk',
-  applicationId: 'YQDG4Qm3j9vW',
+  projectId: '94f51d86-0c6b-47e7-b3d7-e3494dfefe26',
+  applicationId: '7baaa61d-bcb4-4019-9a1c-f955c51cd4a3',
   masterKey: 'quMSCKnh2RI7L5Mq6e3H1c1sObNERA8QibamgF9c'
 };
 

@@ -6,7 +6,11 @@ import {MatSelectChange} from '@angular/material/select';
 @Component({
   selector: 'ssm-category-list',
   template: `
-    <mat-form-field appearance="outline">
+    <mat-form-field appearance="fill" style="margin-right: 5px">
+      <mat-label>Name</mat-label>
+      <input placeholder="Type here..." matInput type="text">
+    </mat-form-field>
+    <mat-form-field appearance="fill" style="margin-right: 5px">
       <mat-label>Choose Category</mat-label>
       <mat-select [multiple]="false" [value]="'All Product'" (selectionChange)="selectCategory($event)">
         <mat-option *ngFor="let category of categories" [value]="category">
