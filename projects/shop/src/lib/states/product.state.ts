@@ -23,7 +23,7 @@ export class ProductState {
               private readonly snack: MatSnackBar) {
   }
 
-  getProductsOrderByCategories(size = 20, skip = 0): void {
+  getProductsOrderByCategories(size = 4, skip = 0): void {
     this.isFetchProductsGroupedByCategory.next(true);
     this.productsService.orderProductsByCategory(size, skip).then(value => {
       this.productsOrderByCategories.next(value);

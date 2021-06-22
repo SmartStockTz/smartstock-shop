@@ -20,7 +20,7 @@ import {takeUntil} from 'rxjs/operators';
       <div *ngIf="(productState.isFetchProduct | async) === true">
         <div class="row">
           <div *ngFor="let i of [1, 2, 3, 4, 5, 6, 7, 8]" class="col-xl-3 col-lg-3 col-sm-12 col-md-4">
-            <div style="height: 200px; background: #f5f5f5; margin: 5px 0"></div>
+            <div style="height: 200px; background: #f1f1f1; margin: 5px 0"></div>
           </div>
         </div>
       </div>
@@ -57,7 +57,6 @@ export class ProductsShoppingComponent implements OnInit, OnDestroy {
     categoryState.selectedCategorySubject.pipe(
       takeUntil(this.destroy)
     ).subscribe(value => {
-      // console.log(value);
       if (value === 'All Products') {
         value = null;
       }
@@ -65,6 +64,7 @@ export class ProductsShoppingComponent implements OnInit, OnDestroy {
         this.category = value;
         productState.getProductsFilterByCategory(this.category === 'All Products' ? '' : this.category);
       } else {
+        this.category = 'All Products';
         productState.getProductsFilterByCategory('');
       }
     });

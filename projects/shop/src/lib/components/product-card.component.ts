@@ -34,6 +34,7 @@ import {ConfigService} from '../services/config.service';
       </button>
     </mat-card-actions>
   `,
+  styleUrls: ['../styles/product.style.scss']
 })
 export class ProductCardComponent implements OnInit, OnDestroy {
   constructor(private readonly cartState: CartState,

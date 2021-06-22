@@ -17,7 +17,7 @@ export class ProductService {
       .find();
   }
 
-  async orderProductsByCategory(size = 20, skip = 0): Promise<ProductByCategoryModel[]> {
+  async orderProductsByCategory(size , skip ): Promise<ProductByCategoryModel[]> {
     return BFast.database().collection('stocks').query()
       .aggregate([
         {

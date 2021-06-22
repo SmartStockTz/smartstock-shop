@@ -35,7 +35,7 @@ import {ConfigService} from '../services/config.service';
         <div class="container">
           <div class="d-flex flex-row" style="width: 100%;">
             <div class="d-flex flex-row align-items-center">
-              <img style="width: 60px; margin: 2px 5px 2px 2px" src="{{user?.ecommerce?.logo}}" alt="">
+              <img style="width: 50px; border-radius: 50px; height: 50px; margin: 2px 5px 2px 2px" src="{{user?.ecommerce?.logo}}" alt="">
               <h2 style="margin-top: 8px; margin-bottom: 0"><a
                 routerLink="/shops/{{projectId}}"><span>{{user?.businessName}}</span></a></h2>
             </div>
@@ -44,11 +44,6 @@ import {ConfigService} from '../services/config.service';
               <ul class="d-flex flex-row align-items-center">
                 <li><a routerLink="/shops/{{projectId}}"><span>Home</span></a></li>
                 <li><a routerLink="/shops/{{projectId}}/products"><span>Shopping</span></a></li>
-                <!--        <li><a href="#location">Location</a></li>-->
-                <!--        <li><a href="#services">Services</a></li>-->
-                <!--        <li><a href="#portfolio">Portfolio</a></li>-->
-                <!--        <li><a href="#team">Team</a></li>-->
-
                 <li *ngIf="username" style="padding: 8px">
                   <button style="padding: 8px; display: flex; justify-content: center; align-items: center"
                           [matMenuTriggerFor]="menu" mat-button color="primary">
@@ -74,7 +69,7 @@ import {ConfigService} from '../services/config.service';
             </nav>
           </div>
         </div>
-      </header><!-- End Header -->
+      </header>
     </div>
   `
 })
