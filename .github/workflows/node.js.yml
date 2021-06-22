@@ -25,9 +25,9 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
-    - run: npm install
-    - run: npx ng build --prod shop
-    - run: npm publish
-    - run: npm test
+#    - run: npm install
+#    - run: npx ng build --prod shop
+#    - run: npm publish
+#    - run: npm test
     env:
       NPM_TOKEN: ${{secrets.NPM_TOKEN}}
