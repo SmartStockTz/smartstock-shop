@@ -26,7 +26,7 @@ import {ConfigService} from '../services/config.service';
           </th>
           <td mat-cell *matCellDef="let element">
             <div>
-              <img class="cart-image" src="{{element.product.image}}" style="width: 100px; height: 100px;" alt="">
+              <img class="cart-image" src="{{element?.product?.image?.concat('/thumbnail?width=50')}}" style="width: 100px; height: 100px;" alt="">
               <span class="card-text">{{element.product.product}}</span>
             </div>
           </td>

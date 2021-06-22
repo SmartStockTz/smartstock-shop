@@ -13,10 +13,7 @@ import {takeUntil} from 'rxjs/operators';
           <h1>{{category}}</h1>
         </div>
         <span style="flex: 1 1 auto"></span>
-        <!--        <div class="col-lg-9 col-md-9" style="display: flex; justify-content: end;">-->
-        <!--          <span style="flex: 3"></span>-->
-        <!--          <ssm-search style="flex: 1"></ssm-search>-->
-        <!--        </div>-->
+<!--        <ssm-search></ssm-search>-->
         <ssm-category-list></ssm-category-list>
       </div>
 
@@ -48,7 +45,7 @@ import {takeUntil} from 'rxjs/operators';
   selector: 'ssm-products-by-category',
   styleUrls: []
 })
-export class ProductsCategoryComponent implements OnInit, OnDestroy {
+export class ProductsShoppingComponent implements OnInit, OnDestroy {
   // categoryTitle: string;
   searchItem: string;
   products: ProductModel[] = [];

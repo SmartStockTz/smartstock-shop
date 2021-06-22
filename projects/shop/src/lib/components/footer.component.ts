@@ -9,23 +9,23 @@ import {Component, Input} from '@angular/core';
                   <div class="row">
 
                       <div class="col-lg-3 col-md-6 footer-info">
-                          <h3>{{user.businessName}}</h3>
+                          <h3>{{user?.businessName}}</h3>
                           <p>
                               <br>
-                              {{user.region}} - {{user.country}}
+                              {{user?.region}} - {{user?.country}}
                               <br><br>
-                              <strong>Phone: {{user.mobile}}</strong>
+                              <strong>Phone: {{user?.mobile}}</strong>
                               <br>
-                              <strong>Email:</strong>{{user.email}}<br>
+                              <strong>Email:</strong>{{user?.email}}<br>
                           </p>
                           <div class="social-links mt-3">
-                              <a class="twitter primary-bg-color" target="_blank" href="{{user.ecommerce.social.twitter}}"><i
+                              <a class="twitter primary-bg-color" target="_blank" href="{{user?.ecommerce?.social?.twitter}}"><i
                                       class="icofont-twitter"></i></a>
-                              <a class="facebook primary-bg-color" target="_blank" href="{{user.ecommerce.social.facebook}}"><i
+                              <a class="facebook primary-bg-color" target="_blank" href="{{user?.ecommerce?.social?.facebook}}"><i
                                       class="icofont-facebook"></i></a>
-                              <a class="instagram primary-bg-color" target="_blank" href="{{user.ecommerce.social.instagram}}"><i
+                              <a class="instagram primary-bg-color" target="_blank" href="{{user?.ecommerce?.social?.instagram}}"><i
                                       class="icofont-instagram"></i></a>
-                              <a class="instagram primary-bg-color" target="_blank" href="https://wa.me/{{user.mobile}}"><i
+                              <a class="instagram primary-bg-color" target="_blank" href="https://wa.me/{{user?.mobile}}"><i
                                       class="icofont-whatsapp"></i></a>
                           </div>
                       </div>
@@ -54,7 +54,7 @@ import {Component, Input} from '@angular/core';
 
           <div class="container">
               <div class="copyright">
-                  &copy; Copyright <strong><span>{{user.businessName}}</span></strong>. All Rights Reserved
+                  &copy; Copyright <strong><span>{{user?.businessName}}</span></strong>. All Rights Reserved
               </div>
               <div class="credits">
               </div>

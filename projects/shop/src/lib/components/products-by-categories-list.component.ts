@@ -1,9 +1,10 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Component, Input, OnDestroy, OnInit} from '@angular/core';
 import {ProductByCategoryModel} from '../models/product-by-category.model';
 import {ProductState} from '../states/product.state';
 import {Subject} from 'rxjs';
 import {takeUntil} from 'rxjs/operators';
 import {CategoryState} from '../states/category.state';
+import {ConfigService} from '../services/config.service';
 
 @Component({
   template: `
@@ -13,7 +14,9 @@ import {CategoryState} from '../states/category.state';
           <div class="d-flex flex-row">
             <h2>{{product.id}}</h2>
             <span style="flex: 1 1 auto"></span>
-            <button (click)="selectedCategory(product.id)" routerLink="/products" [queryParams]="{category: product.id}"
+            <button (click)="selectedCategory(product.id)"
+                    routerLink="/shops/{{projectId}}/products"
+                    [queryParams]="{category: product.id}"
                     color="primary" style="border-radius: 30px"
                     mat-flat-button>View More
             </button>
@@ -39,9 +42,13 @@ import {CategoryState} from '../states/category.state';
 export class ProductsByCategoriesListComponent implements OnInit, OnDestroy {
   products: ProductByCategoryModel[] = [];
   destroy: Subject<any> = new Subject<any>();
+  @Input() user: { [key: string]: any } = {ecommerce: {social: {}, logo: '', cover: null}, businessName: '', email: ''};
+  projectId: string;
 
   constructor(private readonly productsState: ProductState,
+              public readonly config: ConfigService,
               private readonly categoryState: CategoryState) {
+    this.projectId = this.config.shopDetails.value.projectId;
     productsState.productsOrderByCategories.pipe(
       takeUntil(this.destroy)
     ).subscribe(value => {

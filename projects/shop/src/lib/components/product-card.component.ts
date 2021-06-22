@@ -1,4 +1,4 @@
-import {Component, Input} from '@angular/core';
+import {Component, Input, OnDestroy, OnInit} from '@angular/core';
 import {ProductModel} from '../models/product.model';
 import {CartState} from '../states/cart.state';
 import {ConfigService} from '../services/config.service';
@@ -10,7 +10,7 @@ import {ConfigService} from '../services/config.service';
          routerLink="/shops/{{projectId}}/products/{{product.id}}" matRipple>
       <div
         [ngStyle]="{
-         background: 'url('+product.image.concat('/thumbnail?width=400&heigth=300')+') #f5f5f5 center',
+         background: 'url('+productImage+') #f5f5f5 center',
          borderRadius: '5px',
          backgroundSize: 'cover', height: '300px'
          }">
@@ -20,7 +20,7 @@ import {ConfigService} from '../services/config.service';
           <h4>
             {{ product.product }}
           </h4>
-          <p class="text-truncate">{{product.description}}</p>
+          <!--          <p class="text-truncate">{{product.description}}</p>-->
           <h2>
             Tsh {{ product.retailPrice | number}}
           </h2>
@@ -35,7 +35,7 @@ import {ConfigService} from '../services/config.service';
     </mat-card-actions>
   `,
 })
-export class ProductCardComponent {
+export class ProductCardComponent implements OnInit, OnDestroy {
   constructor(private readonly cartState: CartState,
               private readonly config: ConfigService) {
     this.projectId = config.shopDetails.value.projectId;
@@ -43,11 +43,23 @@ export class ProductCardComponent {
 
   @Input() product: ProductModel = {};
   projectId: any;
+  productImage: string;
 
-  addToCart(e: any): void {
+  async addToCart(e: any): Promise<void> {
     this.cartState.addToCart({
       quantity: 1,
       product: this.product,
     });
+  }
+
+  async ngOnDestroy(): Promise<void> {
+  }
+
+  async ngOnInit(): Promise<void> {
+    if (this.product && this.product.image) {
+      this.productImage = this.product.image.concat('/thumbnail?width=400&height=300');
+    } else {
+      this.productImage = 'https://via.placeholder.com/400';
+    }
   }
 }

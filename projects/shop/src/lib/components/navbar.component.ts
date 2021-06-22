@@ -12,18 +12,19 @@ import {ConfigService} from '../services/config.service';
       <section id="topbar" class="">
         <div class="container clearfix d-flex flex-row">
           <div class="social-links">
-            <a class="primary-color" href="{{user.ecommerce.social.twitter}}"><i class="icofont-twitter"></i></a>
-            <a class="primary-color" href="{{user.ecommerce.social.facebook}}"><i class="icofont-facebook"></i></a>
-            <a class="primary-color" target="_blank" href="{{user.ecommerce.social.instagram}}"><i
+            <a class="primary-color" href="{{user?.ecommerce?.social?.twitter}}"><i class="icofont-twitter"></i></a>
+            <a class="primary-color" href="{{user?.ecommerce?.social?.facebook}}"><i class="icofont-facebook"></i></a>
+            <a class="primary-color" target="_blank" href="{{user?.ecommerce?.social?.instagram}}"><i
               class="icofont-instagram"></i></a>
-            <a class="primary-color" target="_blank" [href]="'https://wa.me/'+user.mobile"><i class="icofont-whatsapp"></i></a>
+            <a class="primary-color" target="_blank" [href]="'https://wa.me/'+user?.mobile"><i
+              class="icofont-whatsapp"></i></a>
           </div>
           <span style="flex: 1 1 auto"></span>
           <div class="contact-info">
             <i class="icofont-envelope primary-color"></i>
-            <a href="mailto:{{user.email}}">{{user.email}}</a>
+            <a href="mailto:{{user?.email}}">{{user?.email}}</a>
             <i class="icofont-phone primary-color">
-              {{user.mobile}}
+              {{user?.mobile}}
             </i>
           </div>
         </div>
@@ -34,8 +35,9 @@ import {ConfigService} from '../services/config.service';
         <div class="container">
           <div class="d-flex flex-row" style="width: 100%;">
             <div class="d-flex flex-row align-items-center">
-              <img style="width: 60px; margin: 2px 5px 2px 2px" src="{{user.ecommerce.logo}}" alt="">
-              <h2 style="margin-top: 8px; margin-bottom: 0"><a routerLink="/shops/{{projectId}}"><span>{{user.businessName}}</span></a></h2>
+              <img style="width: 60px; margin: 2px 5px 2px 2px" src="{{user?.ecommerce?.logo}}" alt="">
+              <h2 style="margin-top: 8px; margin-bottom: 0"><a
+                routerLink="/shops/{{projectId}}"><span>{{user?.businessName}}</span></a></h2>
             </div>
             <span style="flex: 1 1 auto"></span>
             <nav class="nav-menu d-none d-lg-block">
@@ -61,7 +63,8 @@ import {ConfigService} from '../services/config.service';
                   </mat-menu>
                 </li>
                 <li *ngIf="username===null" style="padding: 8px">
-                  <button (click)="login()" style="padding: 8px; display: flex; justify-content: center; align-items: center"
+                  <button (click)="login()"
+                          style="padding: 8px; display: flex; justify-content: center; align-items: center"
                           color="primary"
                           mat-button>
                     <span>LOGIN</span>

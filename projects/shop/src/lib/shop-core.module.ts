@@ -39,7 +39,7 @@ import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {SearchComponent} from './components/search.component';
 import {ProductsByCategoriesListComponent} from './components/products-by-categories-list.component';
 import {HeaderComponent} from './components/header.component';
-import {ProductsCategoryComponent} from './components/products-by-category.component';
+import {ProductsShoppingComponent} from './components/products-shopping.component';
 import {BFast} from 'bfastjs';
 import {ConfigService} from './services/config.service';
 import {FirebaseAuthService} from './services/firebase-auth.service';
@@ -60,7 +60,7 @@ const routes: Route[] = [
     SearchComponent,
     HeaderComponent,
     CategoryListComponent,
-    ProductsCategoryComponent,
+    ProductsShoppingComponent,
     LandingPageComponent,
     ProductsPageComponent,
     NavbarComponent,

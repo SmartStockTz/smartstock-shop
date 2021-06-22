@@ -14,9 +14,9 @@ export const environment = {
     appId: '1:23694341104:web:8c9168b68b1541aa',
     measurementId: 'G-HKL6BCV1TL'
   },
-  projectId: 'd2a052fe-d3e5-418e-891f-e8faacebe8a5',
-  applicationId: '3a1086c5-67d8-4b6f-a38f-32f3627c2c84',
-  masterKey: '28b68491-7429-4281-9383-5157cbbcc024'
+  projectId: '180841b4-fc74-4609-bce8-48c130947252',
+  applicationId: 'ffc5ea2c-bd2a-42c9-b3c5-3901a445973e',
+  masterKey: ''
 };
 
 /*
