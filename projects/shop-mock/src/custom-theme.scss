@@ -42,7 +42,7 @@ $smartstock-shop-core: (
 //@if ($fg != null) {
 //  $b: $fg
 //} @else {
-  $b: $mat-green;
+$b: $mat-green;
 //}
 
 $smartstock-shop-core-primary: mat-palette($b, 900);
@@ -86,4 +86,8 @@ $smartstock-shop-core-theme: mat-light-theme((
 
 .warn-bg-color {
   background-color: mat-color($smartstock-shop-core-warn) !important;
+}
+
+button {
+  outline: none !important;
 }

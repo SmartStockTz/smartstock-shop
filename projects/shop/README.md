@@ -8,23 +8,23 @@ This is angular library install to your angular application from npm github `npm
 
 ## Use It
 
-In your application main module import `ShopCoreModule` like following example.
+In your application main module import `EcommerceModule` like following example.
 
 ```typescript
 // ...
 import {BFast} from 'bfastjs';
-import {ConfigService} from '@smartstocktz/shop-core';
+import {ShopConfigService} from '@smartstocktz/shop-core';
 
 const routes: Routes = [
   {
     path: '',
     loadChildren: () =>
-      import('@smartstocktz/shop-core').then((value) => value.ShopCoreModule),
+      import('@smartstocktz/shop-core').then((value) => value.EcommerceModule),
   },
   {
     path: '**',
     loadChildren: () =>
-      import('@smartstocktz/shop-core').then((value) => value.ShopCoreModule),
+      import('@smartstocktz/shop-core').then((value) => value.EcommerceModule),
   },
 ];
 
@@ -37,7 +37,7 @@ const routes: Routes = [
   bootstrap: [AppComponent],
 })
 export class AppModule {
-  constructor(private readonly config: ConfigService) {
+  constructor(private readonly config: ShopConfigService) {
 
     // initialize firebase for auth to walk
     firebase.initializeApp(environment.firebase);
