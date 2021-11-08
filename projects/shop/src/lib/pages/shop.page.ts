@@ -49,7 +49,7 @@ export class ShopPage implements OnInit {
   }
 
   searchProduct(query: string): void {
-
+    this.mallState.searchProduct(query);
   }
 
   reload(): void {

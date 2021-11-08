@@ -19,7 +19,7 @@ import {MallState} from '../states/mall.state';
         <app-shop-drawer currentMenu="orders"></app-shop-drawer>
       </ng-template>
       <ng-template #body>
-        <app-shop></app-shop>
+
       </ng-template>
     </app-layout-sidenav>
   `,

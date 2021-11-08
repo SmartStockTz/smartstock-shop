@@ -23,13 +23,20 @@ import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {init} from 'bfast';
 import {ShopPage} from './pages/shop.page';
 import {ShopDrawerComponent} from './components/shop-drawer.component';
-import {LibModule} from '@smartstocktz/core-libs';
+import {getDaasAddress, getFaasAddress, LibModule} from '@smartstocktz/core-libs';
 import {MallState} from './states/mall.state';
 import {ShopComponent} from './components/shop.component';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {FilterDrawerComponent} from './components/filter-drawer.component';
 import {OrdersPage} from './pages/orders.page';
 import {CartPage} from './pages/cart.page';
+import {ShopHeaderComponent} from './components/shop-header.component';
+import {ShopTabsComponent} from './components/shop-tabs.component';
+import {MatTabsModule} from '@angular/material/tabs';
+import {ShopProductsComponent} from './components/shop-products.component';
+import {ProductComponent} from './components/product.component';
+import {NgImageSliderModule} from 'ng-image-slider';
+import {InfiniteScrollModule} from 'ngx-infinite-scroll';
 
 const routes: Route[] = [
   {path: '', component: ShopPage},
@@ -44,7 +51,11 @@ const routes: Route[] = [
     ShopComponent,
     FilterDrawerComponent,
     OrdersPage,
-    CartPage
+    CartPage,
+    ShopHeaderComponent,
+    ShopTabsComponent,
+    ShopProductsComponent,
+    ProductComponent
   ],
   imports: [
     MatSelectModule,
@@ -80,7 +91,11 @@ const routes: Route[] = [
     MatExpansionModule,
     MatAutocompleteModule,
     LibModule,
-    MatToolbarModule
+    MatToolbarModule,
+    MatTabsModule,
+    NgImageSliderModule,
+    ReactiveFormsModule,
+    InfiniteScrollModule
   ],
   providers: [],
 })
@@ -89,6 +104,10 @@ export class EcommerceModule {
     init({
       applicationId: mallState.shop.value.shop.applicationId,
       projectId: mallState.shop.value.shop.projectId,
+      // @ts-ignore
+      databaseURL: getDaasAddress(mallState.shop.value.shop),
+      // @ts-ignore
+      functionsURL: getFaasAddress(mallState.shop.value.shop),
     }, mallState.shop.value.shop.projectId);
   }
 }

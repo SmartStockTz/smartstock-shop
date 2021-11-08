@@ -1,0 +1,31 @@
+::ng-deep .mat-ink-bar {
+  height: 5px !important;
+
+  background: #027206 !important;
+  border-radius: 4px 4px 0 0 !important;
+}
+
+::ng-deep .mat-tab-label-content {
+
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  font-style: normal;
+  font-weight: 500 !important;
+  font-size: 14px !important;
+  line-height: 16px !important;
+
+  //color: #025F05!important;
+
+}
+
+.t {
+  margin-bottom: 16px;
+  position: sticky;
+  top: -34px;
+  background: white;
+  border-radius: 8px 8px 0 0;
+  z-index: 10000;
+}
+
+//.t.t-pinned {
+//  background: white!important;
+//}

@@ -1,0 +1,60 @@
+.shop-header-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+}
+
+.shop-logo {
+  width: 100px;
+  height: 100px;
+  margin-right: 24px;
+  border-radius: 200px;
+
+  background: #C4C4C4;
+}
+
+.shop-details {
+
+}
+
+.shop-details-head {
+
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 28px;
+  line-height: 33px;
+  /* identical to box height */
+
+
+  color: #000000;
+
+  margin-bottom: 24px;
+
+}
+
+.shop-details-total-products {
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 23px;
+
+  color: rgba(63, 63, 63);
+  margin-bottom: 16px;
+
+}
+
+.shop-details-category {
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  font-style: normal;
+  font-weight: 300;
+  font-size: 18px;
+  line-height: 21px;
+  /* identical to box height */
+
+
+  color: #7D7D7D;
+
+}

@@ -10,8 +10,8 @@ import {MallState} from '../states/mall.state';
         <button [routerLink]="'/'" mat-icon-button color="primary">
           <mat-icon>arrow_back_ios</mat-icon>
         </button>
-        <img class="logo" src="assets/img/sslogo.png">
-<!--        <span class="logo-text"></span>-->
+<!--        <img class="logo" src="assets/img/sslogo.png">-->
+        <span class="logo-text">Shop</span>
       </mat-toolbar>
       <p class="menu-title">Menu</p>
       <button routerLink="/shops/{{mallState.shop.value?.shop?.projectId}}" mat-button

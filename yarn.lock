@@ -1349,6 +1349,11 @@
     estree-walker "^1.0.1"
     picomatch "^2.2.2"
 
+"@scarf/scarf@^1.1.0":
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/@scarf/scarf/-/scarf-1.1.1.tgz#d8b9f20037b3a37dbf8dcdc4b3b72f9285bfce35"
+  integrity sha512-VGbKDbk1RFIaSmdVb0cNjjWJoRWRI/Weo23AjRCC2nryO0iAS8pzsToJfPVPtVs74WHw4L1UTADNdIYRLkirZQ==
+
 "@schematics/angular@13.0.1":
   version "13.0.1"
   resolved "https://registry.yarnpkg.com/@schematics/angular/-/angular-13.0.1.tgz#0145bb65cf2e3a7d1c9156091e25c7a5326674bc"
@@ -5048,6 +5053,13 @@ neo-async@^2.6.2:
   resolved "https://registry.yarnpkg.com/neo-async/-/neo-async-2.6.2.tgz#b4aafb93e3aeb2d8174ca53cf163ab7d7308305f"
   integrity sha512-Yd3UES5mWCSqR+qNT93S3UoYUkqAZ9lLg8a7g9rimsWmYGK8cVToA4/sF3RrshdyV3sAGMXVUmpMYOw+dLpOuw==
 
+ng-image-slider@^2.8.0:
+  version "2.8.0"
+  resolved "https://registry.yarnpkg.com/ng-image-slider/-/ng-image-slider-2.8.0.tgz#3e74191fb0be3023d9ec09204a0f7b50e257b940"
+  integrity sha512-k5ypvdxUfppPBTYCfUVn2nuinGnHdnvarfcrnbH8OX91QFWb49/dH57n8K4KUJ0s/ecDXOk/Jm9gZo6uZGas5w==
+  dependencies:
+    tslib "^1.10.0"
+
 ng-packagr@^13.0.3:
   version "13.0.3"
   resolved "https://registry.yarnpkg.com/ng-packagr/-/ng-packagr-13.0.3.tgz#f205efa728789dd92239eb86cec66756f2aca069"
@@ -5079,6 +5091,14 @@ ng-packagr@^13.0.3:
     stylus "^0.55.0"
   optionalDependencies:
     esbuild "^0.13.0"
+
+ngx-infinite-scroll@^10.0.1:
+  version "10.0.1"
+  resolved "https://registry.yarnpkg.com/ngx-infinite-scroll/-/ngx-infinite-scroll-10.0.1.tgz#6f51f2f8775a7c50d1dd8bad125d4e748abbe880"
+  integrity sha512-7is0eJZ9kJPsaHohRmMhJ/QFHAW9jp9twO5HcHRvFM/Yl/R8QCiokgjwmH0/CR3MuxUanxfHZMfO3PbYTwlBEg==
+  dependencies:
+    "@scarf/scarf" "^1.1.0"
+    opencollective-postinstall "^2.0.2"
 
 nice-napi@^1.0.2:
   version "1.0.2"
@@ -5312,6 +5332,11 @@ open@8.4.0, open@^8.0.9:
     define-lazy-prop "^2.0.0"
     is-docker "^2.1.1"
     is-wsl "^2.2.0"
+
+opencollective-postinstall@^2.0.2:
+  version "2.0.3"
+  resolved "https://registry.yarnpkg.com/opencollective-postinstall/-/opencollective-postinstall-2.0.3.tgz#7a0fff978f6dbfa4d006238fbac98ed4198c3259"
+  integrity sha512-8AV/sCtuzUeTo8gQK5qDZzARrulB3egtLzFgteqB2tcT4Mw7B8Kt7JcDHmltjz6FOAHsvTevk70gZEbhM4ZS9Q==
 
 ora@5.4.1, ora@^5.1.0, ora@^5.4.1:
   version "5.4.1"
