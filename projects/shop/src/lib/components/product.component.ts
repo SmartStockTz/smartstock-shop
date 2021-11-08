@@ -1,9 +1,10 @@
 import {Component, Input, OnDestroy, OnInit} from '@angular/core';
-import {StockModel} from '@smartstocktz/core-libs';
+import {StockModel} from '../models/stock.model';
 import {MallState} from '../states/mall.state';
 import {Subject, takeUntil} from 'rxjs';
 import {FormControl} from '@angular/forms';
 import {MatSnackBar} from '@angular/material/snack-bar';
+import {CartState} from '../states/cart.state';
 
 @Component({
   selector: 'app-product',
@@ -12,7 +13,8 @@ import {MatSnackBar} from '@angular/material/snack-bar';
       <div class="product-head">
         <span class="name">{{product.product}}</span>
         <span style="flex: 1 1 auto"></span>
-        <button (click)="addToCart(qt)" mat-button color="primary" class="view-shop">Add to cart
+        <button [disabled]="addToCartLoad" (click)="addToCart(qt)" mat-button color="primary" class="view-shop">Add to
+          cart
         </button>
       </div>
       <hr class="line">
@@ -37,7 +39,7 @@ import {MatSnackBar} from '@angular/material/snack-bar';
         </button>
         <input #qt min="0" [formControl]="quantityFormControl" class="quantity-input" placeholder="Quantity..."
                type="number">
-        <button (click)="addToCart(qt)" color="primary" mat-icon-button>
+        <button [disabled]="addToCartLoad" (click)="addToCart(qt)" color="primary" mat-icon-button>
           <mat-icon>send</mat-icon>
         </button>
       </div>
@@ -56,8 +58,10 @@ export class ProductComponent implements OnInit, OnDestroy {
   private destroyer = new Subject();
   channelQuantity = 1;
   quantityFormControl = new FormControl('');
+  addToCartLoad = false;
 
   constructor(public readonly mallState: MallState,
+              public readonly cartState: CartState,
               private readonly snack: MatSnackBar) {
   }
 
@@ -105,7 +109,26 @@ export class ProductComponent implements OnInit, OnDestroy {
       });
       qt.focus();
     } else {
-      this.quantityFormControl.setValue('');
+      this.addToCartLoad = true;
+      this.cartState.addToCart({
+        id: this.product.id,
+        product: this.product,
+        quantity: this.quantityFormControl.value,
+        shop: {
+          projectId: this.mallState.shop.value.shop.projectId,
+          applicationId: this.mallState.shop.value.shop.applicationId,
+          name: this.mallState.shop.value.shop.businessName,
+        }
+      }).then(_9 => {
+        this.quantityFormControl.setValue('');
+        this.snack.open(this.product.product + ' Added to cart', 'Ok', {
+          duration: 1000
+        });
+      }).catch(reason => {
+        console.log(reason);
+      }).finally(() => {
+        this.addToCartLoad = false;
+      });
     }
   }
 }
