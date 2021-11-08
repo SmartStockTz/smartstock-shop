@@ -69,13 +69,15 @@ export class MallService {
   }
 
   async totalProducts(projectId: string): Promise<number> {
-    return database(projectId).table('stocks').query().count(true).find();
+    return database(projectId).table('stocks').query()
+      .equalTo('saleable', true).count(true).find();
   }
 
   async getProducts(size: number, skip: number, query: string, projectId: string): Promise<StockModel[]> {
     return database(projectId).table('stocks').query()
       .size(size)
       .skip(skip)
+      .equalTo('saleable', true)
       .orderBy('updatedAt', 'desc')
       .orderBy('_updated_at', 'desc')
       .searchByRegex('product', query, 'ig')
