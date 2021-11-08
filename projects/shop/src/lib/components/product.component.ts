@@ -1,7 +1,7 @@
 import {Component, Input, OnDestroy, OnInit} from '@angular/core';
 import {StockModel} from '../models/stock.model';
 import {MallState} from '../states/mall.state';
-import {Subject, takeUntil} from 'rxjs';
+import {map, Subject, takeUntil} from 'rxjs';
 import {FormControl} from '@angular/forms';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import {CartState} from '../states/cart.state';
@@ -114,6 +114,7 @@ export class ProductComponent implements OnInit, OnDestroy {
         id: this.product.id,
         product: this.product,
         quantity: this.quantityFormControl.value,
+        channel: this.mallState.selectedTab.value === 0 ? 'retail' : 'whole',
         shop: {
           projectId: this.mallState.shop.value.shop.projectId,
           applicationId: this.mallState.shop.value.shop.applicationId,

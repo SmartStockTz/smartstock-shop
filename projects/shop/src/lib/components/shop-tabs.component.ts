@@ -4,7 +4,8 @@ import {MallState} from '../states/mall.state';
 @Component({
   selector: 'app-shop-tabs',
   template: `
-    <mat-tab-group class="t" mat-align-tabs="center" (selectedIndexChange)="tabSelected($event)">
+    <mat-tab-group [selectedIndex]="mallState.selectedTab | async" class="t" mat-align-tabs="center"
+                   (selectedIndexChange)="tabSelected($event)">
       <mat-tab label="Retail"></mat-tab>
       <mat-tab label="Wholesale"></mat-tab>
     </mat-tab-group>
@@ -13,7 +14,7 @@ import {MallState} from '../states/mall.state';
 })
 
 export class ShopTabsComponent implements OnInit {
-  constructor(private readonly mallState: MallState) {
+  constructor(public readonly mallState: MallState) {
   }
 
   tabSelected($event: number): void {

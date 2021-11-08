@@ -37,6 +37,10 @@ import {ShopProductsComponent} from './components/shop-products.component';
 import {ProductComponent} from './components/product.component';
 import {NgImageSliderModule} from 'ng-image-slider';
 import {InfiniteScrollModule} from 'ngx-infinite-scroll';
+import {CartComponent} from './components/cart.component';
+import {CartItemComponent} from './components/cart-item.component';
+import {CartDrawerComponent} from './components/cart-drawer.component';
+import {PayNowComponent} from './components/pay-now.component';
 
 const routes: Route[] = [
   {path: '', component: ShopPage},
@@ -55,7 +59,11 @@ const routes: Route[] = [
     ShopHeaderComponent,
     ShopTabsComponent,
     ShopProductsComponent,
-    ProductComponent
+    ProductComponent,
+    CartComponent,
+    CartItemComponent,
+    CartDrawerComponent,
+    PayNowComponent
   ],
   imports: [
     MatSelectModule,

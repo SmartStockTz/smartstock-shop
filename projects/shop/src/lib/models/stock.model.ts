@@ -2,9 +2,8 @@ export interface StockModel {
   createdAt?: any;
   catalog?: any[];
   updatedAt?: any;
-  image?: any;
+  images?: any;
   id?: string;
-  _id?: string;
   product: string;
   barcode?: string;
   saleable?: boolean;

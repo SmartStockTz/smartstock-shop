@@ -1,6 +1,8 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {DeviceState} from '@smartstocktz/core-libs';
 import {MallState} from '../states/mall.state';
+import {ActivatedRoute} from '@angular/router';
+import {MatSnackBar} from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-shop-page',
@@ -25,7 +27,22 @@ import {MallState} from '../states/mall.state';
   `,
   styleUrls: []
 })
-export class OrdersPage {
-  constructor(public readonly deviceState: DeviceState) {
+export class OrdersPage implements OnInit{
+  constructor(public readonly deviceState: DeviceState,
+              private readonly activatedRoute: ActivatedRoute,
+              private readonly matSnackBar: MatSnackBar,
+              public readonly mallState: MallState) {
+  }
+
+  ngOnInit(): void {
+    this.activatedRoute.params.subscribe(value => {
+      if (value && value.id) {
+        this.mallState.getShop(value.id);
+      } else {
+        this.matSnackBar.open('Fail to identify current shop', 'Ok', {
+          duration: 2000
+        });
+      }
+    });
   }
 }

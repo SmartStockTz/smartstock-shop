@@ -24,6 +24,7 @@ import {MallState} from '../states/mall.state';
                               mode="indeterminate">
         </mat-progress-spinner>
       </div>
+      <app-pay-now></app-pay-now>
     </div>
   `,
   styleUrls: ['../styles/shop.style.scss']

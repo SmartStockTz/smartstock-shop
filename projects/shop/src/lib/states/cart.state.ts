@@ -10,6 +10,8 @@ import {MatSnackBar} from '@angular/material/snack-bar';
 export class CartState {
   loadCarts = new BehaviorSubject(false);
   totalCarts = new BehaviorSubject(0);
+  totalCost = new BehaviorSubject(0);
+  serviceCharge = new BehaviorSubject(0);
   // addToCartLoad = new BehaviorSubject(false);
   carts: BehaviorSubject<CartModel[]> = new BehaviorSubject<CartModel[]>([]);
 
@@ -23,12 +25,35 @@ export class CartState {
     });
   }
 
+  private findServiceCharge(x: number): void {
+    if (x === 0) {
+      this.serviceCharge.next(0);
+    } else {
+      const smartstockCost = 2000;
+      const mLipaRate = 0.04;
+      x = x + smartstockCost;
+      const y = Math.round(x / (1 - mLipaRate));
+      const serviceC = (y - x) + smartstockCost;
+      this.serviceCharge.next(serviceC);
+    }
+  }
+
+  private findTotalCost(): void {
+    const total = this.carts.value.reduce((a, b) => {
+      const price = b.channel === 'retail' ? b.product.retailPrice : b.product.wholesalePrice;
+      return a + (b.quantity * price);
+    }, 0);
+    this.findServiceCharge(total);
+    this.totalCost.next(total);
+  }
+
   fetchCarts(): void {
     this.loadCarts.next(true);
     this.cartService.getCarts().then(value => {
       if (Array.isArray(value)) {
         this.carts.next(value);
         this.totalCarts.next(value.reduce((a, b) => a + b.quantity, 0));
+        this.findTotalCost();
       }
     }).catch(reason => {
       console.log(reason);
