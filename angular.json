@@ -18,7 +18,6 @@
             "main": "projects/shop-mock/src/main.ts",
             "polyfills": "projects/shop-mock/src/polyfills.ts",
             "tsConfig": "tsconfig.app.json",
-            "aot": true,
             "assets": [
               "projects/shop-mock/src/favicon.ico",
               "projects/shop-mock/src/assets"
@@ -29,7 +28,13 @@
               "projects/shop-mock/src/assets/vendor/bootstrap/css/bootstrap.min.css",
               "projects/shop-mock/src/assets/vendor/icofont/icofont.min.css"
             ],
-            "scripts": []
+            "scripts": [],
+            "vendorChunk": true,
+            "extractLicenses": false,
+            "buildOptimizer": false,
+            "sourceMap": true,
+            "optimization": false,
+            "namedChunks": true
           },
           "configurations": {
             "production": {
@@ -39,7 +44,14 @@
                   "with": "projects/shop-mock/src/environments/environment.prod.ts"
                 }
               ],
-              "optimization": true,
+              "optimization": {
+                "fonts": {
+                  "inline": false
+                },
+                "styles": {
+                  "inlineCritical": true
+                }
+              },
               "outputHashing": "all",
               "sourceMap": false,
               "namedChunks": false,
@@ -59,61 +71,10 @@
                 }
               ]
             },
-            "fishgenge": {
-              "fileReplacements": [
-                {
-                  "replace": "projects/shop-mock/src/environments/environment.ts",
-                  "with": "projects/shop-mock/src/environments/environment.fishgenge.ts"
-                }
-              ],
-              "optimization": true,
-              "outputHashing": "all",
-              "sourceMap": false,
-              "namedChunks": false,
-              "extractLicenses": true,
-              "vendorChunk": false,
-              "buildOptimizer": true,
-              "budgets": [
-                {
-                  "type": "initial",
-                  "maximumWarning": "2mb",
-                  "maximumError": "5mb"
-                },
-                {
-                  "type": "anyComponentStyle",
-                  "maximumWarning": "6kb",
-                  "maximumError": "10kb"
-                }
-              ]
-            },
-            "fishgengeDev": {
-              "fileReplacements": [
-                {
-                  "replace": "projects/shop-mock/src/environments/environment.ts",
-                  "with": "projects/shop-mock/src/environments/environment.fishgenge.ts"
-                }
-              ],
-              "optimization": false,
-              "outputHashing": "all",
-              "sourceMap": false,
-              "namedChunks": false,
-              "extractLicenses": true,
-              "vendorChunk": false,
-              "buildOptimizer": false,
-              "budgets": [
-                {
-                  "type": "initial",
-                  "maximumWarning": "2mb",
-                  "maximumError": "5mb"
-                },
-                {
-                  "type": "anyComponentStyle",
-                  "maximumWarning": "6kb",
-                  "maximumError": "10kb"
-                }
-              ]
+            "development": {
             }
-          }
+          },
+          "defaultConfiguration": ""
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
@@ -124,8 +85,8 @@
             "production": {
               "browserTarget": "shop-mock:build:production"
             },
-            "fishgenge": {
-              "browserTarget": "shop-mock:build:fishgengeDev"
+            "development": {
+              "browserTarget": "shop-mock:build:development"
             }
           }
         },
@@ -153,19 +114,6 @@
               "projects/shop-mock/src/assets/vendor/icofont/icofont.min.css"
             ],
             "scripts": []
-          }
-        },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "tsconfig.app.json",
-              "tsconfig.spec.json",
-              "projects/shop-mock/e2e/tsconfig.json"
-            ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
           }
         },
         "e2e": {
@@ -206,18 +154,6 @@
             "main": "projects/shop/src/test.ts",
             "tsConfig": "projects/shop/tsconfig.spec.json",
             "karmaConfig": "projects/shop/karma.conf.js"
-          }
-        },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "projects/shop/tsconfig.lib.json",
-              "projects/shop/tsconfig.spec.json"
-            ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
           }
         }
       }

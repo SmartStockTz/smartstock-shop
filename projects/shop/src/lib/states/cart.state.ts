@@ -1,78 +1,100 @@
 import {Injectable} from '@angular/core';
 import {BehaviorSubject} from 'rxjs';
-import {ProductModel} from '../models/product.model';
-import {OrdersService} from '../services/orders.service';
+import {CartModel} from '../models/cart.model';
+import {CartService} from '../services/cart.service';
 import {MatSnackBar} from '@angular/material/snack-bar';
 
 @Injectable({
-  providedIn: 'any'
+  providedIn: 'root'
 })
 export class CartState {
-  constructor(private readonly orderService: OrdersService,
+  loadCarts = new BehaviorSubject(false);
+  totalCarts = new BehaviorSubject(0);
+  totalCost = new BehaviorSubject(0);
+  serviceCharge = new BehaviorSubject(0);
+  // addToCartLoad = new BehaviorSubject(false);
+  carts: BehaviorSubject<CartModel[]> = new BehaviorSubject<CartModel[]>([]);
+
+  constructor(private readonly cartService: CartService,
               private readonly snack: MatSnackBar) {
   }
 
-  isCheckout: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
-  carts: BehaviorSubject<{ quantity: number, product: ProductModel }[]>
-    = new BehaviorSubject<{ quantity: number, product: ProductModel }[]>([]);
+  private info(message: string): void {
+    this.snack.open(message, 'Ok', {
+      duration: 1000
+    });
+  }
 
-
-  addToCart(cart: { quantity: number, product: ProductModel }): void {
-    const cartAlreadyExistIndex = this.findIndexOfAProduct(cart.product.id);
-    if (cartAlreadyExistIndex >= 0) {
-      this.carts.value[cartAlreadyExistIndex].quantity++;
+  findServiceCharge(x: number): number {
+    if (x === 0) {
+      this.serviceCharge.next(0);
     } else {
-      this.carts.value.push(cart);
+      const smartstockCost = 2000;
+      const mLipaRate = 0.04;
+      x = x + smartstockCost;
+      const y = Math.round(x / (1 - mLipaRate));
+      const serviceC = (y - x) + smartstockCost;
+      this.serviceCharge.next(serviceC);
+      return serviceC;
     }
-    this.carts.next(this.carts.value);
-    this.snack.open('Product Added To Cart', 'Ok', {
-      duration: 2000
-    });
   }
 
-  removeItemToCart(productId: string): void {
-    this.carts.next(this.carts.value.filter(x => x.product.id !== productId));
+  private findTotalCost(): void {
+    const total = this.carts.value.reduce((a, b) => {
+      const price = b.channel === 'retail' ? b.product.retailPrice : b.product.wholesalePrice;
+      return a + (b.quantity * price);
+    }, 0);
+    this.findServiceCharge(total);
+    this.totalCost.next(total);
   }
 
-  decrementItemFromCart(productId: string): void {
-    const cartAlreadyExistIndex = this.findIndexOfAProduct(productId);
-    if (cartAlreadyExistIndex >= 0) {
-      if (this.carts.value[cartAlreadyExistIndex].quantity > 1) {
-        this.carts.value[cartAlreadyExistIndex].quantity--;
+  fetchCarts(): void {
+    this.loadCarts.next(true);
+    this.cartService.getCarts().then(value => {
+      if (Array.isArray(value)) {
+        this.carts.next(value);
+        this.totalCarts.next(value.reduce((a, b) => a + b.quantity, 0));
+        this.findTotalCost();
       }
-    }
-  }
-
-  incrementItemFromCart(productId: string): void {
-    const cartAlreadyExistIndex = this.findIndexOfAProduct(productId);
-    if (cartAlreadyExistIndex >= 0) {
-      this.carts.value[cartAlreadyExistIndex].quantity++;
-    }
-  }
-
-  async checkOut(user: any, mobile: string): Promise<any> {
-    this.isCheckout.next(true);
-    const response = await this.orderService.saveOrder({
-      paid: false,
-      total: this.carts.value.map(x => x.quantity * x.product.retailPrice).reduce((a, b) => a + b, 0),
-      user,
-      carts: this.carts.value,
-      mobile,
-      status: 'PROCESSED',
-      userId: user.id ? user.id : user.uid
+    }).catch(reason => {
+      console.log(reason);
+      this.info(reason && reason.message ? reason.message : reason.toString());
+    }).finally(() => {
+      this.loadCarts.next(false);
     });
-    this.carts.next([]);
-    this.isCheckout.next(false);
-    return response;
   }
 
-  private findIndexOfAProduct(productId: string): number {
-    let cartAlreadyExistIndex = -1;
-    this.carts.value.forEach((value, index) => {
-      if (value.product.id === productId) {
-        cartAlreadyExistIndex = index;
-      }
+  async addToCart(cart: CartModel): Promise<any> {
+    // this.addToCartLoad.next(true);
+    return this.cartService.addToCart(cart).then(_1 => {
+      return this.fetchCarts();
+    }).finally(() => {
+      // this.addToCartLoad.next(false);
     });
-    return cartAlreadyExistIndex;
+  }
+
+  removeToCart(id: string): void {
+    // this.addToCartLoad.next(true);
+    this.cartService.removeToCart(id).then(_1 => {
+      this.fetchCarts();
+    }).finally(() => {
+      // this.addToCartLoad.next(false);
+    });
+  }
+
+  incrementCart(id: string, quantity: number): void {
+    // this.addToCartLoad.next(true);
+    this.cartService.incrementCart(id, quantity).then(_1 => {
+      this.fetchCarts();
+    }).finally(() => {
+      // this.addToCartLoad.next(false);
+    });
+  }
+
+  clearCart(): void {
+    this.loadCarts.next(true);
+    this.cartService.clearCart().then(_1 => {
+      this.fetchCarts();
+    });
   }
 }

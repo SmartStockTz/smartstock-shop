@@ -2,65 +2,68 @@ import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
 import {AppComponent} from './app.component';
 import {RouterModule, Routes} from '@angular/router';
-import {BFast} from 'bfastjs';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
-import {environment} from '../environments/environment';
-import * as _firebase from 'firebase/app';
 import {MatBottomSheetModule} from '@angular/material/bottom-sheet';
-import {ConfigService} from '../../../shop/src/public-api';
-
-const firebase = _firebase.default;
+import {init} from 'bfast';
+import {CommonModule} from '@angular/common';
+import {IndexPage} from './pages/index.page';
+import {MatDialogModule} from '@angular/material/dialog';
+import {MallState} from '../../../shop/src/public-api';
 
 const routes: Routes = [
   {
-    path: 'shops/:id',
-    loadChildren: () =>
-      import('../../../shop/src/public-api').then((value) => value.ShopCoreModule),
+    path: '',
+    component: IndexPage,
   },
   {
-    path: '**',
-    loadChildren: () =>
-      import('../../../shop/src/public-api').then((value) => value.ShopCoreModule),
+    path: 'account',
+    loadChildren: () => import('@smartstocktz/accounts').then((value) => value.AccountModule),
   },
+  {
+    path: 'shops/:id',
+    loadChildren: () =>
+      import('../../../shop/src/public-api').then((value) => value.EcommerceModule),
+  }
 ];
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, IndexPage],
   imports: [
     BrowserModule,
-    RouterModule.forRoot(routes, {relativeLinkResolution: 'legacy'}),
+    CommonModule,
     BrowserAnimationsModule,
+    RouterModule.forRoot(routes),
     MatSnackBarModule,
     MatBottomSheetModule,
+    MatDialogModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
 })
 export class AppModule {
-  constructor(private readonly config: ConfigService) {
-
-    // initialize firebase for auth to walk
-    firebase.initializeApp(environment.firebase);
-
-    // set active shop configurations
-    config.shopDetails.next({
-      masterKey: environment.masterKey,
-      projectId: environment.projectId,
-      applicationId: environment.applicationId
+  constructor(private readonly mallState: MallState) {
+    mallState.shop.next({
+      uid: '65e8396a-564c-40d5-8c79-d4e48b23edb5',
+      shop: {
+        businessName: 'SmartStock',
+        country: 'Tanzania',
+        settings: {
+          currency: 'Tsh'
+        },
+        applicationId: 'ffc5ea2c-bd2a-42c9-b3c5-3901a445973e',
+        region: 'Dar Es Salaam',
+        ecommerce: {
+          cover: 'https://180841b4-fc74-4609-bce8-48c130947252-daas.bfast.fahamutech.com/storage/ffc5ea2c-bd2a-42c9-b3c5-3901a445973e/file/00469123-80c2-414f-9b8d-f49fe85f4e7c-Picture2.png',
+          logo: 'https://smartstock-faas.bfast.fahamutech.com/shop/180841b4-fc74-4609-bce8-48c130947252/ffc5ea2c-bd2a-42c9-b3c5-3901a445973e/v2/storage/ffc5ea2c-bd2a-42c9-b3c5-3901a445973e/file/eaffb306-27fa-4ea1-a0e1-c5dc78abe183',
+          about: 'SmartStock default shop for test and demonstrations.'
+        },
+        projectId: '180841b4-fc74-4609-bce8-48c130947252'
+      }
     });
-
-    // initiate main smartstock project
-    BFast.init({
+    init({
       applicationId: 'smartstock_lb',
       projectId: 'smartstock',
-    }, 'smartstock');
-
-    // listen for auth state changes and update local user
-    firebase.auth().onAuthStateChanged((a) => {
-      if (!a) {
-        BFast.auth().setCurrentUser(null).catch();
-      }
     });
   }
 }

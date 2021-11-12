@@ -1,200 +1,176 @@
 import {Component, OnInit} from '@angular/core';
-import {MatTableDataSource} from '@angular/material/table';
-import {CartState} from '../states/cart.state';
-import {ProductModel} from '../models/product.model';
-import {MatDialog} from '@angular/material/dialog';
-import {UserService} from '../services/user.service';
-import {LoginDialogComponent} from './login-dialog.component';
-import {MatSnackBar} from '@angular/material/snack-bar';
-import {Router} from '@angular/router';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {ConfigService} from '../services/config.service';
+import {OrderState} from '../states/order.state';
+import {MatSnackBar} from '@angular/material/snack-bar';
+import {CartState} from '../states/cart.state';
+import {UserService} from '@smartstocktz/core-libs';
+import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
   selector: 'app-checkout',
   template: `
-    <div class="container" style="padding: 48px 0">
-      <table mat-table [dataSource]="dataSource"
-             class="mat-elevation-z2" style="width: 100%">
-
-        <!-- Position Column -->
-        <ng-container matColumnDef="product">
-          <th mat-header-cell *matHeaderCellDef>
-            <h1>
-              Products
-            </h1>
-          </th>
-          <td mat-cell *matCellDef="let element">
-            <div>
-              <img class="cart-image" src="{{element?.product?.image?.concat('/thumbnail?width=50')}}" style="width: 100px; height: 100px;" alt="">
-              <span class="card-text">{{element.product.product}}</span>
+    <div class="checkout-container">
+      <form [formGroup]="shippingForm" *ngIf="shippingForm" (ngSubmit)="formSubmitted($event)">
+        <div class="product-container">
+          <div class="product-head">
+            <span class="name">Mode</span>
+            <span style="flex: 1 1 auto"></span>
+          </div>
+          <hr class="line">
+          <p class="mode-detail">How you want your goods / service to reach you?</p>
+          <mat-radio-group formControlName="mode">
+            <div class="mode-row">
+              <mat-radio-button value="pickup"></mat-radio-button>
+              <span class="mode-row-title">PickUp</span>
+              <span class="mode-row-detail">( at one of the shop that you purchase from )</span>
             </div>
-          </td>
-        </ng-container>
-
-        <!-- Name Column -->
-        <ng-container matColumnDef="price">
-          <th mat-header-cell *matHeaderCellDef> Price</th>
-          <td mat-cell *matCellDef="let element">
-            <span class="cart-text">
-              {{element.product.retailPrice | currency: 'TZS '}}
-            </span>
-          </td>
-        </ng-container>
-
-        <!-- Symbol Column -->
-        <ng-container matColumnDef="quantity">
-          <th mat-header-cell *matHeaderCellDef> Quantity</th>
-          <td mat-cell *matCellDef="let element">
-            <div style="padding: 4px; border-radius: 8px;" class="d-flex justify-content-center; align-items-center">
-              <span (click)="removeQuantityFromCart(element)"
-                    style="font-size: 30px; color: #6f6f6f; cursor: pointer; display: inline-block; padding: 5px" matRipple>-</span>
-              <input [disabled]="true" style="width: 50px;margin: 0 14px;text-align: center;border: none; outline: none"
-                     [value]="element.quantity">
-              <span (click)="addQuantityToCart(element)"
-                    style="font-size: 30px; color: #6f6f6f; cursor: pointer; display: inline-block; padding: 5px"
-                    matRipple>+</span>
+            <div class="mode-row">
+              <mat-radio-button value="delivery"></mat-radio-button>
+              <span class="mode-row-title">Delivery</span>
+              <span class="mode-row-detail">( You will pay transportation on your own )</span>
             </div>
-          </td>
-        </ng-container>
+          </mat-radio-group>
+        </div>
 
-        <!-- Weight Column -->
-        <ng-container matColumnDef="total">
-          <th mat-header-cell *matHeaderCellDef> Total</th>
-          <td mat-cell *matCellDef="let element">
-            <span class="cart-text">
-              {{getSubTotal(element) | currency: 'TZS '}}
-            </span>
-          </td>
-        </ng-container>
+        <div class="product-container">
+          <div class="product-head">
+            <span class="name">Shipping Address</span>
+            <span style="flex: 1 1 auto"></span>
+          </div>
+          <hr class="line">
+          <p class="mode-detail">This information will be used to delivery your goods if you choose that mode.</p>
+          <div class="ship-form">
+            <div class="form-field">
+              <p class="form-control-title">Mobile</p>
+              <input class="form-field-input" type="number" formControlName="mobile">
+              <mat-hint class="hint-text"
+                        *ngIf="!(shippingForm.get('mobile').invalid && shippingForm.get('mobile').touched)">
+                Enter valid mobile number
+                <!--                <a href="/help/product#name">more info</a>-->
+              </mat-hint>
+              <mat-error *ngIf="shippingForm.get('mobile').invalid && shippingForm.get('mobile').touched"
+                         class="error-text">
+                Mobile required
+              </mat-error>
+            </div>
+          </div>
+          <div class="ship-form">
+            <div class="form-field">
+              <p class="form-control-title">Email</p>
+              <input class="form-field-input" type="email" formControlName="email">
+              <mat-hint class="hint-text"
+                        *ngIf="!(shippingForm.get('email').invalid && shippingForm.get('email').touched)">
+                Enter valid email
+                <!--                <a href="/help/product#name">more info</a>-->
+              </mat-hint>
+              <mat-error *ngIf="shippingForm.get('email').invalid && shippingForm.get('email').touched"
+                         class="error-text">
+                Email required
+              </mat-error>
+            </div>
+          </div>
+          <div class="ship-form">
+            <div class="form-field">
+              <p class="form-control-title">Address ( How to reach you )</p>
+              <textarea class="form-field-input" rows="4" formControlName="location"></textarea>
+              <mat-hint class="hint-text"
+                        *ngIf="!(shippingForm.get('location').invalid && shippingForm.get('location').touched)">
+                The street where you live
+                <!--                <a href="/help/product#name">more info</a>-->
+              </mat-hint>
+              <mat-error *ngIf="shippingForm.get('location').invalid && shippingForm.get('location').touched"
+                         class="error-text">
+                Location required
+              </mat-error>
+            </div>
+          </div>
+          <div class="ship-form">
+            <div class="form-field">
+              <p class="form-control-title">Notes ( optional )</p>
+              <textarea class="form-field-input" rows="2" formControlName="notes"></textarea>
+              <mat-hint class="hint-text"
+                        *ngIf="!(shippingForm.get('notes').invalid && shippingForm.get('notes').touched)">
+                Anything we should consider
+                <!--                <a href="/help/product#name">more info</a>-->
+              </mat-hint>
+            </div>
+          </div>
+        </div>
+      </form>
 
-        <ng-container matColumnDef="action">
-          <th mat-header-cell *matHeaderCellDef></th>
-          <td mat-cell *matCellDef="let element">
-            <button (click)="removeItemFromCart(element)" mat-icon-button>
-              <mat-icon>
-                close
-              </mat-icon>
-            </button>
-          </td>
-        </ng-container>
-
-        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-      </table>
-      <div *ngIf="dataSource.data.length > 0" style="margin: 16px 0; padding: 8px">
-        <h1 style="font-weight: bold">Total : {{getTotal() | currency: 'TZS '}}</h1>
-        <form [formGroup]="mobileFormGroup" (ngSubmit)="mobile()">
-          <mat-form-field appearance="outline" style="width: 300px">
-            <mat-label>Mobile Number</mat-label>
-            <input type="number" placeholder="+255XXXXXXXXX" matInput formControlName="mobile">
-            <mat-error>Field required</mat-error>
-          </mat-form-field>
-        </form>
-      </div>
-      <div class="d-flex" style="margin-top: 24px">
-        <button [disabled]="cartState.isCheckout | async" routerLink="/shops/{{projectId}}/products" mat-button color="primary"
-                style="flex-grow: 1; margin: 5px; font-size: 20px">
-          CONTINUE SHOPPING
-        </button>
-        <button [disabled]="cartState.isCheckout | async" *ngIf="dataSource.data.length > 0" (click)="checkOut()"
-                style="flex-grow: 1; margin: 5px; font-size: 20px"
-                mat-raised-button color="primary">
-          PROCEED TO CHECKOUT
-          <div *ngIf="cartState.isCheckout | async" class="spinner-border"></div>
-        </button>
-      </div>
     </div>
+    <app-pay-now (pay)="saveOrder()" view="pay"></app-pay-now>
   `,
-  styleUrls: ['../styles/cart.style.css']
+  styleUrls: ['../styles/checkout.style.scss']
 })
 
 export class CheckoutComponent implements OnInit {
-  displayedColumns = ['product', 'price', 'quantity', 'total', 'action'];
-  dataSource: MatTableDataSource<{ quantity: number, product: ProductModel }>
-    = new MatTableDataSource<{ quantity: number, product: ProductModel }>([]);
-  mobileFormGroup: FormGroup;
-  projectId: any;
+  shippingForm: FormGroup;
 
-  constructor(public readonly cartState: CartState,
-              private readonly userService: UserService,
+  constructor(private readonly formBuilder: FormBuilder,
               private readonly snack: MatSnackBar,
+              private readonly cartState: CartState,
               private readonly router: Router,
-              public readonly config: ConfigService,
-              private readonly formBuilder: FormBuilder,
-              private readonly dialog: MatDialog) {
-    this.projectId = this.config.shopDetails.value.projectId;
+              private readonly activatedRoute: ActivatedRoute,
+              private readonly userService: UserService,
+              private readonly orderState: OrderState) {
+  }
+
+  saveOrder(): void {
+    this.shippingForm.markAllAsTouched();
+    if (this.shippingForm.valid) {
+      this.shippingForm.value.mobile = this.shippingForm.value.mobile.toString();
+      this.userService.currentUser().then(user => {
+        this.orderState.saveOrder({
+          channel: 'online',
+          createdAt: new Date().toISOString(),
+          date: new Date().toISOString(),
+          customer: {
+            email: user.email,
+            id: user.id,
+            displayName: user.firstname + ' ' + user.lastname,
+            phone: user.mobile.toString(),
+          },
+          items: this.cartState.carts.value,
+          paid: false,
+          placedBy: {
+            firstname: 'E-Commerce',
+            lastname: 'E-Commerce',
+            username: 'E-Commerce',
+          },
+          status: 'PENDING',
+          total: this.cartState.totalCost.value,
+          updatedAt: new Date().toISOString(),
+          shipping: this.shippingForm.value,
+        }).then(value => {
+          this.cartState.clearCart();
+          this.router
+            .navigate([`../orders/${value.id}/payment`], {relativeTo: this.activatedRoute})
+            .catch(console.log);
+        });
+      }).catch(reason => {
+        this.snack.open(reason && reason.message ? reason.message : reason.toString(), 'Ok', {
+          duration: 2000
+        });
+      });
+    } else {
+      this.snack.open('Fill all required fields', 'Ok', {
+        duration: 2000
+      });
+    }
   }
 
   ngOnInit(): void {
-    this.mobileFormGroup = this.formBuilder.group({
-      mobile: ['', [Validators.nullValidator, Validators.required]]
-    });
-    this.cartState.carts.subscribe(value => {
-      if (value) {
-        this.dataSource.data = value;
-      }
-    });
-  }
-
-  getTotal(): number {
-    return this.cartState.carts.value.map(x => x.quantity * x.product.retailPrice).reduce((a, b) => a + b, 0);
-  }
-
-  removeItemFromCart(cart: { quantity: number; product: ProductModel }): void {
-    this.cartState.removeItemToCart(cart.product.id);
-  }
-
-  getSubTotal(element: any): number {
-    return element.product.retailPrice * element.quantity;
-  }
-
-  removeQuantityFromCart(element: { quantity: number, product: ProductModel }): void {
-    this.cartState.decrementItemFromCart(element.product.id);
-  }
-
-  addQuantityToCart(element: { quantity: number, product: ProductModel }): void {
-    this.cartState.incrementItemFromCart(element.product.id);
-  }
-
-  checkOut(): void {
-    this.mobileFormGroup.markAsTouched();
-    if (!this.mobileFormGroup.valid) {
-      this.snack.open('Please add your available mobile phone number to place order', 'Ok', {
-        duration: 2000
-      });
-      return;
-    }
-    this.userService.isLoggedIn().then(value => {
-      if (value) {
-        this.cartState.checkOut(value, this.mobileFormGroup.value.mobile).then(_ => {
-          this.snack.open('Your order is submitted', 'Ok', {
-            duration: 2000
-          }).afterDismissed().subscribe(__ => {
-            this.router.navigateByUrl('/orders').catch();
-          });
-        });
-      } else {
-        this.dialog.open(LoginDialogComponent, {})
-          .afterClosed().subscribe(loggedUser => {
-          if (loggedUser) {
-            this.cartState.checkOut(loggedUser, this.mobileFormGroup.value.mobile).then(_ => {
-              this.snack.open('Your order is submitted', 'Ok', {
-                duration: 2000
-              });
-              this.router.navigateByUrl('/orders').catch();
-            });
-          } else {
-            this.snack.open('Login to continue with checkout', 'Ok', {
-              duration: 2000
-            });
-          }
-        });
-      }
+    this.shippingForm = this.formBuilder.group({
+      mobile: ['', [Validators.required, Validators.nullValidator, Validators.minLength(9)]],
+      mode: ['pickup'],
+      email: ['', [Validators.required, Validators.nullValidator, Validators.email]],
+      location: ['', [Validators.required, Validators.nullValidator]],
+      notes: [''],
     });
   }
 
-  mobile(): void {
-
+  formSubmitted($event: any): void {
+    $event.preventDefault();
   }
 }

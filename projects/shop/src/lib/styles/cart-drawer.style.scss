@@ -1,0 +1,79 @@
+.title {
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 23px;
+
+  color: #000000;
+  margin: 33px 21px 21px 21px;
+  text-align: right;
+}
+
+.cost-container {
+  background: #FFFFFF;
+  box-shadow: 0 0 2px rgba(0, 0, 0, 0.25);
+  border-radius: 4px;
+  margin: 33px 21px 21px 21px;
+  padding: 12px;
+  text-align: right;
+}
+
+
+.const-title {
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  font-style: normal;
+  font-weight: 300;
+  font-size: 14px;
+  line-height: 16px;
+
+  color: #000000;
+
+}
+
+.cost-text {
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 21px;
+  /* identical to box height */
+
+
+  color: #000000;
+}
+
+.pay-button {
+  //width: 200px;
+  height: 100%;
+  flex: 1 1 auto;
+
+  //background: #016D05;
+  border-radius: 0;
+  //margin: 0 21px 21px 21px;
+  //background: #016D05;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.pay-button-text {
+  //width: 71px;
+  //height: 21px;
+
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 21px;
+
+  //color: #FFFFFF;
+}
+
+.button-container{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: end;
+}

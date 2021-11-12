@@ -1,16 +1,23 @@
-import {ProductModel} from './product.model';
+import {OrderShippingModel} from './order-shipping.model';
+import {CartModel} from './cart.model';
+import {CustomerModel} from './customer.model';
 
-export interface OrderModel {
-  displayName?: any;
+export type OrderModel = {
+  paid: boolean;
   id?: string;
-  userId?: string;
-  carts?: {
-    quantity: number,
-    product: ProductModel
-  }[];
-  paid?: boolean;
-  mobile?: string;
-  status?: string;
-  total?: number;
-  user: any;
-}
+  createdAt: any;
+  updatedAt: any;
+  total: number;
+  date: any;
+  orderRef?: string;
+  channel: string;
+  items: CartModel[];
+  customer: CustomerModel;
+  shipping: OrderShippingModel;
+  placedBy: {
+    username: string;
+    firstname: string;
+    lastname: string
+  };
+  status: 'PENDING' | 'PROCESSED' | 'DELIVERED' | 'COMPLETED' | 'CANCELLED';
+};

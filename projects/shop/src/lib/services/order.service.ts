@@ -1,51 +1,63 @@
 import {Injectable} from '@angular/core';
-import {BFast} from 'bfastjs';
+import {cache, database, functions} from 'bfast';
+import {OrderShippingModel} from '../models/order-shipping.model';
 import {OrderModel} from '../models/order.model';
+import {UserService} from '@smartstocktz/core-libs';
 
 @Injectable({
-  providedIn: 'any'
+  providedIn: 'root'
 })
 export class OrderService {
-
-  constructor() {
+  constructor(private readonly userService: UserService) {
   }
 
-  async getOrders(user: any): Promise<OrderModel[]> {
-    const total: number = await BFast.database().collection('orders').query().count(true).find();
-    const orders = await BFast.database().collection('orders')
-      .query()
-      .equalTo('userId', user.id)
-      .skip(0)
-      .size(total)
-      .orderBy('_created_at', -1)
-      .find<OrderModel[]>();
-    return orders.map<OrderModel>(x => {
-      x.displayName = x.user.displayName;
-      return x;
-    });
+  async userCachedLastBillingAddress(uid: string): Promise<OrderShippingModel> {
+    const df: OrderShippingModel = {email: '', location: '', mobile: '', mode: 'pickup', notes: ''};
+    if (typeof uid !== 'string') {
+      return df;
+    }
+    const r = await cache({database: 'e-commerce-cache', collection: 'shipping'}).get(uid);
+    if (r && typeof r === 'object') {
+      return r as OrderShippingModel;
+    }
+    return df;
   }
 
-  async markOrderIsPaid(orderId: string): Promise<any> {
-    return BFast.database().collection('orders')
-      .query()
-      .byId(orderId)
-      .updateBuilder()
-      .set('paid', true)
-      .update();
+  async saveUserCachedLastBillingAddress(uid: string, shipping: OrderShippingModel): Promise<OrderShippingModel> {
+    if (typeof uid !== 'string') {
+      throw {message: 'uid must be string'};
+    }
+    if (shipping && shipping.mode && shipping.email && shipping.mobile && shipping.notes && shipping.location) {
+      await cache({database: 'e-commerce-cache', collection: 'shipping'}).set(uid, shipping);
+      return shipping;
+    } else {
+      throw {message: 'shipping object is invalid'};
+    }
   }
 
-  async markOrderAsCancelled(order: OrderModel): Promise<any> {
-    return BFast.database().collection('orders')
-      .query()
-      .byId(order.id)
-      .updateBuilder()
-      .set('status', 'CANCELLED').update();
+  async saveOrder(order: OrderModel): Promise<OrderModel> {
+    try {
+      return await functions().request('/mall/orders').post(order);
+    } catch (e) {
+      if (e && e.response && e.response.data) {
+        throw e.response.data.message ? e.response.data : {message: e.response.data.toString()};
+      }
+      if (e && e.message) {
+        throw e;
+      }
+      throw {message: e.toString()};
+    }
   }
 
-  // async checkOrderIsPaid(order: string): Promise<any> {
-  //   const payments = await BFast.functions('fahamupay')
-  //     .request(`/functions/pay/check/${order}`)
-  //     .get<any[]>();
-  //   return payments.map(x => Math.round(Number(x.amount))).reduce((a, b) => a + b, 0);
-  // }
+  async fetchPendingOrders(): Promise<OrderModel[]> {
+    const user = await this.userService.currentUser();
+    return database().table('orders').query()
+      .equalTo('status', 'PENDING')
+      .equalTo('customer.id', user.id)
+      .find();
+  }
+
+  async fetchOrder(id: string): Promise<OrderModel> {
+    return functions().request(`/mall/orders/${id.toString()}`).get();
+  }
 }
