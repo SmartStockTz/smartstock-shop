@@ -21,7 +21,8 @@ import {MatSnackBar} from '@angular/material/snack-bar';
       [cartIcon]="'filter_alt'"
       [leftDrawer]="side">
       <ng-template #filter>
-        <app-shop-filters-drawer></app-shop-filters-drawer>
+<!--        <app-shop-filters-drawer></app-shop-filters-drawer>-->
+        <app-cart-drawer></app-cart-drawer>
       </ng-template>
       <ng-template #side>
         <app-shop-drawer currentMenu="shop"></app-shop-drawer>
@@ -32,6 +33,7 @@ import {MatSnackBar} from '@angular/material/snack-bar';
                       (refreshCallback)="reload()"
                       *ngIf="(mallState.shop | async ) === null || (mallState.loadShop | async)">
         </app-on-fetch>
+        <app-pay-now view="cart"></app-pay-now>
       </ng-template>
     </app-layout-sidenav>
   `,

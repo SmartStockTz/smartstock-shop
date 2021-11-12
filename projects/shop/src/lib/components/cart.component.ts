@@ -10,7 +10,6 @@ import {CartState} from '../states/cart.state';
                     [isLoading]="cartState.loadCarts | async">
       </app-on-fetch>
       <app-cart-item [cart]="cart" *ngFor="let cart of cartState.carts | async"></app-cart-item>
-      <app-pay-now></app-pay-now>
     </div>
   `,
   styleUrls: ['../styles/shop.style.scss']

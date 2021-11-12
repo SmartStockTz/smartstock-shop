@@ -21,7 +21,7 @@ import {MatSnackBar} from '@angular/material/snack-bar';
         <app-shop-drawer currentMenu="orders"></app-shop-drawer>
       </ng-template>
       <ng-template #body>
-
+        <app-pay-now view="cart"></app-pay-now>
       </ng-template>
     </app-layout-sidenav>
   `,

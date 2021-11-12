@@ -1,6 +1,11 @@
 .pay-now-container{
-  position: absolute;
-  right: 24px;
-  bottom: 80px;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   z-index: 10000000;
 }

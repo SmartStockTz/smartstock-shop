@@ -1,15 +1,15 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {DeviceState} from '@smartstocktz/core-libs';
-import {MallState} from '../states/mall.state';
-import {ActivatedRoute} from '@angular/router';
-import {MatSnackBar} from '@angular/material/snack-bar';
+import {CartState} from '../states/cart.state';
+import {ActivatedRoute, Router} from '@angular/router';
+import {Subject, takeUntil} from 'rxjs';
 
 @Component({
-  selector: 'app-shop-page',
+  selector: 'app-checkout-page',
   template: `
     <app-layout-sidenav
       [body]="body"
-      heading="Cart"
+      heading="Checkout"
       [showSearch]="false"
       [leftDrawer]="side"
       [leftDrawerMode]="(deviceState.enoughWidth | async) === true?'side':'over'"
@@ -25,28 +25,30 @@ import {MatSnackBar} from '@angular/material/snack-bar';
         <app-shop-drawer currentMenu="cart"></app-shop-drawer>
       </ng-template>
       <ng-template #body>
-        <app-cart></app-cart>
-        <app-pay-now view="checkout"></app-pay-now>
+        <app-checkout></app-checkout>
       </ng-template>
     </app-layout-sidenav>
   `,
   styleUrls: []
 })
-export class CartPage implements OnInit{
+export class CheckoutPage implements OnInit, OnDestroy {
+  destroyer = new Subject();
+
   constructor(public readonly deviceState: DeviceState,
-              private readonly activatedRoute: ActivatedRoute,
-              private readonly matSnackBar: MatSnackBar,
-              public readonly mallState: MallState) {
+              private readonly cartState: CartState,
+              private readonly route: ActivatedRoute,
+              private readonly router: Router) {
   }
+
   ngOnInit(): void {
-    this.activatedRoute.params.subscribe(value => {
-      if (value && value.id) {
-        this.mallState.getShop(value.id);
-      } else {
-        this.matSnackBar.open('Fail to identify current shop', 'Ok', {
-          duration: 2000
-        });
+    this.cartState.carts.pipe(takeUntil(this.destroyer)).subscribe(value => {
+      if (value.length === 0) {
+        this.router.navigate(['../'], {relativeTo: this.route}).catch(console.log);
       }
     });
+  }
+
+  ngOnDestroy(): void {
+    this.destroyer.next('done');
   }
 }

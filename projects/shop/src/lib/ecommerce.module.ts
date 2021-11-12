@@ -41,16 +41,22 @@ import {CartComponent} from './components/cart.component';
 import {CartItemComponent} from './components/cart-item.component';
 import {CartDrawerComponent} from './components/cart-drawer.component';
 import {PayNowComponent} from './components/pay-now.component';
+import {CheckoutPage} from './pages/checkout.page';
+import {CheckoutComponent} from './components/checkout.component';
+import {MatCheckboxModule} from '@angular/material/checkbox';
+import {MatRadioModule} from '@angular/material/radio';
 
 const routes: Route[] = [
   {path: '', component: ShopPage},
   {path: 'cart', component: CartPage},
+  {path: 'checkout', component: CheckoutPage},
   {path: 'orders', component: OrdersPage},
 ];
 
 @NgModule({
   declarations: [
     ShopPage,
+    CheckoutComponent,
     ShopDrawerComponent,
     ShopComponent,
     FilterDrawerComponent,
@@ -63,7 +69,8 @@ const routes: Route[] = [
     CartComponent,
     CartItemComponent,
     CartDrawerComponent,
-    PayNowComponent
+    PayNowComponent,
+    CheckoutPage
   ],
   imports: [
     MatSelectModule,
@@ -103,7 +110,9 @@ const routes: Route[] = [
     MatTabsModule,
     NgImageSliderModule,
     ReactiveFormsModule,
-    InfiniteScrollModule
+    InfiniteScrollModule,
+    MatCheckboxModule,
+    MatRadioModule
   ],
   providers: [],
 })
