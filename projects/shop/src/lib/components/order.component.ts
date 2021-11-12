@@ -10,7 +10,7 @@ import {ActivatedRoute, Router} from '@angular/router';
   template: `
     <div class="product-container">
       <div class="product-head">
-        <span class="name">#{{order.orderRef}}</span>
+        <span class="name">#{{order.id}}</span>
         <span class="pending-status">PENDING</span>
         <span style="flex: 1 1 auto"></span>
         <button (click)="payNow()" mat-button color="primary" class="view-shop">
@@ -68,7 +68,7 @@ export class OrderComponent {
   }
 
   payNow(): void {
-    this.router.navigate([`./${this.order.orderRef}/payment`], {relativeTo: this.activatedRoute})
+    this.router.navigate([`./${this.order.id}/payment`], {relativeTo: this.activatedRoute})
       .catch(console.log);
   }
 }

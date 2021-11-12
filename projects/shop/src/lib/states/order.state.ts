@@ -10,7 +10,10 @@ import {MatSnackBar} from '@angular/material/snack-bar';
 export class OrderState {
   saveOrderProgress = new BehaviorSubject(false);
   fetchOrdersProgress = new BehaviorSubject(false);
+  fetchOrderProgress = new BehaviorSubject(false);
+  orderStatusProgress = new BehaviorSubject(false);
   orders = new BehaviorSubject([]);
+  order = new BehaviorSubject(null);
 
   constructor(private readonly orderService: OrderService,
               private readonly snack: MatSnackBar) {
@@ -41,5 +44,32 @@ export class OrderState {
     }).finally(() => {
       this.fetchOrdersProgress.next(false);
     });
+  }
+
+  private ifetchOrder(id: string): void {
+    this.orderService.fetchOrder(id).then(value => {
+      this.order.next(value);
+    }).catch(reason => {
+      this.snack.open(reason && reason.message ? reason.message : reason.toString(), 'Ok', {
+        duration: 2000
+      });
+    }).finally(() => {
+      this.orderStatusProgress.next(false);
+      this.fetchOrderProgress.next(false);
+    });
+  }
+
+  fetchOrder(id: string): void {
+    this.fetchOrderProgress.next(true);
+    if (this.order.value && this.order.value.id === id) {
+      this.fetchOrderProgress.next(false);
+      return;
+    }
+    this.ifetchOrder(id);
+  }
+
+  refreshStatus(id: string): void {
+    this.orderStatusProgress.next(true);
+    this.ifetchOrder(id);
   }
 }

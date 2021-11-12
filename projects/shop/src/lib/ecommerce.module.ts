@@ -50,6 +50,9 @@ import {OrderComponent} from './components/order.component';
 import {OrderItemsSheetComponent} from './components/order-items-sheet.component';
 import {PaymentPage} from './pages/payment.page';
 import {PaymentComponent} from './components/payment.component';
+import {PaymentHeaderComponent} from './components/payment-header.component';
+import {PaymentModesComponent} from './components/payment-modes.component';
+import {PaymentModesMobileComponent} from './components/payment-modes-mobile.component';
 
 const routes: Route[] = [
   {path: '', component: ShopPage},
@@ -63,6 +66,8 @@ const routes: Route[] = [
   declarations: [
     PaymentPage,
     PaymentComponent,
+    PaymentHeaderComponent,
+    PaymentModesComponent,
     ShopPage,
     CheckoutComponent,
     OrdersComponent,
@@ -81,7 +86,8 @@ const routes: Route[] = [
     PayNowComponent,
     CheckoutPage,
     OrderComponent,
-    OrderItemsSheetComponent
+    OrderItemsSheetComponent,
+    PaymentModesMobileComponent
   ],
   imports: [
     MatSelectModule,

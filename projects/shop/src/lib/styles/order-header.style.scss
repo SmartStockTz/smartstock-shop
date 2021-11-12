@@ -1,0 +1,130 @@
+.line {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 9px;
+}
+
+.line-space {
+  flex: 1 1 auto;
+}
+
+.invoice-number {
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  font-style: normal;
+  font-weight: 300;
+  font-size: 18px;
+  line-height: 21px;
+  /* identical to box height */
+
+
+  color: #000000;
+
+}
+
+.invoice-number-body {
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 28px;
+
+  color: #000000;
+
+}
+
+.not-paid-label {
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 28px;
+
+  color: #FF0000;
+
+}
+
+.paid-label {
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 28px;
+
+  color: #015b04;
+
+}
+
+.table-container {
+  background: #FFFFFF;
+  border-radius: 2px;
+
+  table {
+    border-radius: 8px;
+    padding: 4px;
+    width: 100%;
+  }
+}
+
+.table-title {
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  font-style: normal;
+  font-weight: 300;
+  font-size: 14px;
+  line-height: 21px;
+  /* identical to box height */
+
+
+  color: #000000;
+}
+
+.table-data {
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  //line-height: 20px;
+
+  color: #000000;
+
+}
+
+.payment-mode-container {
+  margin-top: 24px;
+}
+
+::ng-deep .mat-ink-bar {
+  height: 5px !important;
+
+  background: #027206 !important;
+  border-radius: 4px 4px 0 0 !important;
+}
+
+::ng-deep .mat-tab-label-content {
+
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  font-style: normal;
+  font-weight: 500 !important;
+  font-size: 14px !important;
+  line-height: 16px !important;
+
+  //color: #025F05!important;
+
+}
+
+.t {
+  margin-bottom: 16px;
+  position: sticky;
+  top: -34px;
+  //background: white;
+  border-radius: 8px 8px 0 0;
+  z-index: 10000;
+}
+
+.card-container{
+  margin-top: 24px;
+
+}
+
+.card-item{
+  margin-bottom: 5px;
+}

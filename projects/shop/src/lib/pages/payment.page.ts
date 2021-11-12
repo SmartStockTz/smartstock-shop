@@ -1,8 +1,9 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {DeviceState} from '@smartstocktz/core-libs';
 import {ActivatedRoute} from '@angular/router';
 import {MallState} from '../states/mall.state';
 import {MatSnackBar} from '@angular/material/snack-bar';
+import {OrderState} from '../states/order.state';
 
 @Component({
   selector: 'app-payment-page',
@@ -32,10 +33,11 @@ import {MatSnackBar} from '@angular/material/snack-bar';
   styleUrls: []
 })
 
-export class PaymentPage implements OnInit{
+export class PaymentPage implements OnInit, OnDestroy {
   constructor(public readonly deviceState: DeviceState,
               private readonly activatedRoute: ActivatedRoute,
               private readonly mallState: MallState,
+              private readonly orderState: OrderState,
               private readonly matSnackBar: MatSnackBar) {
   }
 
@@ -49,5 +51,9 @@ export class PaymentPage implements OnInit{
         });
       }
     });
+  }
+
+  ngOnDestroy(): void {
+    this.orderState.order.next(undefined);
   }
 }

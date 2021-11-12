@@ -25,7 +25,7 @@ export class CartState {
     });
   }
 
-  private findServiceCharge(x: number): void {
+  findServiceCharge(x: number): number {
     if (x === 0) {
       this.serviceCharge.next(0);
     } else {
@@ -35,6 +35,7 @@ export class CartState {
       const y = Math.round(x / (1 - mLipaRate));
       const serviceC = (y - x) + smartstockCost;
       this.serviceCharge.next(serviceC);
+      return serviceC;
     }
   }
 

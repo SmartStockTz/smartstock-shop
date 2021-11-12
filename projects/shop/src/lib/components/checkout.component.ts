@@ -1,9 +1,10 @@
 import {Component, OnInit} from '@angular/core';
-import {FormBuilder, FormGroup, MinValidator, Validator, Validators} from '@angular/forms';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {OrderState} from '../states/order.state';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import {CartState} from '../states/cart.state';
 import {UserService} from '@smartstocktz/core-libs';
+import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
   selector: 'app-checkout',
@@ -109,6 +110,8 @@ export class CheckoutComponent implements OnInit {
   constructor(private readonly formBuilder: FormBuilder,
               private readonly snack: MatSnackBar,
               private readonly cartState: CartState,
+              private readonly router: Router,
+              private readonly activatedRoute: ActivatedRoute,
               private readonly userService: UserService,
               private readonly orderState: OrderState) {
   }
@@ -140,8 +143,10 @@ export class CheckoutComponent implements OnInit {
           updatedAt: new Date().toISOString(),
           shipping: this.shippingForm.value,
         }).then(value => {
-          console.log(value);
           this.cartState.clearCart();
+          this.router
+            .navigate([`../orders/${value.id}/payment`], {relativeTo: this.activatedRoute})
+            .catch(console.log);
         });
       }).catch(reason => {
         this.snack.open(reason && reason.message ? reason.message : reason.toString(), 'Ok', {

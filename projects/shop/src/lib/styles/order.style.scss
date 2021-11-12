@@ -1,4 +1,4 @@
-.pending-status{
+.pending-status {
   width: 93px;
   height: 26px;
   left: 438px;
@@ -32,7 +32,6 @@
   margin-bottom: 16px;
 
 }
-
 
 
 .product-head {
@@ -89,7 +88,7 @@
   /* identical to box height */
 
   color: #000000;
-  margin: 0!important;
+  margin: 0 !important;
 
 }
 
@@ -104,4 +103,23 @@
   flex-direction: row;
   align-items: center;
   padding: 0 16px;
+}
+
+.mobile-mode-body {
+  display: flex;
+  flex-direction: row;
+  padding: 17px 24px;
+}
+
+.mobile-mode-body-logo {
+  width: 132px;
+  height: 87px;
+  flex-shrink: 0;
+  background: #fff;
+  border-radius: 4px;
+}
+
+.mobile-mode-body-details {
+  margin-left: 10px;
+  flex-grow: 1;
 }

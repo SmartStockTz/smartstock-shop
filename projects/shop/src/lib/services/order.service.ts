@@ -56,4 +56,8 @@ export class OrderService {
       .equalTo('customer.id', user.id)
       .find();
   }
+
+  async fetchOrder(id: string): Promise<OrderModel> {
+    return database().table('orders').get(id.toString());
+  }
 }
