@@ -35,7 +35,6 @@ import {ShopTabsComponent} from './components/shop-tabs.component';
 import {MatTabsModule} from '@angular/material/tabs';
 import {ShopProductsComponent} from './components/shop-products.component';
 import {ProductComponent} from './components/product.component';
-import {NgImageSliderModule} from 'ng-image-slider';
 import {InfiniteScrollModule} from 'ngx-infinite-scroll';
 import {CartComponent} from './components/cart.component';
 import {CartItemComponent} from './components/cart-item.component';
@@ -125,7 +124,6 @@ const routes: Route[] = [
     LibModule,
     MatToolbarModule,
     MatTabsModule,
-    NgImageSliderModule,
     ReactiveFormsModule,
     InfiniteScrollModule,
     MatCheckboxModule,
