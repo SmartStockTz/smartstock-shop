@@ -14,7 +14,8 @@ import {CartModel} from '../models/cart.model';
       <div class="product-head">
         <span class="name">{{cart.product.product}}</span>
         <span style="flex: 1 1 auto"></span>
-        <button [disabled]="addToCartLoad" (click)="removeToCart()" mat-button color="warn" class="view-shop">
+        <button *ngIf="!viewOnly" [disabled]="addToCartLoad" (click)="removeToCart()"
+                mat-button color="warn" class="view-shop">
           Remove
         </button>
       </div>
@@ -32,10 +33,10 @@ import {CartModel} from '../models/cart.model';
         <span> {{quantityFormControl.value}} x ({{channelQuantity}}) {{cart.product.unit}}</span>
       </div>
       <div class="quantity-container">
-        <button (click)="removeQuantity()" color="primary" mat-icon-button>
+        <button *ngIf="!viewOnly" (click)="removeQuantity()" color="primary" mat-icon-button>
           <mat-icon>remove_circle_outline</mat-icon>
         </button>
-        <button (click)="addQuantity()" color="primary" mat-icon-button>
+        <button *ngIf="!viewOnly" (click)="addQuantity()" color="primary" mat-icon-button>
           <mat-icon>add_circle_outline</mat-icon>
         </button>
         <input disabled
@@ -49,6 +50,7 @@ import {CartModel} from '../models/cart.model';
 
 export class CartItemComponent implements OnInit, OnDestroy {
   @Input() cart: CartModel;
+  @Input() viewOnly = false;
   showCover = true;
   products: StockModel[] = [];
   currency = '';

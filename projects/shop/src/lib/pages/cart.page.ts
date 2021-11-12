@@ -17,7 +17,7 @@ import {MatSnackBar} from '@angular/material/snack-bar';
       [rightDrawer]="filter"
       [rightDrawerOpened]="(deviceState.enoughWidth | async) === true"
       [rightDrawerMode]="(deviceState.enoughWidth | async ) === true?'side':'over'"
-      [cartIcon]="'dehaze'">
+      [cartIcon]="'info_outline'">
       <ng-template #filter>
         <app-cart-drawer></app-cart-drawer>
       </ng-template>

@@ -45,18 +45,27 @@ import {CheckoutPage} from './pages/checkout.page';
 import {CheckoutComponent} from './components/checkout.component';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatRadioModule} from '@angular/material/radio';
+import {OrdersComponent} from './components/orders.component';
+import {OrderComponent} from './components/order.component';
+import {OrderItemsSheetComponent} from './components/order-items-sheet.component';
+import {PaymentPage} from './pages/payment.page';
+import {PaymentComponent} from './components/payment.component';
 
 const routes: Route[] = [
   {path: '', component: ShopPage},
   {path: 'cart', component: CartPage},
   {path: 'checkout', component: CheckoutPage},
   {path: 'orders', component: OrdersPage},
+  {path: 'orders/:orderid/payment', component: PaymentPage},
 ];
 
 @NgModule({
   declarations: [
+    PaymentPage,
+    PaymentComponent,
     ShopPage,
     CheckoutComponent,
+    OrdersComponent,
     ShopDrawerComponent,
     ShopComponent,
     FilterDrawerComponent,
@@ -70,7 +79,9 @@ const routes: Route[] = [
     CartItemComponent,
     CartDrawerComponent,
     PayNowComponent,
-    CheckoutPage
+    CheckoutPage,
+    OrderComponent,
+    OrderItemsSheetComponent
   ],
   imports: [
     MatSelectModule,

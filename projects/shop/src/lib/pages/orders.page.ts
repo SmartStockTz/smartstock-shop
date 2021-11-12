@@ -1,8 +1,9 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {DeviceState} from '@smartstocktz/core-libs';
 import {MallState} from '../states/mall.state';
 import {ActivatedRoute} from '@angular/router';
 import {MatSnackBar} from '@angular/material/snack-bar';
+import {OrderState} from '../states/order.state';
 
 @Component({
   selector: 'app-shop-page',
@@ -13,24 +14,29 @@ import {MatSnackBar} from '@angular/material/snack-bar';
       [showSearch]="false"
       [leftDrawerMode]="(deviceState.enoughWidth | async) === true?'side':'over'"
       [leftDrawer]="side"
-      [leftDrawerOpened]="(deviceState.enoughWidth | async) === true">
-<!--      <ng-template #filter>-->
-<!--        <app-shop-filters-drawer></app-shop-filters-drawer>-->
-<!--      </ng-template>-->
+      [leftDrawerOpened]="(deviceState.enoughWidth | async) === true"
+      [rightDrawer]="filter"
+      [rightDrawerOpened]="(deviceState.enoughWidth | async) === true"
+      [rightDrawerMode]="(deviceState.enoughWidth | async ) === true?'side':'over'"
+      [cartIcon]="'info_outline'">
+      <ng-template #filter>
+        <app-cart-drawer></app-cart-drawer>
+      </ng-template>
       <ng-template #side>
         <app-shop-drawer currentMenu="orders"></app-shop-drawer>
       </ng-template>
       <ng-template #body>
-        <app-pay-now view="cart"></app-pay-now>
+        <app-orders></app-orders>
       </ng-template>
     </app-layout-sidenav>
   `,
   styleUrls: []
 })
-export class OrdersPage implements OnInit{
+export class OrdersPage implements OnInit, OnDestroy {
   constructor(public readonly deviceState: DeviceState,
               private readonly activatedRoute: ActivatedRoute,
               private readonly matSnackBar: MatSnackBar,
+              private readonly orderState: OrderState,
               public readonly mallState: MallState) {
   }
 
@@ -44,5 +50,9 @@ export class OrdersPage implements OnInit{
         });
       }
     });
+  }
+
+  ngOnDestroy(): void {
+    this.orderState.orders.next([]);
   }
 }

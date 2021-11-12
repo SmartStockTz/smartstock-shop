@@ -1,13 +1,14 @@
 import {Injectable} from '@angular/core';
-import {cache, functions} from 'bfast';
+import {cache, database, functions} from 'bfast';
 import {OrderShippingModel} from '../models/order-shipping.model';
 import {OrderModel} from '../models/order.model';
+import {UserService} from '@smartstocktz/core-libs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class OrderService {
-  constructor() {
+  constructor(private readonly userService: UserService) {
   }
 
   async userCachedLastBillingAddress(uid: string): Promise<OrderShippingModel> {
@@ -46,5 +47,13 @@ export class OrderService {
       }
       throw {message: e.toString()};
     }
+  }
+
+  async fetchPendingOrders(): Promise<OrderModel[]> {
+    const user = await this.userService.currentUser();
+    return database().table('orders').query()
+      .equalTo('status', 'PENDING')
+      .equalTo('customer.id', user.id)
+      .find();
   }
 }
