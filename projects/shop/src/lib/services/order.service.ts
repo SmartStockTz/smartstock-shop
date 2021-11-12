@@ -58,6 +58,6 @@ export class OrderService {
   }
 
   async fetchOrder(id: string): Promise<OrderModel> {
-    return database().table('orders').get(id.toString());
+    return functions().request(`/mall/orders/${id.toString()}`).get();
   }
 }

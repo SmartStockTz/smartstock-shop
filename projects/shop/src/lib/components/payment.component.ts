@@ -8,7 +8,7 @@ import {Subject, takeUntil} from 'rxjs';
   template: `
     <div class="payment-container">
       <app-on-fetch *ngIf="(!orderState.order.value)"
-                    (refreshCallback)="orderState.fetchPendingOrders()"
+                    (refreshCallback)="refresh()"
                     [isLoading]="orderState.fetchOrderProgress | async">
       </app-on-fetch>
       <div *ngIf="orderState.order.value">
@@ -25,7 +25,7 @@ export class PaymentComponent implements OnInit, OnDestroy {
 
   constructor(public readonly orderState: OrderState,
               private readonly router: Router,
-              private readonly activatedRoute: ActivatedRoute) {
+              public readonly activatedRoute: ActivatedRoute) {
   }
 
   ngOnInit(): void {
@@ -39,5 +39,11 @@ export class PaymentComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
+  }
+
+  refresh(): void {
+    this.activatedRoute.params.subscribe(value => {
+      this.orderState.fetchOrder(value.orderid);
+    });
   }
 }
