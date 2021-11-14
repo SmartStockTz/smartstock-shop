@@ -5,13 +5,18 @@
   overflow: scroll;
 
   padding: 28px 24px 100px 24px;
+  display: flex;
+  flex-direction: column;
+  //justify-content: center;
+  align-items: center;
 }
 
-@media only screen and (min-width: 1200px) {
-  .shop-container{
-    padding: 28px 100px 100px 100px;
-  }
-}
+//
+//@media only screen and (min-width: 1200px) {
+//  .shop-container {
+//    padding: 28px 100px 100px 100px;
+//  }
+//}
 
 ///* Medium Devices, Desktops */
 //@media only screen and (max-width : 700px) and (min-width: 1000px) {
@@ -19,3 +24,14 @@
 //    padding: 28px 50px 100px 50px;
 //  }
 //}
+
+.load-more {
+  display: flex;
+  justify-content: center;
+  align-items: center
+}
+
+.shop-container-item {
+  width: 100%;
+  max-width: 630px;
+}

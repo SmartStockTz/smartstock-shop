@@ -18,13 +18,15 @@ export class AuthenticationGuard implements CanActivate {
     return new Promise(async (resolve, reject) => {
       try {
         const user = await this.userService.currentUser();
-        if (user) {
+        if (user && user.id) {
           resolve(true);
         } else {
           resolve(false);
-          this.router.navigateByUrl(`/shops/${this.mallState.shop.value.shop.projectId}`).catch();
+          this.router.navigateByUrl(`/account/login?url=` + encodeURIComponent(state.url)).catch();
         }
       } catch (e) {
+        console.log(e);
+        this.router.navigateByUrl(`/`).catch();
         resolve(false);
       }
     });

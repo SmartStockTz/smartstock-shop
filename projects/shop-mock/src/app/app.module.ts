@@ -10,6 +10,7 @@ import {CommonModule} from '@angular/common';
 import {IndexPage} from './pages/index.page';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MallState} from '../../../shop/src/public-api';
+import {HttpClientModule} from '@angular/common/http';
 
 const routes: Routes = [
   {
@@ -37,6 +38,7 @@ const routes: Routes = [
     MatSnackBarModule,
     MatBottomSheetModule,
     MatDialogModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent],

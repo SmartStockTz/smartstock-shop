@@ -10,10 +10,10 @@ import {MallState} from '../states/mall.state';
          [infiniteScrollDistance]="1"
          [infiniteScrollThrottle]="100"
          (scrolled)="onScroll()">
-      <app-shop-header></app-shop-header>
-      <app-shop-tabs></app-shop-tabs>
-      <app-shop-products></app-shop-products>
-      <div style="display: flex; justify-content: center; align-items: center">
+      <app-shop-header class="shop-container-item"></app-shop-header>
+      <app-shop-tabs class="shop-container-item"></app-shop-tabs>
+      <app-shop-products class="shop-container-item"></app-shop-products>
+      <div class="load-more shop-container-item">
         <button (click)="onScroll()"
                 mat-button color="primary" *ngIf="(mallState.loadMoreProducts  |async) === false">
           Load More

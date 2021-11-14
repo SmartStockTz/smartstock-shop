@@ -52,13 +52,14 @@ import {PaymentComponent} from './components/payment.component';
 import {PaymentHeaderComponent} from './components/payment-header.component';
 import {PaymentModesComponent} from './components/payment-modes.component';
 import {PaymentModesMobileComponent} from './components/payment-modes-mobile.component';
+import {AuthenticationGuard} from './guards/authentication.guard';
 
 const routes: Route[] = [
-  {path: '', component: ShopPage},
-  {path: 'cart', component: CartPage},
-  {path: 'checkout', component: CheckoutPage},
-  {path: 'orders', component: OrdersPage},
-  {path: 'orders/:orderid/payment', component: PaymentPage},
+  {path: '', canActivate: [AuthenticationGuard], component: ShopPage},
+  {path: 'cart', canActivate: [AuthenticationGuard], component: CartPage},
+  {path: 'checkout', canActivate: [AuthenticationGuard], component: CheckoutPage},
+  {path: 'orders', canActivate: [AuthenticationGuard], component: OrdersPage},
+  {path: 'orders/:orderid/payment', canActivate: [AuthenticationGuard], component: PaymentPage},
 ];
 
 @NgModule({

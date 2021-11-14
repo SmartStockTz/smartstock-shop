@@ -10,7 +10,8 @@ import {ActivatedRoute, Router} from '@angular/router';
   selector: 'app-checkout',
   template: `
     <div class="checkout-container">
-      <form [formGroup]="shippingForm" *ngIf="shippingForm" (ngSubmit)="formSubmitted($event)">
+      <form class="checkout-container-item"
+            [formGroup]="shippingForm" *ngIf="shippingForm" (ngSubmit)="formSubmitted($event)">
         <div class="product-container">
           <div class="product-head">
             <span class="name">Mode</span>
@@ -97,7 +98,6 @@ import {ActivatedRoute, Router} from '@angular/router';
           </div>
         </div>
       </form>
-
     </div>
     <app-pay-now (pay)="saveOrder()" view="pay"></app-pay-now>
   `,

@@ -1363,17 +1363,17 @@
     "@angular-devkit/schematics" "13.0.1"
     jsonc-parser "3.0.0"
 
-"@smartstocktz/accounts@^0.2.11":
-  version "0.2.11"
-  resolved "https://npm.pkg.github.com/download/@smartstocktz/accounts/0.2.11/eab438507405c96686a4c8252896de3179dc4a538c00953dcd0ff95cfaf190d4#587e6ae3f8a96d73946bda0aa61dbeaf9117fa7d"
-  integrity sha512-Dxg/YbZwaXFosZygjxlyXpvInorMnUgV1J5HYyKjVa44M0yopYDnQYqGwz8FmlGY9V0nH44uN79vGN0da4umUA==
+"@smartstocktz/accounts@^0.3.0":
+  version "0.3.0"
+  resolved "https://npm.pkg.github.com/download/@smartstocktz/accounts/0.3.0/551ce961a6a993f1c657124721b429c2f6bb3eab3b136de8cba3cbc660e14e6a#d96cd437ec321fb0949a8ba46f6580249eba0db6"
+  integrity sha512-OrrmH+iVFcByxaa0ySMlNKcxN4rQEeHb9KX+c7zmUORFsg100+0AGOwpJjAX9qrd/wBRBlo9NLMqiiyF4BvIeg==
   dependencies:
     tslib "^2.0.0"
 
-"@smartstocktz/core-libs@^0.4.2":
-  version "0.4.2"
-  resolved "https://npm.pkg.github.com/download/@smartstocktz/core-libs/0.4.2/8ad78c0cc8da544ad645f988b6e39cacd6224a6bdd61b0f40d1e854d214c0070#fd965cf12637299fdbd051bdd7c04a22f7c1aa74"
-  integrity sha512-+u2HC1MFX2UxcHyVzcoyPseE3N3bWEXq8D8DjyUvTmR1UXPnEUM4QzVdRQgeuLPrsLSNFNbjlTfXb3Yb6CzNhw==
+"@smartstocktz/core-libs@^0.4.7":
+  version "0.4.7"
+  resolved "https://npm.pkg.github.com/download/@smartstocktz/core-libs/0.4.7/5237a24d46684f41484be0113a3dfb2c23e9011d42d82cb55d0ddfb4906ff5a5#9578b6e6f289311064d231e352c1f1f53a74e521"
+  integrity sha512-L6fs15UaBFayEAGjWi8WiIKTZ7UXd8IeC6LWLKolFKXIzuixQ600mbylbe0YNESnk2uu63fjD9t57W54b53thA==
   dependencies:
     tslib "^2.0.0"
 

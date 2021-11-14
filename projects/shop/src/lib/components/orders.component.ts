@@ -9,7 +9,8 @@ import {OrderState} from '../states/order.state';
                     (refreshCallback)="orderState.fetchPendingOrders()"
                     [isLoading]="orderState.fetchOrdersProgress | async">
       </app-on-fetch>
-      <app-order [order]="order" *ngFor="let order of orderState.orders | async"></app-order>
+      <app-order class="order-container-item"
+                 [order]="order" *ngFor="let order of orderState.orders | async"></app-order>
     </div>
   `,
   styleUrls: ['../styles/orders.style.scss']

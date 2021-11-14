@@ -11,7 +11,7 @@ import {Subject, takeUntil} from 'rxjs';
                     (refreshCallback)="refresh()"
                     [isLoading]="orderState.fetchOrderProgress | async">
       </app-on-fetch>
-      <div *ngIf="orderState.order.value">
+      <div class="payment-container-item" *ngIf="orderState.order.value">
         <app-payment-header [order]="orderState.order | async"></app-payment-header>
         <app-payment-modes [order]="orderState.order | async"></app-payment-modes>
       </div>

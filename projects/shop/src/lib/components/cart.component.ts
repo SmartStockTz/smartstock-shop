@@ -9,7 +9,8 @@ import {CartState} from '../states/cart.state';
                     (refreshCallback)="cartState.fetchCarts()"
                     [isLoading]="cartState.loadCarts | async">
       </app-on-fetch>
-      <app-cart-item [cart]="cart" *ngFor="let cart of cartState.carts | async"></app-cart-item>
+      <app-cart-item class="shop-container-item"
+                     [cart]="cart" *ngFor="let cart of cartState.carts | async"></app-cart-item>
     </div>
   `,
   styleUrls: ['../styles/shop.style.scss']
