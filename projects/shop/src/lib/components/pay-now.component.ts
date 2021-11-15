@@ -1,6 +1,7 @@
-import {Component, EventEmitter, Input, Output} from '@angular/core';
+import {Component, EventEmitter, Input, OnDestroy, OnInit, Output} from '@angular/core';
 import {CartState} from '../states/cart.state';
 import {OrderState} from '../states/order.state';
+import {Subject, take, takeUntil} from 'rxjs';
 
 @Component({
   selector: 'app-pay-now',
@@ -23,7 +24,7 @@ import {OrderState} from '../states/order.state';
   styleUrls: ['../styles/pay-now.style.scss', '../styles/cart-drawer.style.scss']
 })
 
-export class PayNowComponent {
+export class PayNowComponent implements OnInit, OnDestroy {
   @Input() view = 'cart';
   @Output() pay = new EventEmitter();
 
@@ -33,5 +34,12 @@ export class PayNowComponent {
 
   saveOrderAndGoToPayments(): void {
     this.pay.emit();
+  }
+
+  ngOnInit(): void {
+    this.cartState.fetchCarts();
+  }
+
+  ngOnDestroy(): void {
   }
 }

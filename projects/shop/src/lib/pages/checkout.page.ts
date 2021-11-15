@@ -1,5 +1,5 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {DeviceState} from '@smartstocktz/core-libs';
+import {DeviceState, MenuModel} from '@smartstocktz/core-libs';
 import {CartState} from '../states/cart.state';
 import {ActivatedRoute, Router} from '@angular/router';
 import {Subject, takeUntil} from 'rxjs';
@@ -17,6 +17,8 @@ import {MatSnackBar} from '@angular/material/snack-bar';
       [leftDrawerMode]="(deviceState.enoughWidth | async) === true?'side':'over'"
       [leftDrawerOpened]="(deviceState.enoughWidth | async) === true"
       [rightDrawer]="filter"
+      [showBottomBar]="false"
+      [showModuleMenu]="true"
       [rightDrawerOpened]="(deviceState.enoughWidth | async) === true"
       [rightDrawerMode]="(deviceState.enoughWidth | async ) === true?'side':'over'"
       [cartIcon]="'info_outline'">
@@ -35,6 +37,7 @@ import {MatSnackBar} from '@angular/material/snack-bar';
 })
 export class CheckoutPage implements OnInit, OnDestroy {
   destroyer = new Subject();
+  menus: MenuModel[] = [];
 
   constructor(public readonly deviceState: DeviceState,
               private readonly cartState: CartState,
@@ -46,6 +49,29 @@ export class CheckoutPage implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
+    this.menus = [
+      {
+        name: 'Mall',
+        icon: 'home',
+        link: '/',
+        pages: [],
+        roles: ['*']
+      },
+      {
+        name: 'Cart',
+        icon: 'shopping_cart',
+        link: './cart',
+        pages: [],
+        roles: ['*']
+      },
+      {
+        name: 'Orders',
+        icon: 'favorite',
+        link: './orders',
+        pages: [],
+        roles: ['*']
+      }
+    ];
     this.cartState.carts.pipe(takeUntil(this.destroyer)).subscribe(value => {
       if (value.length === 0) {
         this.router.navigate(['../'], {relativeTo: this.route}).catch(console.log);

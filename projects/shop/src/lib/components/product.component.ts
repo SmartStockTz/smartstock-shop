@@ -122,9 +122,9 @@ export class ProductComponent implements OnInit, OnDestroy {
         }
       }).then(_9 => {
         this.quantityFormControl.setValue('');
-        this.snack.open(this.product.product + ' Added to cart', 'Ok', {
-          duration: 1000
-        });
+        // this.snack.open(this.product.product + ' Added to cart', 'Ok', {
+        //   duration: 1000
+        // });
       }).catch(reason => {
         console.log(reason);
       }).finally(() => {

@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {DeviceState} from '@smartstocktz/core-libs';
+import {DeviceState, MenuModel} from '@smartstocktz/core-libs';
 import {MallState} from '../states/mall.state';
 import {ActivatedRoute} from '@angular/router';
 import {MatSnackBar} from '@angular/material/snack-bar';
@@ -15,6 +15,8 @@ import {MatSnackBar} from '@angular/material/snack-bar';
       [leftDrawerMode]="(deviceState.enoughWidth | async) === true?'side':'over'"
       [leftDrawerOpened]="(deviceState.enoughWidth | async) === true"
       [rightDrawer]="filter"
+      [showBottomBar]="false"
+      [showModuleMenu]="true"
       [rightDrawerOpened]="(deviceState.enoughWidth | async) === true"
       [rightDrawerMode]="(deviceState.enoughWidth | async ) === true?'side':'over'"
       [cartIcon]="'info_outline'">
@@ -32,13 +34,39 @@ import {MatSnackBar} from '@angular/material/snack-bar';
   `,
   styleUrls: []
 })
-export class CartPage implements OnInit{
+export class CartPage implements OnInit {
+  menus: MenuModel[] = [];
+
   constructor(public readonly deviceState: DeviceState,
               private readonly activatedRoute: ActivatedRoute,
               private readonly matSnackBar: MatSnackBar,
               public readonly mallState: MallState) {
   }
+
   ngOnInit(): void {
+    this.menus = [
+      {
+        name: 'Mall',
+        icon: 'home',
+        link: '/',
+        pages: [],
+        roles: ['*']
+      },
+      {
+        name: 'Cart',
+        icon: 'shopping_cart',
+        link: './cart',
+        pages: [],
+        roles: ['*']
+      },
+      {
+        name: 'Orders',
+        icon: 'favorite',
+        link: './orders',
+        pages: [],
+        roles: ['*']
+      }
+    ];
     this.activatedRoute.params.subscribe(value => {
       if (value && value.id) {
         this.mallState.getShop(value.id);

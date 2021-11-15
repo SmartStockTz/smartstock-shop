@@ -1,5 +1,5 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {DeviceState} from '@smartstocktz/core-libs';
+import {DeviceState, MenuModel} from '@smartstocktz/core-libs';
 import {ActivatedRoute} from '@angular/router';
 import {MallState} from '../states/mall.state';
 import {MatSnackBar} from '@angular/material/snack-bar';
@@ -18,6 +18,8 @@ import {OrderState} from '../states/order.state';
       [rightDrawer]="filter"
       [rightDrawerOpened]="(deviceState.enoughWidth | async) === true"
       [rightDrawerMode]="(deviceState.enoughWidth | async ) === true?'side':'over'"
+      [showBottomBar]="false"
+      [showModuleMenu]="true"
       [cartIcon]="'info_outline'">
       <ng-template #filter>
         <app-cart-drawer></app-cart-drawer>
@@ -34,6 +36,8 @@ import {OrderState} from '../states/order.state';
 })
 
 export class PaymentPage implements OnInit, OnDestroy {
+  menus: MenuModel[];
+
   constructor(public readonly deviceState: DeviceState,
               private readonly activatedRoute: ActivatedRoute,
               private readonly mallState: MallState,
@@ -42,6 +46,29 @@ export class PaymentPage implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
+    this.menus = [
+      {
+        name: 'Mall',
+        icon: 'home',
+        link: '/',
+        pages: [],
+        roles: ['*']
+      },
+      {
+        name: 'Cart',
+        icon: 'shopping_cart',
+        link: './cart',
+        pages: [],
+        roles: ['*']
+      },
+      {
+        name: 'Orders',
+        icon: 'favorite',
+        link: './orders',
+        pages: [],
+        roles: ['*']
+      }
+    ];
     this.activatedRoute.params.subscribe(value => {
       if (value && value.id) {
         this.mallState.getShop(value.id);
