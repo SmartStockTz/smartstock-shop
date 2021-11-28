@@ -12,5 +12,7 @@ export const environment = {
   },
   projectId: '180841b4-fc74-4609-bce8-48c130947252',
   applicationId: 'ffc5ea2c-bd2a-42c9-b3c5-3901a445973e',
-  masterKey: ''
+  masterKey: '',
+  baseFaaSUrl: 'https://smartstock-faas.bfast.fahamutech.com',
+  baseDaaSUrl: 'https://smartstock-daas.bfast.fahamutech.com',
 };

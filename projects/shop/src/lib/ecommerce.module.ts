@@ -53,18 +53,21 @@ import {PaymentHeaderComponent} from './components/payment-header.component';
 import {PaymentModesComponent} from './components/payment-modes.component';
 import {PaymentModesMobileComponent} from './components/payment-modes-mobile.component';
 import {AuthenticationGuard} from './guards/authentication.guard';
+import {DigitalItemsPage} from './pages/digital-items.page';
 
 const routes: Route[] = [
-  {path: '', canActivate: [AuthenticationGuard], component: ShopPage},
+  {path: '', canActivate: [], component: ShopPage},
   {path: 'cart', canActivate: [AuthenticationGuard], component: CartPage},
   {path: 'checkout', canActivate: [AuthenticationGuard], component: CheckoutPage},
   {path: 'orders', canActivate: [AuthenticationGuard], component: OrdersPage},
+  {path: 'items', canActivate: [AuthenticationGuard], component: DigitalItemsPage},
   {path: 'orders/:orderid/payment', canActivate: [AuthenticationGuard], component: PaymentPage},
 ];
 
 @NgModule({
   declarations: [
     PaymentPage,
+    DigitalItemsPage,
     PaymentComponent,
     PaymentHeaderComponent,
     PaymentModesComponent,
@@ -141,6 +144,11 @@ export class EcommerceModule {
       databaseURL: getDaasAddress(mallState.shop.value.shop),
       // @ts-ignore
       functionsURL: getFaasAddress(mallState.shop.value.shop),
+      adapters: {
+        http: 'DEFAULT',
+        auth: 'DEFAULT',
+        cache: 'DEFAULT'
+      }
     }, mallState.shop.value.shop.projectId);
   }
 }

@@ -2,7 +2,6 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import {DeviceState, MenuModel} from '@smartstocktz/core-libs';
 import {ActivatedRoute} from '@angular/router';
 import {MallState} from '../states/mall.state';
-import {MatSnackBar} from '@angular/material/snack-bar';
 import {OrderState} from '../states/order.state';
 
 @Component({
@@ -41,43 +40,10 @@ export class PaymentPage implements OnInit, OnDestroy {
   constructor(public readonly deviceState: DeviceState,
               private readonly activatedRoute: ActivatedRoute,
               private readonly mallState: MallState,
-              private readonly orderState: OrderState,
-              private readonly matSnackBar: MatSnackBar) {
+              private readonly orderState: OrderState) {
   }
 
   ngOnInit(): void {
-    this.menus = [
-      {
-        name: 'Mall',
-        icon: 'home',
-        link: '/',
-        pages: [],
-        roles: ['*']
-      },
-      {
-        name: 'Cart',
-        icon: 'shopping_cart',
-        link: './cart',
-        pages: [],
-        roles: ['*']
-      },
-      {
-        name: 'Orders',
-        icon: 'favorite',
-        link: './orders',
-        pages: [],
-        roles: ['*']
-      }
-    ];
-    this.activatedRoute.params.subscribe(value => {
-      if (value && value.id) {
-        this.mallState.getShop(value.id);
-      } else {
-        this.matSnackBar.open('Fail to identify current shop', 'Ok', {
-          duration: 2000
-        });
-      }
-    });
   }
 
   ngOnDestroy(): void {

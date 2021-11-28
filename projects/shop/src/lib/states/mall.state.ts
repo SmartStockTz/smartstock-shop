@@ -67,6 +67,11 @@ export class MallState {
             databaseURL: getDaasAddress(this.shop.value.shop),
             // @ts-ignore
             functionsURL: getFaasAddress(this.shop.value.shop),
+            adapters: {
+              auth: 'DEFAULT',
+              cache: 'DEFAULT',
+              http: 'DEFAULT'
+            }
           }, this.shop.value.shop.projectId);
         } else {
           this.shop.next(null);

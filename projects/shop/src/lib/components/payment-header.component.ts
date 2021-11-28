@@ -94,7 +94,9 @@ export class PaymentHeaderComponent implements OnInit, OnDestroy {
       minutes = minutes < 10 ? '0' + minutes : minutes;
       seconds = seconds < 10 ? '0' + seconds : seconds;
       const a = document.getElementById('tcounter');
-      a.textContent = minutes + ':' + seconds;
+      if (a){
+        a.textContent = minutes + ':' + seconds;
+      }
 
       if (--timer < 0) {
         timer = duration;

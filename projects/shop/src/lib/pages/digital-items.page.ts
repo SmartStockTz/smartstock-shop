@@ -1,15 +1,17 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {DeviceState, MenuModel} from '@smartstocktz/core-libs';
+import {CartState} from '../states/cart.state';
+import {ActivatedRoute, Router} from '@angular/router';
+import {Subject, takeUntil} from 'rxjs';
 import {MallState} from '../states/mall.state';
-import {ActivatedRoute} from '@angular/router';
 import {MatSnackBar} from '@angular/material/snack-bar';
 
 @Component({
-  selector: 'app-shop-page',
+  selector: 'app-digital-items-page',
   template: `
     <app-layout-sidenav
       [body]="body"
-      heading="Cart"
+      heading="Digital Items"
       [showSearch]="false"
       [leftDrawer]="side"
       [leftDrawerMode]="(deviceState.enoughWidth | async) === true?'side':'over'"
@@ -24,23 +26,26 @@ import {MatSnackBar} from '@angular/material/snack-bar';
         <app-cart-drawer></app-cart-drawer>
       </ng-template>
       <ng-template #side>
-        <app-shop-drawer currentMenu="cart"></app-shop-drawer>
+        <app-shop-drawer currentMenu="digital"></app-shop-drawer>
       </ng-template>
       <ng-template #body>
-        <app-cart></app-cart>
-        <app-pay-now view="checkout"></app-pay-now>
+        <app-pay-now [view]="'cart'"></app-pay-now>
       </ng-template>
     </app-layout-sidenav>
   `,
   styleUrls: []
 })
-export class CartPage implements OnInit {
+export class DigitalItemsPage implements OnInit, OnDestroy {
+  destroyer = new Subject();
   menus: MenuModel[] = [];
 
   constructor(public readonly deviceState: DeviceState,
+              private readonly cartState: CartState,
+              private readonly route: ActivatedRoute,
+              private readonly router: Router,
               private readonly activatedRoute: ActivatedRoute,
-              private readonly matSnackBar: MatSnackBar,
-              public readonly mallState: MallState) {
+              private readonly mallState: MallState,
+              private readonly matSnackBar: MatSnackBar) {
   }
 
   ngOnInit(): void {
@@ -53,5 +58,9 @@ export class CartPage implements OnInit {
     //     });
     //   }
     // });
+  }
+
+  ngOnDestroy(): void {
+    this.destroyer.next('done');
   }
 }

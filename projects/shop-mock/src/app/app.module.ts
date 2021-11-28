@@ -11,6 +11,8 @@ import {IndexPage} from './pages/index.page';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MallState} from '../../../shop/src/public-api';
 import {HttpClientModule} from '@angular/common/http';
+import {SmartstockHttpAdapter} from '@smartstocktz/core-libs';
+import {environment} from '../environments/environment';
 
 const routes: Routes = [
   {
@@ -44,7 +46,8 @@ const routes: Routes = [
   bootstrap: [AppComponent],
 })
 export class AppModule {
-  constructor(private readonly mallState: MallState) {
+  constructor(private readonly mallState: MallState,
+              private readonly smartstockHttp: SmartstockHttpAdapter) {
     mallState.shop.next({
       uid: '65e8396a-564c-40d5-8c79-d4e48b23edb5',
       shop: {
@@ -66,6 +69,11 @@ export class AppModule {
     init({
       applicationId: 'smartstock_lb',
       projectId: 'smartstock',
+      databaseURL: environment.baseDaaSUrl,
+      functionsURL: environment.baseFaaSUrl,
+      adapters: {
+        http: _8 => this.smartstockHttp
+      }
     });
   }
 }

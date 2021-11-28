@@ -49,43 +49,20 @@ export class CheckoutPage implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.menus = [
-      {
-        name: 'Mall',
-        icon: 'home',
-        link: '/',
-        pages: [],
-        roles: ['*']
-      },
-      {
-        name: 'Cart',
-        icon: 'shopping_cart',
-        link: './cart',
-        pages: [],
-        roles: ['*']
-      },
-      {
-        name: 'Orders',
-        icon: 'favorite',
-        link: './orders',
-        pages: [],
-        roles: ['*']
-      }
-    ];
     this.cartState.carts.pipe(takeUntil(this.destroyer)).subscribe(value => {
       if (value.length === 0) {
         this.router.navigate(['../'], {relativeTo: this.route}).catch(console.log);
       }
     });
-    this.activatedRoute.params.subscribe(value => {
-      if (value && value.id) {
-        this.mallState.getShop(value.id);
-      } else {
-        this.matSnackBar.open('Fail to identify current shop', 'Ok', {
-          duration: 2000
-        });
-      }
-    });
+    // this.activatedRoute.params.subscribe(value => {
+    //   if (value && value.id) {
+    //     this.mallState.getShop(value.id);
+    //   } else {
+    //     this.matSnackBar.open('Fail to identify current shop', 'Ok', {
+    //       duration: 2000
+    //     });
+    //   }
+    // });
   }
 
   ngOnDestroy(): void {

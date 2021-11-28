@@ -2,21 +2,34 @@ import {Injectable} from '@angular/core';
 import {CartModel} from '../models/cart.model';
 import {cache} from 'bfast';
 import {UserService} from '@smartstocktz/core-libs';
+import {Router} from "@angular/router";
 
 @Injectable({
   providedIn: 'root'
 })
 export class CartService {
-  constructor(private readonly userService: UserService) {
+  constructor(private readonly userService: UserService,
+              private readonly router: Router) {
   }
 
   async getCarts(): Promise<CartModel[]> {
     const user = await this.userService.currentUser();
+    if (!user) {
+      return [];
+    }
     return cache({database: user.id, collection: 'cart'}).getAll();
   }
 
   async addToCart(cart: CartModel): Promise<any> {
     const user = await this.userService.currentUser();
+    if (!user){
+      this.router.navigate(['/account/login'], {
+        queryParams: {
+          url: this.router.url
+        }
+      }).catch(console.log);
+      return;
+    }
     const cartCache = cache({database: user.id, collection: 'cart'});
     const oldCart = await cartCache.get(cart.id);
     if (oldCart) {

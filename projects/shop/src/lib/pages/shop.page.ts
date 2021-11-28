@@ -52,29 +52,6 @@ export class ShopPage implements OnInit {
 
   ngOnInit(): void {
     this.reload();
-    this.menus = [
-      {
-        name: 'Mall',
-        icon: 'home',
-        link: '/',
-        pages: [],
-        roles: ['*']
-      },
-      {
-        name: 'Cart',
-        icon: 'shopping_cart',
-        link: './cart',
-        pages: [],
-        roles: ['*']
-      },
-      {
-        name: 'Orders',
-        icon: 'favorite',
-        link: './orders',
-        pages: [],
-        roles: ['*']
-      }
-    ];
   }
 
   searchProduct(query: string): void {

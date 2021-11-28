@@ -124,7 +124,8 @@ export class PaymentModesComponent implements OnInit {
   payCard(): void {
     this.loadCardUrl = true;
     functions().request(this.link).get().then(value => {
-      window.open(value as string, 'blank');
+      // @ts-ignore
+      window.open(value ? value.url : '', 'blank');
     }).catch(reason => {
       this.snack.open(reason && reason.message ? reason.message : reason.toString(), 'Ok', {
         duration: 2000

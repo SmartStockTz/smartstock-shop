@@ -16,7 +16,9 @@ export const environment = {
   },
   projectId: '180841b4-fc74-4609-bce8-48c130947252',
   applicationId: 'ffc5ea2c-bd2a-42c9-b3c5-3901a445973e',
-  masterKey: ''
+  masterKey: '',
+  baseFaaSUrl: 'http://localhost:3000',
+  baseDaaSUrl: 'http://localhost:3000/shop/smartstock/smartstock_lb',
 };
 
 /*

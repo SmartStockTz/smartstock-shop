@@ -78,8 +78,7 @@ export class MallService {
       .size(size)
       .skip(skip)
       .equalTo('saleable', true)
-      .orderBy('updatedAt', 'desc')
-      .orderBy('_updated_at', 'desc')
+      .orderBy('product', 'asc')
       .searchByRegex('product', query, 'ig')
       .find({
         returnFields: [

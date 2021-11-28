@@ -20,21 +20,26 @@ import {CartState} from '../states/cart.state';
         <mat-icon color="primary">view_compact</mat-icon>
         <span class="menu-text">Products</span>
       </button>
-      <button routerLink="/shops/{{mallState.shop.value?.shop?.projectId}}/cart" mat-button
+      <button routerLink="/shops/default/cart" mat-button
               [class]="currentMenu==='cart'?'menu-selected':'menu-not-selected'">
         <mat-icon color="primary">shopping_cart</mat-icon>
         <span class="menu-text">Cart ( {{cartState.totalCarts  | async}} )</span>
       </button>
-      <button routerLink="/shops/{{mallState.shop.value?.shop?.projectId}}/orders" mat-button
+      <button routerLink="/shops/default/orders" mat-button
               [class]="currentMenu==='orders'?'menu-selected':'menu-not-selected'">
-        <mat-icon color="primary">favorite</mat-icon>
+        <mat-icon color="primary">receipt</mat-icon>
         <span class="menu-text">Orders</span>
       </button>
-      <a *ngIf="logIn" href="/account/profile" target="_blank" mat-button
-         [class]="currentMenu==='profile'?'menu-selected':'menu-not-selected'">
-        <mat-icon color="primary">person</mat-icon>
-        <span class="menu-text">Profile</span>
-      </a>
+<!--      <button routerLink="/shops/default/items" mat-button-->
+<!--              [class]="currentMenu==='digital'?'menu-selected':'menu-not-selected'">-->
+<!--        <mat-icon color="primary">favorite</mat-icon>-->
+<!--        <span class="menu-text">My Items</span>-->
+<!--      </button>-->
+<!--      <a *ngIf="logIn" href="/account/profile" target="_blank" mat-button-->
+<!--         [class]="currentMenu==='profile'?'menu-selected':'menu-not-selected'">-->
+<!--        <mat-icon color="primary">person</mat-icon>-->
+<!--        <span class="menu-text">Profile</span>-->
+<!--      </a>-->
     </div>
   `,
   styleUrls: ['../styles/shop-drawer.style.scss']
