@@ -142,8 +142,8 @@ export class MallState {
       return;
     }
     this.loadMoreProducts.next(true);
-    console.log(size, "SIZE");
-    console.log(this.$skip, "SKIP");
+    // console.log(size, "SIZE");
+    // console.log(this.$skip, "SKIP");
     this.fetchProducts(size, this.$skip, (value) => {
       if (value === true) {
         // if (this.$skip === 0) {
