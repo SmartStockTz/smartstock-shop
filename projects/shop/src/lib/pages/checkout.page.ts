@@ -1,27 +1,32 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
-import {DeviceState, MenuModel} from '@smartstocktz/core-libs';
-import {CartState} from '../states/cart.state';
-import {ActivatedRoute, Router} from '@angular/router';
-import {Subject, takeUntil} from 'rxjs';
-import {MallState} from '../states/mall.state';
-import {MatSnackBar} from '@angular/material/snack-bar';
+import { Component, OnDestroy, OnInit } from "@angular/core";
+import { DeviceState, MenuModel } from "smartstock-core";
+import { CartState } from "../states/cart.state";
+import { ActivatedRoute, Router } from "@angular/router";
+import { Subject, takeUntil } from "rxjs";
+import { MallState } from "../states/mall.state";
+import { MatSnackBar } from "@angular/material/snack-bar";
 
 @Component({
-  selector: 'app-checkout-page',
+  selector: "app-checkout-page",
   template: `
     <app-layout-sidenav
       [body]="body"
       heading="Checkout"
       [showSearch]="false"
       [leftDrawer]="side"
-      [leftDrawerMode]="(deviceState.enoughWidth | async) === true?'side':'over'"
+      [leftDrawerMode]="
+        (deviceState.enoughWidth | async) === true ? 'side' : 'over'
+      "
       [leftDrawerOpened]="(deviceState.enoughWidth | async) === true"
       [rightDrawer]="filter"
       [showBottomBar]="false"
       [showModuleMenu]="true"
       [rightDrawerOpened]="(deviceState.enoughWidth | async) === true"
-      [rightDrawerMode]="(deviceState.enoughWidth | async ) === true?'side':'over'"
-      [cartIcon]="'info_outline'">
+      [rightDrawerMode]="
+        (deviceState.enoughWidth | async) === true ? 'side' : 'over'
+      "
+      [cartIcon]="'info_outline'"
+    >
       <ng-template #filter>
         <app-cart-drawer></app-cart-drawer>
       </ng-template>
@@ -39,19 +44,22 @@ export class CheckoutPage implements OnInit, OnDestroy {
   destroyer = new Subject();
   menus: MenuModel[] = [];
 
-  constructor(public readonly deviceState: DeviceState,
-              private readonly cartState: CartState,
-              private readonly route: ActivatedRoute,
-              private readonly router: Router,
-              private readonly activatedRoute: ActivatedRoute,
-              private readonly mallState: MallState,
-              private readonly matSnackBar: MatSnackBar) {
-  }
+  constructor(
+    public readonly deviceState: DeviceState,
+    private readonly cartState: CartState,
+    private readonly route: ActivatedRoute,
+    private readonly router: Router,
+    private readonly activatedRoute: ActivatedRoute,
+    private readonly mallState: MallState,
+    private readonly matSnackBar: MatSnackBar
+  ) {}
 
   ngOnInit(): void {
-    this.cartState.carts.pipe(takeUntil(this.destroyer)).subscribe(value => {
+    this.cartState.carts.pipe(takeUntil(this.destroyer)).subscribe((value) => {
       if (value.length === 0) {
-        this.router.navigate(['../'], {relativeTo: this.route}).catch(console.log);
+        this.router
+          .navigate(["../"], { relativeTo: this.route })
+          .catch(console.log);
       }
     });
     // this.activatedRoute.params.subscribe(value => {
@@ -66,6 +74,6 @@ export class CheckoutPage implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.destroyer.next('done');
+    this.destroyer.next("done");
   }
 }

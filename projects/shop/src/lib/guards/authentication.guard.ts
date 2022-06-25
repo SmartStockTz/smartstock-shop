@@ -1,20 +1,33 @@
-import {ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree} from '@angular/router';
-import {Observable} from 'rxjs';
-import {Injectable} from '@angular/core';
-import {UserService} from '@smartstocktz/core-libs';
-import {MallState} from '../states/mall.state';
+import {
+  ActivatedRouteSnapshot,
+  CanActivate,
+  Router,
+  RouterStateSnapshot,
+  UrlTree
+} from "@angular/router";
+import { Observable } from "rxjs";
+import { Injectable } from "@angular/core";
+import { UserService } from "smartstock-core";
+import { MallState } from "../states/mall.state";
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root"
 })
 export class AuthenticationGuard implements CanActivate {
-  constructor(private readonly router: Router,
-              private readonly mallState: MallState,
-              private readonly userService: UserService) {
-  }
+  constructor(
+    private readonly router: Router,
+    private readonly mallState: MallState,
+    private readonly userService: UserService
+  ) {}
 
-  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot)
-    : Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
+  canActivate(
+    route: ActivatedRouteSnapshot,
+    state: RouterStateSnapshot
+  ):
+    | Observable<boolean | UrlTree>
+    | Promise<boolean | UrlTree>
+    | boolean
+    | UrlTree {
     return new Promise(async (resolve, reject) => {
       try {
         const user = await this.userService.currentUser();
@@ -22,7 +35,11 @@ export class AuthenticationGuard implements CanActivate {
           resolve(true);
         } else {
           resolve(false);
-          this.router.navigateByUrl(`/account/login?url=` + encodeURIComponent(state.url)).catch();
+          this.router
+            .navigateByUrl(
+              `/account/login?url=` + encodeURIComponent(state.url)
+            )
+            .catch();
         }
       } catch (e) {
         console.log(e);
@@ -31,5 +48,4 @@ export class AuthenticationGuard implements CanActivate {
       }
     });
   }
-
 }
