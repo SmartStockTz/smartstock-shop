@@ -1,9 +1,6 @@
 {
-  "name": "@smartstocktz/ecommerce",
-  "version": "0.1.5",
-  "publishConfig": {
-    "registry": "https://npm.pkg.github.com"
-  },
+  "name": "smartstock-shop",
+  "version": "1.0.0",
   "repository": {
     "url": "git://github.com/SmartStockTz/smartstock-ecommerce-core.git"
   },
