@@ -1,25 +1,30 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
-import {DeviceState, MenuModel} from '@smartstocktz/core-libs';
-import {ActivatedRoute} from '@angular/router';
-import {MallState} from '../states/mall.state';
-import {OrderState} from '../states/order.state';
+import { Component, OnDestroy, OnInit } from "@angular/core";
+import { DeviceState, MenuModel } from "smartstock-core";
+import { ActivatedRoute } from "@angular/router";
+import { MallState } from "../states/mall.state";
+import { OrderState } from "../states/order.state";
 
 @Component({
-  selector: 'app-payment-page',
+  selector: "app-payment-page",
   template: `
     <app-layout-sidenav
       [body]="body"
       heading="Payments"
       [showSearch]="false"
-      [leftDrawerMode]="(deviceState.enoughWidth | async) === true?'side':'over'"
+      [leftDrawerMode]="
+        (deviceState.enoughWidth | async) === true ? 'side' : 'over'
+      "
       [leftDrawer]="side"
       [leftDrawerOpened]="(deviceState.enoughWidth | async) === true"
       [rightDrawer]="filter"
       [rightDrawerOpened]="(deviceState.enoughWidth | async) === true"
-      [rightDrawerMode]="(deviceState.enoughWidth | async ) === true?'side':'over'"
+      [rightDrawerMode]="
+        (deviceState.enoughWidth | async) === true ? 'side' : 'over'
+      "
       [showBottomBar]="false"
       [showModuleMenu]="true"
-      [cartIcon]="'info_outline'">
+      [cartIcon]="'info_outline'"
+    >
       <ng-template #filter>
         <app-cart-drawer></app-cart-drawer>
       </ng-template>
@@ -33,18 +38,17 @@ import {OrderState} from '../states/order.state';
   `,
   styleUrls: []
 })
-
 export class PaymentPage implements OnInit, OnDestroy {
   menus: MenuModel[];
 
-  constructor(public readonly deviceState: DeviceState,
-              private readonly activatedRoute: ActivatedRoute,
-              private readonly mallState: MallState,
-              private readonly orderState: OrderState) {
-  }
+  constructor(
+    public readonly deviceState: DeviceState,
+    private readonly activatedRoute: ActivatedRoute,
+    private readonly mallState: MallState,
+    private readonly orderState: OrderState
+  ) {}
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   ngOnDestroy(): void {
     this.orderState.order.next(undefined);

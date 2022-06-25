@@ -1,11 +1,11 @@
-import {Component, OnInit} from '@angular/core';
-import {DeviceState, MenuModel} from '@smartstocktz/core-libs';
-import {MallState} from '../states/mall.state';
-import {ActivatedRoute} from '@angular/router';
-import {MatSnackBar} from '@angular/material/snack-bar';
+import { Component, OnInit } from "@angular/core";
+import { DeviceState, MenuModel } from "smartstock-core";
+import { MallState } from "../states/mall.state";
+import { ActivatedRoute } from "@angular/router";
+import { MatSnackBar } from "@angular/material/snack-bar";
 
 @Component({
-  selector: 'app-shop-page',
+  selector: "app-shop-page",
   template: `
     <app-layout-sidenav
       [body]="body"
@@ -13,15 +13,20 @@ import {MatSnackBar} from '@angular/material/snack-bar';
       [showSearch]="true"
       (searchCallback)="searchProduct($event)"
       [showProgress]="(mallState.loadProducts | async) === true"
-      [leftDrawerMode]="(deviceState.enoughWidth | async) === true?'side':'over'"
+      [leftDrawerMode]="
+        (deviceState.enoughWidth | async) === true ? 'side' : 'over'
+      "
       [leftDrawerOpened]="(deviceState.enoughWidth | async) === true"
       [rightDrawer]="filter"
       [showBottomBar]="false"
       [showModuleMenu]="true"
       [rightDrawerOpened]="(deviceState.enoughWidth | async) === true"
-      [rightDrawerMode]="(deviceState.enoughWidth | async ) === true?'side':'over'"
+      [rightDrawerMode]="
+        (deviceState.enoughWidth | async) === true ? 'side' : 'over'
+      "
       [cartIcon]="'info_outline'"
-      [leftDrawer]="side">
+      [leftDrawer]="side"
+    >
       <ng-template #filter>
         <!--        <app-shop-filters-drawer></app-shop-filters-drawer>-->
         <app-cart-drawer></app-cart-drawer>
@@ -30,10 +35,14 @@ import {MatSnackBar} from '@angular/material/snack-bar';
         <app-shop-drawer currentMenu="shop"></app-shop-drawer>
       </ng-template>
       <ng-template #body>
-        <app-shop *ngIf="(mallState.loadShop | async)===false"></app-shop>
-        <app-on-fetch [isLoading]="mallState.loadShop | async"
-                      (refreshCallback)="reload()"
-                      *ngIf="(mallState.shop | async ) === null || (mallState.loadShop | async)">
+        <app-shop *ngIf="(mallState.loadShop | async) === false"></app-shop>
+        <app-on-fetch
+          [isLoading]="mallState.loadShop | async"
+          (refreshCallback)="reload()"
+          *ngIf="
+            (mallState.shop | async) === null || (mallState.loadShop | async)
+          "
+        >
         </app-on-fetch>
         <app-pay-now view="cart"></app-pay-now>
       </ng-template>
@@ -44,11 +53,12 @@ import {MatSnackBar} from '@angular/material/snack-bar';
 export class ShopPage implements OnInit {
   menus: MenuModel[] = [];
 
-  constructor(public readonly deviceState: DeviceState,
-              private readonly activatedRoute: ActivatedRoute,
-              private readonly matSnackBar: MatSnackBar,
-              public readonly mallState: MallState) {
-  }
+  constructor(
+    public readonly deviceState: DeviceState,
+    private readonly activatedRoute: ActivatedRoute,
+    private readonly matSnackBar: MatSnackBar,
+    public readonly mallState: MallState
+  ) {}
 
   ngOnInit(): void {
     this.reload();
@@ -59,11 +69,11 @@ export class ShopPage implements OnInit {
   }
 
   reload(): void {
-    this.activatedRoute.params.subscribe(value => {
+    this.activatedRoute.params.subscribe((value) => {
       if (value && value.id) {
         this.mallState.getShop(value.id);
       } else {
-        this.matSnackBar.open('Fail to identify current shop', 'Ok', {
+        this.matSnackBar.open("Fail to identify current shop", "Ok", {
           duration: 2000
         });
       }
