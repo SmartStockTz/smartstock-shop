@@ -1,8 +1,9 @@
 {
-  "name": "smartstock-shop-core",
-  "version": "0.0.2",
+  "name": "smartstock-shop",
+  "version": "1.0.0",
   "scripts": {
     "ng": "ng",
+    "box":"yarn install && yarn start",
     "start": "ng serve -c=development shop-mock",
     "build": "ng build",
     "publish": "ng build -c production shop && cd dist/shop && npm publish --ignore-script",
@@ -22,8 +23,8 @@
     "@angular/platform-browser": "~13.0.1",
     "@angular/platform-browser-dynamic": "~13.0.1",
     "@angular/router": "~13.0.1",
-    "@smartstocktz/accounts": "^0.4.1",
-    "@smartstocktz/core-libs": "^0.4.11",
+    "smartstock-accounts": "^1.0.0",
+    "smartstock-core": "^1.0.0",
     "bfast": "^6.0.0-alpha.17",
     "comlink": "^4.3.1",
     "karma-coverage": "^2.0.3",
