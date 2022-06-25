@@ -1,33 +1,24 @@
-# This workflow will do a clean install of node dependencies, build the source code and run tests across different versions of node
-# For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
 
-name: Node.js CI
+name: Publish to npm
 
 on:
-  push:
-    branches: [ master ]
-  #pull_request:
-   # branches: [ master ]
+  release:
+    types:
+      - published
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
-
-    strategy:
-      matrix:
-        node-version: [14.x]
-        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
-
     steps:
-    - uses: actions/checkout@v2
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v1
-      with:
-        node-version: ${{ matrix.node-version }}
-#    - run: npm install
-#    - run: npx ng build --prod shop
-#    - run: npm publish
-#    - run: npm test
-    env:
-      NPM_TOKEN: ${{secrets.NPM_TOKEN}}
+      - uses: actions/checkout@v2
+      - name: Use Node.js 16.x
+        uses: actions/setup-node@v1
+        with:
+          node-version: '16.x'
+      - run: npm install --location=global @angular/cli
+      - run: npm install --location=global yarn
+      - run: npm install -f
+      - run: npm config set //registry.npmjs.org/:_authToken=${NPM_TOKEN}
+      - run: npm run publish
+        env:
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
