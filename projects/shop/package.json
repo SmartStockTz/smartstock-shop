@@ -1,11 +1,10 @@
 {
   "name": "smartstock-shop",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "repository": {
     "url": "git://github.com/SmartStockTz/smartstock-ecommerce-core.git"
   },
-  "peerDependencies": {
-  },
+  "peerDependencies": {},
   "dependencies": {
     "tslib": "^2.0.0"
   }

@@ -2,7 +2,7 @@ import {Component, Input, OnDestroy, OnInit} from '@angular/core';
 import {StockModel} from '../models/stock.model';
 import {MallState} from '../states/mall.state';
 import {map, Subject, takeUntil} from 'rxjs';
-import {FormControl} from '@angular/forms';
+import {UntypedFormControl} from '@angular/forms';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import {CartState} from '../states/cart.state';
 
@@ -57,7 +57,7 @@ export class ProductComponent implements OnInit, OnDestroy {
   price = 0;
   private destroyer = new Subject();
   channelQuantity = 1;
-  quantityFormControl = new FormControl('');
+  quantityFormControl = new UntypedFormControl('');
   addToCartLoad = false;
 
   constructor(public readonly mallState: MallState,
