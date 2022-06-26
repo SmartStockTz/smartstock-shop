@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from "@angular/forms";
 import { OrderState } from "../states/order.state";
 import { MatSnackBar } from "@angular/material/snack-bar";
 import { CartState } from "../states/cart.state";
@@ -176,10 +176,10 @@ import { ActivatedRoute, Router } from "@angular/router";
   styleUrls: ["../styles/checkout.style.scss"]
 })
 export class CheckoutComponent implements OnInit {
-  shippingForm: FormGroup;
+  shippingForm: UntypedFormGroup;
 
   constructor(
-    private readonly formBuilder: FormBuilder,
+    private readonly formBuilder: UntypedFormBuilder,
     private readonly snack: MatSnackBar,
     private readonly cartState: CartState,
     private readonly router: Router,
