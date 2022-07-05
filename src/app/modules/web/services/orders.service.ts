@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {BFast} from 'bfastjs';
+import { database } from 'bfast';
 import {OrderModel} from '../models/order.model';
 
 @Injectable({
@@ -8,7 +8,7 @@ import {OrderModel} from '../models/order.model';
 
 export class OrdersService {
   saveOrder(order: OrderModel): Promise<any>{
-    return BFast.database()
+    return database()
       .table('orders')
       .save(order);
   }

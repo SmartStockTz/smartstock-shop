@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {BFast} from 'bfastjs';
+import { auth, database, functions } from 'bfast';
 import {environment} from '../../../../environments/environment';
 
 @Injectable({
@@ -8,11 +8,11 @@ import {environment} from '../../../../environments/environment';
 
 export class UserService {
   loginWithGoogle(): Promise<any> {
-    return BFast.auth().logIn('default', 'default');
+    return auth().logIn('default', 'default');
   }
 
   async isLoggedIn(): Promise<any> {
-    const user = await BFast.auth().currentUser();
+    const user = await auth().currentUser();
     if (user) {
       return user;
     } else {
@@ -21,12 +21,15 @@ export class UserService {
   }
 
   async logOut(): Promise<any> {
-    return BFast.auth().logOut();
+    return auth().logOut();
   }
 
   async profile(): Promise<any> {
     try {
-      const user = await BFast.functions('smartstock').request('/ecommerce/' + environment.projectId).get<any>();
+      const users = await database('smartstock').collection('_User').query()
+      .equalTo('username','tikimushi@gmail.com').find({useMasterKey: true});
+      // console.log(users);
+      let user = Array.isArray(users)?users[0]:null;
       if (!user) {
         return {ecommerce: {social: {}, logo: '', cover: null}, businessName: '', email: ''};
       }

@@ -1,4 +1,4 @@
-import {Component, Input} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {ProductModel} from '../models/product.model';
 import {CartState} from '../states/cart.state';
 
@@ -8,7 +8,7 @@ import {CartState} from '../states/cart.state';
     <mat-card style="margin-bottom: 5px; margin-top: 5px; cursor: pointer">
       <div matCardImage style="min-height: 300px" class="d-flex justify-content-center align-items-center">
         <div *ngIf="product.image; else elseBlock">
-          <img src="{{ product.image }}" alt="product image"/>
+          <img src="{{ product.images[0] }}" alt="product image"/>
         </div>
         <ng-template #elseBlock>
           <img src="../../../../assets/default.png" alt="product image"/>
@@ -36,8 +36,11 @@ import {CartState} from '../states/cart.state';
     </mat-card>
   `,
 })
-export class ProductCardComponent {
+export class ProductCardComponent implements OnInit{
   constructor(private readonly cartState: CartState) {
+  }
+  ngOnInit(): void {
+    // console.log(this.product);
   }
 
   @Input() product: ProductModel = {};

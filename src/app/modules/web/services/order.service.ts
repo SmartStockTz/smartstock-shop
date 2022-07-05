@@ -1,7 +1,6 @@
 import {Injectable} from '@angular/core';
-import {BFast} from 'bfastjs';
+import { database } from 'bfast';
 import {OrderModel} from '../models/order.model';
-import {UserModel} from 'bfastjs/dist/models/UserModel';
 
 @Injectable({
   providedIn: 'any'
@@ -12,13 +11,13 @@ export class OrderService {
   }
 
   async getOrders(user: any): Promise<OrderModel[]> {
-    const total: number = await BFast.database().collection('orders').query().count(true).find();
-    const orders = await BFast.database().collection('orders')
+    const total: number = await database().collection('orders').query().count(true).find();
+    const orders = await database().collection('orders')
       .query()
       .equalTo('userId', user.id)
       .skip(0)
       .size(total)
-      .orderBy('_created_at', -1)
+      .orderBy('_created_at', 'desc')
       .find<OrderModel[]>();
     return orders.map<OrderModel>(x => {
       x.displayName = x.user.displayName;
@@ -28,7 +27,7 @@ export class OrderService {
 
   async markOrderIsPaid(orderId: string): Promise<any> {
     // console.log(orderId);
-    return BFast.database().collection('orders')
+    return database().collection('orders')
       .query()
       .byId(orderId)
       .updateBuilder()

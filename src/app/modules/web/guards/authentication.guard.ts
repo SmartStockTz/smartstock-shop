@@ -1,7 +1,7 @@
 import {ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree} from '@angular/router';
 import {Observable} from 'rxjs';
 import {Injectable} from '@angular/core';
-import {BFast} from 'bfastjs';
+import {auth} from 'bfast';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +14,7 @@ export class AuthenticationGuard implements CanActivate {
     : Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
     return new Promise(async (resolve, reject) => {
       try {
-        const user = await BFast.auth().currentUser();
+        const user = await auth().currentUser();
         if (user) {
           resolve(true);
         } else {

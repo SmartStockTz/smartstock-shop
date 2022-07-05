@@ -4,7 +4,7 @@ import {CartState} from '../states/cart.state';
 @Component({
   selector: 'app-cart-preview',
   template: `
-    <button routerLink="/checkout" mat-raised-button color="primary"
+    <!-- <button routerLink="/checkout" mat-raised-button color="primary"
             style="position: fixed; bottom: 24px;
             z-index: 10000000;
              right: 24px; border-radius: 50px;
@@ -13,7 +13,7 @@ import {CartState} from '../states/cart.state';
         shopping_cart
       </mat-icon>
       CART ITEMS {{itemsInCart}} = {{totalCost | currency: 'TZS '}}
-    </button>
+    </button> -->
   `
 })
 export class CartPreviewComponent implements OnInit {

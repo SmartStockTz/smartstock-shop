@@ -1,7 +1,6 @@
 import {Injectable} from '@angular/core';
-import {AuthAdapter} from 'bfastjs/dist/adapters/AuthAdapter';
-import {BFast} from 'bfastjs';
-import {UserModel} from 'bfastjs/dist/models/UserModel';
+import { AuthAdapter } from 'bfast';
+import { UserModel } from 'bfast/dist/lib/models/UserModel';
 import * as _firebase from 'firebase';
 
 const firebase = _firebase.default;
@@ -27,7 +26,7 @@ export class FirebaseAuthService implements AuthAdapter {
         if (a) {
           resolve(a);
         } else {
-          BFast.auth().setCurrentUser(null).catch();
+          // auth().setCurrentUser(null).catch();
           reject(null);
         }
       });
@@ -67,3 +66,7 @@ export class FirebaseAuthService implements AuthAdapter {
   }
 
 }
+function auth() {
+  throw new Error('Function not implemented.');
+}
+
