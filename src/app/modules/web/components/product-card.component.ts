@@ -7,7 +7,7 @@ import {CartState} from '../states/cart.state';
   template: `
     <mat-card style="margin-bottom: 5px; margin-top: 5px; cursor: pointer">
       <div matCardImage style="min-height: 300px" class="d-flex justify-content-center align-items-center">
-        <div *ngIf="product.image; else elseBlock">
+        <div *ngIf="product && product.images; else elseBlock">
           <img src="{{ product.images[0] }}" alt="product image"/>
         </div>
         <ng-template #elseBlock>

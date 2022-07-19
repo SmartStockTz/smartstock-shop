@@ -32,7 +32,7 @@ export class ProductService {
             product: '$product',
             retailPrice: '$retailPrice',
             unit: '$unit',
-            image: '$image',
+            images: '$images',
             category: '$category',
             catalog: '$catalog',
             downloads: '$downloads',
